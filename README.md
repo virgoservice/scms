@@ -30,38 +30,38 @@
 * 操作系统：Windows、Linux、Unix 等
 
 #4.项目结构：
-* scms
+##scms
 * |_src/main/java    //存放项目的java源代码
-*|_com.seelecloud.cms.consts     //放置项目中静态的全局变量，枚举类型的java类
-*|_com.seelecloud.cms.controller	//放置项目的视图控制类	
-*|_com.seelecloud.cms.dao      //放置数据访问类和mapper映射文件
-*|_com.seelecloud.cms.entity		//放置实体对象类
-*|_com.seelecloud.cms.filter     //放置系统中的过滤器类
-*|_com.seelecloud.cms.interceptor  //放置系统中的拦截器类
-*|_com.seelecloud.cms.listener	//放置系统中的监听器类
-*|_com.seelecloud.cms.security	//放置Shiro的认证和授权类
-*|_com.seelecloud.cms.service	//放置业务接口类
-*|_com.seelecloud.cms.service.impl //放置业务接口实现类
-*|_com.seelecloud.cms.util		//放置系统中的各种工具类
-*|_com.seelecloud.cms.vo      //放置实体对象的封装类Value-Object
-* |_src/test/java
-*    |_com.seelecloud.cms.*test   //放置对各个模块的测试用例类   
- *|_src/main/resources
-   *|_*.xml、*.resources        //放置各种系统配置文件
+|_com.seelecloud.cms.consts     //放置项目中静态的全局变量，枚举类型的java类<br/>
+|_com.seelecloud.cms.controller	//放置项目的视图控制类	<br/>
+|_com.seelecloud.cms.dao      //放置数据访问类和mapper映射文件<br/>
+|_com.seelecloud.cms.entity		//放置实体对象类<br/>
+|_com.seelecloud.cms.filter     //放置系统中的过滤器类<br/>
+|_com.seelecloud.cms.interceptor  //放置系统中的拦截器类<br/>
+|_com.seelecloud.cms.listener	//放置系统中的监听器类<br/>
+|_com.seelecloud.cms.security	//放置Shiro的认证和授权类<br/>
+|_com.seelecloud.cms.service	//放置业务接口类<br/>
+|_com.seelecloud.cms.service.impl //放置业务接口实现类<br/>
+|_com.seelecloud.cms.util		//放置系统中的各种工具类<br/>
+|_com.seelecloud.cms.vo      //放置实体对象的封装类Value-Object<br/>
+ |_src/test/java<br/>
+    |_com.seelecloud.cms.*test   //放置对各个模块的测试用例类<br/>   
+ |_src/main/resources<br/>
+    |_*.xml、*.resources        //放置各种系统配置文件<br/>
 
- *|_src/main/webapp			//放置前端的文件
-*|_resources				//前端的静态资源文件，css,js,img，auth=none
-*|_upload                //文件上传目录，用户文件都上传到这个目录 auth=admin
-*|_backup					//系统备份文件放置目录 auth = admin
-*|_WEB-INF
-*  |_jsp					//放置具体的业务视图文件，以模块名称区分
-*    |_app
-*    |_article
-*    |_column
-*    |_index
-*    ..........
-*    |_web.xml           //web配置文件
-*|_pom.xml              //Maven的配置文件
+ |_src/main/webapp			//放置前端的文件<br/>
+  |_resources				//前端的静态资源文件，css,js,img，auth=none<br/>
+  |_upload                //文件上传目录，用户文件都上传到这个目录 auth=admin<br/>
+  |_backup					//系统备份文件放置目录 auth = admin<br/>
+*|_WEB-INF<br/>
+  |_jsp					//放置具体的业务视图文件，以模块名称区分<br/>
+    |_app<br/>
+    |_article<br/>
+    |_column<br/>
+    |_index<br/>
+    ..........<br/>
+    |_web.xml           //web配置文件<br/>
+|_pom.xml              //Maven的配置文件<br/>
 
 # 系统文档
 ## 持续更新中，敬请关注....
