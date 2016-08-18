@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seelecloud.cms.dao.ManagerDao">
+	<insert id="save" parameterType="Manager">
+		insert into t_manager (managername,managernickname,password,roleid,createtime) values(#{managerName},#{managerNickname},#{password},#{roleId},#{createTime})
+	</insert>
+	
+	<update id="update" parameterType="Manager">
+		update t_manager set managernickname=#{managerNickname} where id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from t_manager where id=#{id}
+	</delete>
+	
+	<select id="findById" parameterType="int" resultType="Manager">
+		selectid,managername, managernickname,password,roleid,createtime from t_manager where id=#{id}
+	</select>
+	
+	<select id="findAll" resultType="Manager">
+		select id,managername, managernickname,password,roleid,createtime from t_manager
+	</select>
+
+</mapper>
