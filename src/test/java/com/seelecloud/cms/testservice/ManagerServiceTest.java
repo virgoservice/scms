@@ -12,6 +12,7 @@ package com.seelecloud.cms.testservice;
 
 import java.util.Date;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -48,6 +49,12 @@ public class ManagerServiceTest {
 		manager.setRoleId(1);
 		manager.setCreateTime(new Date());
 		managerService.save(manager);
+	}
+	
+	@After
+	public void after(){
+		//TODO 还原数据现场
+		System.out.println("还原数据现场，保存数据库不受污染");
 	}
 	
 }
