@@ -3,8 +3,7 @@
 塞拉科技官网:http://www.seelecloud.com<br/>
 #面向对象
 * 塞拉SCMS是企业在创立初期很好的技术基础框架，加快公司项目开发进度，当然也可以对现有的系统进行升级；
-* 个人开发者也可以使用SCMS承接外包项目；
-* 初学JAVA的同学可以下载源代码来进行学习交流；
+* 个人开发者也可以经过塞拉科技授权后使用SCMS承接外包项目。
 
 #技术框架
 * 核心框架：Spring Framework 4
@@ -31,7 +30,7 @@
 
 #4.项目结构：
 ##scms
-* |_src/main/java    //存放项目的java源代码
+* |_src/main/java    //存放项目的java源代码<br/>
 |_com.seelecloud.cms.consts     //放置项目中静态的全局变量，枚举类型的java类<br/>
 |_com.seelecloud.cms.controller	//放置项目的视图控制类	<br/>
 |_com.seelecloud.cms.dao      //放置数据访问类和mapper映射文件<br/>
