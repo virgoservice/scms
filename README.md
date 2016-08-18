@@ -1,4 +1,4 @@
-#![seelecloud](http://www.lgstatic.com/thumbnail_300x300/i/image/M00/25/64/CgqKkVcesPKADnLrAACQqjyhxV0682.png)塞拉SCMS内容管理系统完整版J2EE代码
+#![seelecloud](https://github.com/virgoservice/scms/blob/release/logo.jpg)塞拉SCMS内容管理系统完整版J2EE代码
 当前版本:1.0.0<br/>
 塞拉科技官网:http://www.seelecloud.com<br/>
 #面向对象
