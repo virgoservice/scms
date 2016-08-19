@@ -47,6 +47,7 @@ public class Manager {
 	 */
 	private Date createTime;
 	
+	
 	/**
 	 * 空构造函数
 	 */
