@@ -19,6 +19,9 @@ import com.seelecloud.cms.consts.GeneratorSystemConst;
  * @email:ramostear@163.com 
  */
 public class Pager{
+	
+	
+	/*String path = "d://files"+File.separator;*/
 
 	/**
 	 * 分页大小
@@ -61,4 +64,5 @@ public class Pager{
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 	}
+	
 }
