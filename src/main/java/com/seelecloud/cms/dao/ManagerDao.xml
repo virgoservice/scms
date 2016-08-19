@@ -15,7 +15,7 @@
 	</delete>
 	
 	<select id="findById" parameterType="int" resultType="Manager">
-		selectid,managername, managernickname,password,roleid,createtime from t_manager where id=#{id}
+		select id,managername, managernickname,password,roleid,createtime from t_manager where id=#{id}
 	</select>
 	
 	<select id="findAll" resultType="Manager">
