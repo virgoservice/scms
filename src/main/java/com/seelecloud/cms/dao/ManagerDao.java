@@ -12,6 +12,8 @@ package com.seelecloud.cms.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.seelecloud.cms.entity.Manager;
 
 /** 
@@ -60,4 +62,26 @@ public interface ManagerDao {
 	 */
 	public List<Manager> ListAll();
 	
+	/**
+	 * 查询管理员编号为id的管理员所创建的子管理员的数量
+	 * @param id
+	 * @return
+	 */
+	public int findTotalCount(@Param("id")int id);
+	
+	/**
+	 * 分页查询编号为id的管理员所创建的子管理员
+	 * @param id			管理员编号
+	 * @param offset		起始页
+	 * @param size			查询条数
+	 * @param orderBy		排序字段
+	 * @param order 		排序方式 true:desc,false:asc
+	 * @return
+	 */
+	public List<Manager> findByPage(@Param("id") int id,@Param("offset")int offset,@Param("size")int size,@Param("oderBy")String orderBy,@Param("order") boolean order);
+	/**
+	 * 修改编号为id的管理员密码
+	 * @param id
+	 */
+	public void updateUserPasswordById(@Param("id") int id);
 }
