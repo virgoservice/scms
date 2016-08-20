@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seelecloud.cms.dao.AppDao">
+	<cache/>
+	<!-- 字段绑定 -->
+	<resultMap type="App" id="resultMap">
+		<id column="id" property="id"/>
+		<result column="appName" property="appName"/>
+		<result column="appDescription" property="appDescription"/>
+		<result column="appLogo" property="appLogo"/>
+		<result column="appKeyword" property="appKeyword"/>
+		<result column="appCopyright" property="appCopyright"/>
+		<result column="appUrl" property="appUrl"/>
+		<result column="createTime" property="createTime"/>
+		<result column="appManagerId" property="appManagerId"/>
+	</resultMap>
+	
+	<!--保存站点信息  -->	
+	<insert id="save" parameterType="App">
+		insert into t_app 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="appName != null">appName,</if>
+			<if test="appDescription != null">appDescription,</if>
+			<if test="appLogo != null">appLogo,</if>
+			<if test="appKeyword != null">appKeyword,</if>
+			<if test="appCopyright != null">appCopyright,</if>
+			<if test="appUrl != null">appUrl,</if>
+			<if test="createTime != null">createTime,</if>
+			<if test="appManagerId != null">appManagerId,</if>
+		</trim>
+		<trim prefix="values(" suffix=")" suffixOverrides=",">
+			<if test="appName != null">#{appName},</if>
+			<if test="appDescription != null">#{appDescription},</if>
+			<if test="appLogo != null">#{appLogo},</if>
+			<if test="appKeyword != null">#{appKeyword},</if>
+			<if test="appCopyright != null">#{appCopyright},</if>
+			<if test="appUrl != null">#{appUrl},</if>
+			<if test="createTime != null">#{createTime},</if>
+			<if test="appManagerId != null">#{appManagerId},</if>
+		</trim>
+	</insert>
+	
+	<!--更新站点信息  -->	
+	<update id="update" parameterType="App">
+		update t_app  
+		<set>
+			<if test="appName != null">#{appName},</if>
+			<if test="appDescription != null">#{appDescription},</if>
+			<if test="appLogo != null">#{appLogo},</if>
+			<if test="appKeyword != null">#{appKeyword},</if>
+			<if test="appCopyright != null">#{appCopyright},</if>
+			<if test="appUrl != null">#{appUrl},</if>
+			<if test="createTime != null">#{createTime},</if>
+			<if test="appManagerId != null">#{appManagerId},</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<!--删除站点信息  -->
+	<delete id="delete" parameterType="int">
+		delete from t_app 
+		where 
+		id = #{id}
+	</delete>
+
+	<!-- 根据id查找站点信息 -->	
+	<select id="findById" parameterType="int" resultMap="resultMap">
+		select * from t_app 
+		where 
+		id = #{id}
+	</select>
+
+	<!--更具站点名称查找站点信息  -->
+	<select id="findByName" parameterType="string" resultMap="resultMap">
+		select * from t_app 
+		where 
+		appName = #{appName}
+	</select>
+
+	<!-- 根据站点域名查找站点信息 -->
+	<select id="findByUrl" parameterType="string" resultMap="resultMap">
+		select * from t_app 
+		where 
+		appUrl = #{appUrl}
+	</select>
+	
+	<!--根据管理员的编号查找站点信息  -->	
+	<select id="findByManagerId" parameterType="int" resultMap="resultMap">
+		select * from t_app 
+		where 
+		appManagerId = #{appManagerId}
+	</select>
+	
+	
+	<select id="appCountByManager" parameterType="int" resultType="int">
+		select count(id) from t_app 
+		where 
+		appManangerId = #{appManagerId}
+	</select>
+	
+	<!--分页查询站点信息  -->
+	<select id="findByPageAndManager" parameterType="int" resultMap="resultMap">
+		select * from t_app 
+		where 
+		appManagerId = #{appManagerId} 
+		limit #{offset},#{size} 
+		<if test="orderBy != null">
+			order by #{orderBy}
+		</if>
+		<if test="orderBy == null">
+			order by createTime 
+		</if>
+		<if test="order == true">
+			desc 
+		</if>
+		<if test="order == false">
+			asc
+		</if>
+	</select>
+	
+	
+	
+	
+	
+</mapper>
