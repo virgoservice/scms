@@ -47,6 +47,8 @@ public class Manager {
 	 */
 	private Date createTime;
 	
+	private int parentId;
+	
 	
 	/**
 	 * 空构造函数
@@ -60,6 +62,11 @@ public class Manager {
 	public Manager(String managerName,String password){
 		this.managerName = managerName;
 		this.password = password;
+	}
+	public Manager(String managerName,String password,int parentId){
+		this.managerName = managerName;
+		this.password = password;
+		this.parentId = parentId;
 	}
 	public int getId() {
 		return id;
@@ -97,4 +104,11 @@ public class Manager {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
+	public int getParentId() {
+		return parentId;
+	}
+	public void setParentId(int parentId) {
+		this.parentId = parentId;
+	}
+	
 }
