@@ -46,7 +46,7 @@ public interface AppDao {
 	 * @param id
 	 * @return
 	 */
-	public App findById(int id);
+	public App findById(@Param("id")int id);
 	/**
 	 * 根据站点名称查找站点信息
 	 * @param appName
@@ -81,5 +81,5 @@ public interface AppDao {
 	 * @param order			排序方式
 	 * @return
 	 */
-	public List<App> findByPageAndManager(@Param("appManagerId") int managerId,@Param("offset")int offset,@Param("size")int size,@Param("oderBy")String orderBy,@Param("order") boolean order);
+	public List<App> findByPageAndManager(@Param("appManagerId") int managerId,@Param("offset")int offset,@Param("size")int size,@Param("orderBy")String orderBy,@Param("order") boolean order);
 }
