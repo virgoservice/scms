@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.seelecloud.cms.dao.AppDao">
-	<cache/>
 	<!-- 字段绑定 -->
 	<resultMap type="App" id="resultMap">
 		<id column="id" property="id"/>
@@ -45,14 +44,14 @@
 	<update id="update" parameterType="App">
 		update t_app  
 		<set>
-			<if test="appName != null">#{appName},</if>
-			<if test="appDescription != null">#{appDescription},</if>
-			<if test="appLogo != null">#{appLogo},</if>
-			<if test="appKeyword != null">#{appKeyword},</if>
-			<if test="appCopyright != null">#{appCopyright},</if>
-			<if test="appUrl != null">#{appUrl},</if>
-			<if test="createTime != null">#{createTime},</if>
-			<if test="appManagerId != null">#{appManagerId},</if>
+			<if test="appName != null">appName=#{appName},</if>
+			<if test="appDescription != null">appDescription=#{appDescription},</if>
+			<if test="appLogo != null">appLogo = #{appLogo},</if>
+			<if test="appKeyword != null">appKeyword = #{appKeyword},</if>
+			<if test="appCopyright != null">appCopyright = #{appCopyright},</if>
+			<if test="appUrl != null">appUrl = #{appUrl},</if>
+			<if test="createTime != null">createTime=#{createTime},</if>
+			<if test="appManagerId != null">appManagerId = #{appManagerId},</if>
 		</set>
 		where id = #{id}
 	</update>
@@ -94,9 +93,9 @@
 	
 	
 	<select id="appCountByManager" parameterType="int" resultType="int">
-		select count(id) from t_app 
+		select count(*) from t_app 
 		where 
-		appManangerId = #{appManagerId}
+		appManagerId = #{appManagerId}
 	</select>
 	
 	<!--分页查询站点信息  -->
@@ -104,7 +103,6 @@
 		select * from t_app 
 		where 
 		appManagerId = #{appManagerId} 
-		limit #{offset},#{size} 
 		<if test="orderBy != null">
 			order by #{orderBy}
 		</if>
@@ -117,6 +115,7 @@
 		<if test="order == false">
 			asc
 		</if>
+		limit #{offset},#{size}
 	</select>
 	
 	
