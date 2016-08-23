@@ -38,7 +38,7 @@ public class App {
 	/**
 	 * 站点关键字
 	 */
-	private String appkeyword;
+	private String appKeyword;
 	/**
 	 * 站点版权信息
 	 */
@@ -94,12 +94,14 @@ public class App {
 		this.appLogo = appLogo;
 	}
 
-	public String getAppkeyword() {
-		return appkeyword;
+	
+
+	public String getAppKeyword() {
+		return appKeyword;
 	}
 
-	public void setAppkeyword(String appkeyword) {
-		this.appkeyword = appkeyword;
+	public void setAppKeyword(String appKeyword) {
+		this.appKeyword = appKeyword;
 	}
 
 	public String getAppCopyright() {
