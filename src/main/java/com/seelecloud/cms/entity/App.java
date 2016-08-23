@@ -133,4 +133,5 @@ public class App {
 	public void setAppManagerId(int appManagerId) {
 		this.appManagerId = appManagerId;
 	}
+	
 }
