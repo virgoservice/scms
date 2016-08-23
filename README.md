@@ -5,7 +5,7 @@
 #面向对象
 * 塞拉SCMS是企业在创立初期很好的技术基础框架，加快公司项目开发进度，当然也可以对现有的系统进行升级；
 * 个人开发者也可以经过塞拉科技授权后使用SCMS承接外包项目。
-
+* Author:<a href="http://www.ramostear.com" style="color:red;font-size:16px;">谭朝红</a>
 #技术框架
 * 核心框架：Spring Framework 4
 * 安全框架：Apache Shiro 1.2
