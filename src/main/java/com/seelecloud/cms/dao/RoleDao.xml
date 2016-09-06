@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seelecloud.cms.dao.RoleDao">
+	<!-- 字段绑定 -->
+	<resultMap type="Role" id="resultMap">
+		<id column="id" property="id"/>
+		<result column="roleName" property="roleName"/>
+		<result column="managerId" property="managerId"/>
+		<result column="createTime" property="createTime"/>
+	</resultMap>
+	
+	<!--保存站点信息  -->	
+	<insert id="save" parameterType="App">
+		insert into t_role 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="roleName != null">roleName,</if>
+			<if test="managerId != null">managerId,</if>
+			<if test="createTime != null">createTime,</if>
+		</trim>
+		<trim prefix="values(" suffix=")" suffixOverrides=",">
+			<if test="roleName != null">#{roleName},</if>
+			<if test="managerId != null">#{managerId},</if>
+			<if test="createTime != null">#{createTime},</if>
+		</trim>
+	</insert>
+	
+	<!--更新站点信息  -->	
+	<update id="update" parameterType="Role">
+		update t_role  
+		<set>
+			<if test="roleName != null">roleName=#{roleName},</if>
+			<if test="managerId != null">managerId=#{managerId},</if>
+			<if test="createTime != null">createTime = #{createTime},</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<!--删除站点信息  -->
+	<delete id="delete" parameterType="int">
+		delete from t_role 
+		where 
+		id = #{id}
+	</delete>
+
+	<!-- 根据id查找站点信息 -->	
+	<select id="findById" parameterType="int" resultMap="resultMap">
+		select * from t_role 
+		where 
+		id = #{id}
+	</select>
+
+	<!--更具站点名称查找站点信息  -->
+	<select id="findByManagerId" parameterType="int" resultMap="resultMap">
+		select * from t_role 
+		where 
+		managerId = #{managerId}
+	</select>
+
+</mapper>
