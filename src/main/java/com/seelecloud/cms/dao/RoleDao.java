@@ -55,6 +55,6 @@ public interface RoleDao {
 	 * @param managerId
 	 * @return
 	 */
-	public List<Role> findByManangerId(@Param("managerId")int managerId);
+	public List<Role> findByManagerId(@Param("managerId")int managerId);
 	
 }
