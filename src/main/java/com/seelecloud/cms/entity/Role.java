@@ -30,7 +30,7 @@ public class Role {
 	/**
 	 * 创建者Id
 	 */
-	private String managerId;
+	private int managerId;
 	/**
 	 * 角色创建时间
 	 */
@@ -47,7 +47,7 @@ public class Role {
 	 * @param roleName
 	 * @param managerId
 	 */
-	public Role(String roleName,String managerId){
+	public Role(String roleName,int managerId){
 		this.roleName = roleName;
 		this.managerId = managerId;
 	}
@@ -68,11 +68,11 @@ public class Role {
 		this.roleName = roleName;
 	}
 
-	public String getManagerId() {
+	public int getManagerId() {
 		return managerId;
 	}
 
-	public void setManagerId(String managerId) {
+	public void setManagerId(int managerId) {
 		this.managerId = managerId;
 	}
 
