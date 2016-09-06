@@ -68,7 +68,7 @@ public class RoleServiceImpl implements RoleService{
 	 */
 	@Override
 	public List<Role> findByManangerId(int managerId) {
-		return this.roleDao.findByManangerId(managerId);
+		return this.roleDao.findByManagerId(managerId);
 	}
 
 }
