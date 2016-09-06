@@ -14,7 +14,7 @@
 	</resultMap>
 	
 	<!--保存站点信息  -->	
-	<insert id="save" parameterType="App">
+	<insert id="save" parameterType="Model">
 		insert into t_model 
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="modelName != null">modelName,</if>
@@ -35,7 +35,7 @@
 	</insert>
 	
 	<!--更新站点信息  -->	
-	<update id="update" parameterType="App">
+	<update id="update" parameterType="Model">
 		update t_model  
 		<set>
 			<if test="modelName != null">modelName=#{modelName},</if>
