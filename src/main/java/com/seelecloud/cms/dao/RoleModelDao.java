@@ -12,6 +12,8 @@ package com.seelecloud.cms.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.seelecloud.cms.entity.RoleModel;
 
 /** 
@@ -45,19 +47,19 @@ public interface RoleModelDao {
 	 * @param roleId
 	 * @return
 	 */
-	public List<Integer> findModelIdsByRole(int roleId);
+	public List<Integer> findModelIdsByRole(@Param("roleId")int roleId);
 	
 	/**
 	 * find role id by the model Id
 	 * @param modelId
 	 * @return
 	 */
-	public List<Integer> findRoleIdsByModel(int modelId);
+	public List<Integer> findRoleIdsByModel(@Param("modelId")int modelId);
 	
 	/**
 	 * 根据角色Id接触角色和模块的关系
 	 * @param roleId
 	 */
-	public void deleteByRoleId(int roleId);
+	public void deleteByRoleId(@Param("roleId")int roleId);
 	
 }
