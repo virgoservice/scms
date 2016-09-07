@@ -81,4 +81,12 @@ public class RoleModelServiceImpl  implements RoleModelService{
 		this.roleModelDao.deleteByRoleId(roleId);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.seelecloud.cms.service.RoleModelService#findById(int)
+	 */
+	@Override
+	public RoleModel findById(int id) {
+		return this.roleModelDao.findById(id);
+	}
+
 }
