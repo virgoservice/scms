@@ -18,6 +18,8 @@ package com.seelecloud.cms.entity;
  */
 public class RoleModel {
 	
+	private int id;
+	
 	/**
 	 * 角色编号
 	 */
@@ -41,6 +43,13 @@ public class RoleModel {
 	public RoleModel(int roleId,int modelId){
 		this.roleId = roleId;
 		this.modelId = modelId;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	public int getRoleId() {
 		return roleId;
