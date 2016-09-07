@@ -43,6 +43,13 @@ public interface RoleModelService {
 	public void delete(int id);
 	
 	/**
+	 * 根据关联编号查找
+	 * @param id
+	 * @return
+	 */
+	public RoleModel findById(int id);
+	
+	/**
 	 * find the model id by the role id
 	 * @param roleId
 	 * @return
