@@ -36,7 +36,7 @@
 		id = #{id}
 	</select>
 	
-	<select id="indModelIdsByRole" parameterType="int" resultType="int">
+	<select id="findModelIdsByRole" parameterType="int" resultType="int">
 		select modelId from t_roleModel 
 		where 
 		roleId = #{roleId}
