@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seelecloud.cms.dao.RoleModelDao">
+	
+	<insert id="save" parameterType="RoleModel">
+		insert into t_roleModel 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="roleId != null">roleId,</if>
+			<if test="modelId != null">modelId,</if>
+		</trim>
+		<trim prefix="values(" suffix=")" suffixOverrides=",">
+			<if test="roleId != null">#{roleId},</if>
+			<if test="modelId != null">#{modelId},</if>
+		</trim>
+	</insert>
+	
+	<update id="update" parameterType="RoleModel">
+		update t_roleModel  
+		<set>
+			<if test="roleId != null">roleId=#{roleId},</if>
+			<if test="modelId != null">modelId=#{modelId},</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from t_roleModel 
+		where 
+		id = #{id}
+	</delete>
+
+	<select id="indModelIdsByRole" parameterType="int" resultMap="int">
+		select modelId from t_roleModel 
+		where 
+		roleId = #{roleId}
+	</select>
+
+	<select id="findRoleIdByModel" parameterType="int" resultMap="int">
+		select roleId from t_roleModel 
+		where 
+		modelId = #{modelId}
+	</select>
+
+	<select id="deleteByRoleId" parameterType="int">
+		delete from t_roleModel 
+		where 
+		roleId = #{roleId}
+	</select>
+	
+</mapper>
