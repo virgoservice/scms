@@ -16,7 +16,7 @@
 <![endif]-->
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/static/h-ui/css/H-ui.min.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/static/h-ui.admin/css/H-ui.admin.css" />
-<link rel="stylesheet" type="text/css" href=<%=request.getContextPath() %>/resources/"<%=request.getContextPath() %>/resources/lib/Hui-iconfont/1.0.7/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/lib/Hui-iconfont/1.0.7/iconfont.css" />
 <link rel="stylesheet" type="text/css" href="lib/icheck/icheck.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/static/h-ui.admin/css/style.css" />
@@ -28,9 +28,9 @@
 </head>
 <body>
 <div class="page-container">
-	<p class="f-20 text-success">欢迎使用SCMS内容管理系统 <span class="f-14">V1.0.0</span></p>
+	<p class="f-20 text-success"><i class="Hui-iconfont">&#xe625;</i> 欢迎使用SCMS内容管理系统 <span class="f-14">V1.0.0</span></p>
 	<p>登录次数：18 </p>
-	<p>上次登录IP：222.35.131.79.1  上次登录时间：2014-6-14 11:19:55</p>
+	<p>上次登录IP： 1.204.236.18  上次登录时间：2016-09-13 11:19:55</p>
 	<table class="table table-border table-bordered table-bg">
 		<thead>
 			<tr>
@@ -97,15 +97,15 @@
 		<tbody>
 			<tr>
 				<th width="30%">服务器计算机名</th>
-				<td><span id="lbServerName">http://127.0.0.1/</span></td>
+				<td><span id="lbServerName">http://1.204.236.18/</span></td>
 			</tr>
 			<tr>
 				<td>服务器IP地址</td>
-				<td>192.168.1.1</td>
+				<td>1.204.236.18</td>
 			</tr>
 			<tr>
 				<td>服务器域名</td>
-				<td>www.h-ui.net</td>
+				<td>scms.seelecloud.com</td>
 			</tr>
 			<tr>
 				<td>服务器端口 </td>
@@ -117,7 +117,7 @@
 			</tr>
 			<tr>
 				<td>本文件所在文件夹 </td>
-				<td>D:\WebSite\HanXiPuTai.com\XinYiCMS.Web\</td>
+				<td>D:\WebSite\scms\seelecloud</td>
 			</tr>
 			<tr>
 				<td>服务器操作系统 </td>
@@ -141,7 +141,7 @@
 			</tr>
 			<tr>
 				<td>服务器当前时间 </td>
-				<td>2014-6-14 12:06:23</td>
+				<td>2016-09-13 12:06:23</td>
 			</tr>
 			<tr>
 				<td>服务器IE版本 </td>
@@ -192,7 +192,7 @@
 </div>
 <footer class="footer mt-20">
 	<div class="container">
-			Copyright &copy;www.abihu.org All Rights Reserved.<br>
+			Copyright &copy;www.scms.seelecloud.com All Rights Reserved.<br>
 			本后台系统由<a href="http://www.seelecloud.com" target="_blank" title="seelecloud">贵州塞拉科技有限公司</a>提供技术支持</p>
 	</div>
 </footer>
