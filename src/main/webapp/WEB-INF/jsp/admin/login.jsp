@@ -6,7 +6,9 @@
 <html lang="en" class="no-js">
     <head>
         <meta charset="utf-8">
-        <title>用户登录</title>
+        <title>SCMC|贵州塞拉科技有限公司</title>
+        <LINK rel="Bookmark" href="<%=request.getContextPath() %>/resources/favicon.ico" >
+		<LINK rel="Shortcut Icon" href="<%=request.getContextPath() %>/resources/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">

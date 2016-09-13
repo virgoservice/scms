@@ -28,7 +28,7 @@
 </head>
 <body>
 <div class="page-container">
-	<p class="f-20 text-success"><i class="Hui-iconfont">&#xe625;</i> 欢迎使用SCMS内容管理系统 <span class="f-14">V1.0.0</span></p>
+	<p class="f-20 text-success"><i class="Hui-iconfont">&#xe625;</i> 欢迎使用SCMS内容管理系统 <span class="f-14"><i class="Hui-iconfont">&#xe6d3;</i>1.0.0</span></p>
 	<p><i style="font-size:20px;" class="Hui-iconfont">&#xe6d1;</i> https://github.com/virgoservice/scms.git</p>
 	<p>登录次数：18 </p>
 	<p>上次登录IP： 1.204.236.18  上次登录时间：2016-09-13 11:19:55</p>
