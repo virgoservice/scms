@@ -4,7 +4,7 @@
 <mapper namespace="com.seelecloud.cms.dao.RoleModuleDao">
 	
 	<insert id="save" parameterType="RoleModule">
-		insert into t_roleModel 
+		insert into t_roleModule 
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="roleId != null">roleId,</if>
 			<if test="modelId != null">modelId,</if>
@@ -16,7 +16,7 @@
 	</insert>
 	
 	<update id="update" parameterType="RoleModule">
-		update t_roleModel  
+		update t_roleModule  
 		<set>
 			<if test="roleId != null">roleId=#{roleId},</if>
 			<if test="modelId != null">modelId=#{modelId},</if>
@@ -25,31 +25,31 @@
 	</update>
 	
 	<delete id="delete" parameterType="int">
-		delete from t_roleModel 
+		delete from t_roleModule 
 		where 
 		id = #{id}
 	</delete>
 
 	<select id="findById" parameterType="int" resultType="RoleModule">
-		select * from t_roleModel 
+		select * from t_roleModule 
 		where 
 		id = #{id}
 	</select>
 	
 	<select id="findModelIdsByRole" parameterType="int" resultType="int">
-		select modelId from t_roleModel 
+		select modelId from t_roleModule 
 		where 
 		roleId = #{roleId}
 	</select>
 
 	<select id="findRoleIdsByModel" parameterType="int" resultType="int">
-		select roleId from t_roleModel 
+		select roleId from t_roleModule 
 		where 
 		modelId = #{modelId}
 	</select>
 
 	<select id="deleteByRoleId" parameterType="int">
-		delete from t_roleModel 
+		delete from t_roleModule 
 		where 
 		roleId = #{roleId}
 	</select>

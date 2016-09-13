@@ -7,9 +7,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     <typeAliases>
          <typeAlias alias="App" type="com.seelecloud.cms.entity.App"/>
          <typeAlias alias="Manager" type="com.seelecloud.cms.entity.Manager"/>
-         <typeAlias alias="Model" type="com.seelecloud.cms.entity.Module"/>
+         <typeAlias alias="Module" type="com.seelecloud.cms.entity.Module"/>
          <typeAlias alias="Role" type="com.seelecloud.cms.entity.Role"/>
-         <typeAlias alias="RoleModel" type="com.seelecloud.cms.entity.RoleModule"/> 
+         <typeAlias alias="RoleModule" type="com.seelecloud.cms.entity.RoleModule"/> 
     </typeAliases>
 
     <!-- 映射map -->

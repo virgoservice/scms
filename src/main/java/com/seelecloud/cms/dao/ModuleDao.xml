@@ -15,7 +15,7 @@
 	
 	<!--保存站点信息  -->	
 	<insert id="save" parameterType="Module">
-		insert into t_model 
+		insert into t_module 
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="modelName != null">modelName,</if>
 			<if test="createTime != null">createTime,</if>
@@ -36,7 +36,7 @@
 	
 	<!--更新站点信息  -->	
 	<update id="update" parameterType="Module">
-		update t_model  
+		update t_module  
 		<set>
 			<if test="modelName != null">modelName=#{modelName},</if>
 			<if test="createTime != null">createTime=#{createTime},</if>
@@ -50,28 +50,28 @@
 	
 	<!--删除站点信息  -->
 	<delete id="delete" parameterType="int">
-		delete from t_model 
+		delete from t_module 
 		where 
 		id = #{id}
 	</delete>
 
 	<!-- 根据id查找站点信息 -->	
 	<select id="findById" parameterType="int" resultMap="resultMap">
-		select * from t_model 
+		select * from t_module 
 		where 
 		id = #{id}
 	</select>
 
 	<!--更具站点名称查找站点信息  -->
 	<select id="findByParent" parameterType="int" resultMap="resultMap">
-		select * from t_model 
+		select * from t_module 
 		where 
 		parentId = #{parentId}
 	</select>
 
 	<!-- 根据站点域名查找站点信息 -->
 	<select id="findByManagerId" parameterType="int" resultMap="resultMap">
-		select * from t_model 
+		select * from t_module 
 		where 
 		managerId = #{managerId}
 	</select>
