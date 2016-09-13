@@ -23,11 +23,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.seelecloud.cms.entity.Manager;
+import com.seelecloud.cms.entity.Module;
 import com.seelecloud.cms.entity.Role;
 import com.seelecloud.cms.service.AppService;
 import com.seelecloud.cms.service.ManagerService;
-import com.seelecloud.cms.service.ModelService;
-import com.seelecloud.cms.service.RoleModelService;
+import com.seelecloud.cms.service.ModuleService;
+import com.seelecloud.cms.service.RoleModuleService;
 import com.seelecloud.cms.service.RoleService;
 import com.seelecloud.cms.vo.ModelVo;
 
@@ -44,11 +45,11 @@ public class AdminController {
 	@Autowired
 	private ManagerService managerService;
 	@Autowired
-	private ModelService modelService;
+	private ModuleService moduleService;
 	@Autowired
 	private RoleService roleService;
 	@Autowired
-	private RoleModelService roleModelService;
+	private RoleModuleService roleModuleService;
 	@Autowired
 	private AppService appService;
 	
@@ -70,14 +71,14 @@ public class AdminController {
 		}
 		List<Role> roleList = roleService.findByManangerId(manager.getId());
 		List<Integer> modelIds = new ArrayList<Integer>();
-		List<com.seelecloud.cms.entity.Model> models = new ArrayList<com.seelecloud.cms.entity.Model>();
+		List<Module> models = new ArrayList<Module>();
 		if(roleList!=null&&roleList.size()>0){
 			for(Role role:roleList){
-				modelIds.addAll(roleModelService.findModelIdsByRole(role.getId()));
+				modelIds.addAll(roleModuleService.findModelIdsByRole(role.getId()));
 			}
 		}
 		for(int id:modelIds){
-			com.seelecloud.cms.entity.Model m = modelService.findById(id);
+			Module m = moduleService.findById(id);
 			if(m!=null){
 				models.add(m);
 			}
@@ -94,17 +95,17 @@ public class AdminController {
 	 * @param models
 	 * @return
 	 */
-	private List<ModelVo> modelTree(List<com.seelecloud.cms.entity.Model> models){
-		List<com.seelecloud.cms.entity.Model> pmodel = new ArrayList<com.seelecloud.cms.entity.Model>();
+	private List<ModelVo> modelTree(List<Module> models){
+		List<Module> pmodel = new ArrayList<Module>();
 		List<ModelVo> mv = new ArrayList<ModelVo>();
-		for(com.seelecloud.cms.entity.Model m:models){
+		for(Module m:models){
 			if(m.getParentId()==-1){
 				pmodel.add(m);
 			}
 		}
-		for(com.seelecloud.cms.entity.Model pm:pmodel){
+		for(Module pm:pmodel){
 			List<ModelVo> cmv = new ArrayList<ModelVo>();
-			for(com.seelecloud.cms.entity.Model m:models){
+			for(Module m:models){
 				if(m.getParentId()==pm.getId()){
 					cmv.add(new ModelVo(m.getId(), m.getModelName(), null, m.getParentId(), m.getModelUrl(), m.getModelIcon(), m.getManagerId(), null));
 				}

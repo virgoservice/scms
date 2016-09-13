@@ -18,8 +18,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.seelecloud.cms.entity.Model;
-import com.seelecloud.cms.service.ModelService;
+import com.seelecloud.cms.entity.Module;
+import com.seelecloud.cms.service.ModuleService;
 
 /** 
  * @Desc: () 
@@ -29,20 +29,20 @@ import com.seelecloud.cms.service.ModelService;
  */
 public class ModelServiceTest {
 
-	private ModelService modelService;
+	private ModuleService modelService;
 	
 	
 	@Before
 	public void before(){
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"classpath:/spring.xml","classpath:/spring-mybatis.xml"});
-		modelService = (ModelService)context.getBean("modelService"); 
+		modelService = (ModuleService)context.getBean("modelService"); 
 	}
 	
 	
 	@Test
 	public void testSave(){
-		Model model = new Model();
+		Module model = new Module();
 		model.setManagerId(2);
 		model.setModelName("站点管理");
 		model.setParentId(-1);
@@ -55,20 +55,20 @@ public class ModelServiceTest {
 	
 	@Test
 	public void testFindById(){
-		Model model = this.modelService.findById(1);
+		Module model = this.modelService.findById(1);
 		model.setCreateTime(new Date());
 		this.modelService.update(model);
 	}
 	
 	@Test
 	public void testFindByParent(){
-		List<Model> modelList = this.modelService.findByParent(-1);
+		List<Module> modelList = this.modelService.findByParent(-1);
 		System.out.println(modelList.size());
 	}
 	
 	@Test
 	public void testFindByManagerId(){
-		List<Model> modelList = this.modelService.findByManagerId(2);
+		List<Module> modelList = this.modelService.findByManagerId(2);
 		System.out.println(modelList.size());
 		
 	}

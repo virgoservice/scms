@@ -19,8 +19,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.seelecloud.cms.entity.RoleModel;
-import com.seelecloud.cms.service.RoleModelService;
+import com.seelecloud.cms.entity.RoleModule;
+import com.seelecloud.cms.service.RoleModuleService;
 
 /** 
  * @Desc: () 
@@ -28,58 +28,58 @@ import com.seelecloud.cms.service.RoleModelService;
  * @date: 2016年9月6日 下午10:22:54 
  * @email:ramostear@163.com 
  */
-public class RoleModelServiceTest {
+public class RoleModuleServiceTest {
 
-	private RoleModelService roleModelService;
+	private RoleModuleService roleModuleService;
 	
 	@Before
 	public void before(){
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"classpath:/spring.xml","classpath:/spring-mybatis.xml"});
-		roleModelService = (RoleModelService)context.getBean("roleModelService"); 
+		roleModuleService = (RoleModuleService)context.getBean("roleModuleService"); 
 	}
 	
 	
 	@Test
 	public void testSave(){
-		RoleModel roleModel = new RoleModel(1, 2);
-		this.roleModelService.save(roleModel);
+		RoleModule roleModel = new RoleModule(1, 2);
+		this.roleModuleService.save(roleModel);
 	}
 	@Test
 	public void testfindById(){
-		RoleModel roleModel = this.roleModelService.findById(1);
+		RoleModule roleModel = this.roleModuleService.findById(1);
 		assertNotNull(roleModel);
 		
 	}
 	@Test
 	public void testUpdate(){
-		RoleModel roleModel = this.roleModelService.findById(2);
+		RoleModule roleModel = this.roleModuleService.findById(2);
 		roleModel.setModelId(3);
-		this.roleModelService.update(roleModel);
+		this.roleModuleService.update(roleModel);
 		
 	}
 	
 	@Test
 	public void testDelete(){
-		RoleModel roleModel = this.roleModelService.findById(2);
-		this.roleModelService.delete(roleModel.getId());
+		RoleModule roleModel = this.roleModuleService.findById(2);
+		this.roleModuleService.delete(roleModel.getId());
 	}
 	
 	@Test
 	public void testFindModelIdsByRole(){
-		List<Integer> modelIds = this.roleModelService.findModelIdsByRole(1);
+		List<Integer> modelIds = this.roleModuleService.findModelIdsByRole(1);
 		assertNotNull(modelIds);
 	}
 	
 	@Test
 	public void testFindRoleIdsByModel(){
-		List<Integer> roleIds = this.roleModelService.findModelIdsByRole(1);
+		List<Integer> roleIds = this.roleModuleService.findModelIdsByRole(1);
 		assertNotNull(roleIds);
 	}
 	
 	@Test
 	public void testDeleteByRoleId(){
-		this.roleModelService.deleteByRoleId(1);
+		this.roleModuleService.deleteByRoleId(1);
 	}
 	
 	

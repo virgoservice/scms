@@ -16,7 +16,7 @@ package com.seelecloud.cms.entity;
  * @date: 2016年8月18日 下午3:00:05 
  * @email:ramostear@163.com 
  */
-public class RoleModel {
+public class RoleModule {
 	
 	private int id;
 	
@@ -33,14 +33,14 @@ public class RoleModel {
 	/**
 	 * 无参构造函数 
 	 */
-	public RoleModel() {
+	public RoleModule() {
 	}
 	/**
 	 * 带参数的构造函数
 	 * @param roleId
 	 * @param modelId
 	 */
-	public RoleModel(int roleId,int modelId){
+	public RoleModule(int roleId,int modelId){
 		this.roleId = roleId;
 		this.modelId = modelId;
 	}

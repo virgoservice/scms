@@ -15,9 +15,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.seelecloud.cms.dao.ModelDao;
-import com.seelecloud.cms.entity.Model;
-import com.seelecloud.cms.service.ModelService;
+import com.seelecloud.cms.dao.ModuleDao;
+import com.seelecloud.cms.entity.Module;
+import com.seelecloud.cms.service.ModuleService;
 
 /** 
  * @Desc: (功能模块Service实现类) 
@@ -25,18 +25,18 @@ import com.seelecloud.cms.service.ModelService;
  * @date: 2016年9月6日 下午2:30:27 
  * @email:ramostear@163.com 
  */
-@Service("modelService")
-public class ModelServiceImpl implements ModelService{
+@Service("moduleService")
+public class ModuleServiceImpl implements ModuleService{
 	
 	@Autowired
-	private ModelDao modelDao;
+	private ModuleDao moduleDao;
 
 	/* (non-Javadoc)
 	 * @see com.seelecloud.cms.service.ModelService#save(com.seelecloud.cms.entity.Model)
 	 */
 	@Override
-	public void save(Model model) {
-		this.modelDao.save(model);
+	public void save(Module model) {
+		this.moduleDao.save(model);
 	}
 
 	/* (non-Javadoc)
@@ -44,39 +44,39 @@ public class ModelServiceImpl implements ModelService{
 	 */
 	@Override
 	public void delete(int id) {
-		this.modelDao.delete(id);
+		this.moduleDao.delete(id);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.seelecloud.cms.service.ModelService#update(com.seelecloud.cms.entity.Model)
 	 */
 	@Override
-	public void update(Model model) {
-		this.modelDao.update(model);
+	public void update(Module model) {
+		this.moduleDao.update(model);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.seelecloud.cms.service.ModelService#findById(int)
 	 */
 	@Override
-	public Model findById(int id) {
-		return this.modelDao.findById(id);
+	public Module findById(int id) {
+		return this.moduleDao.findById(id);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.seelecloud.cms.service.ModelService#findByParent(int)
 	 */
 	@Override
-	public List<Model> findByParent(int parentId) {
-		return this.modelDao.findByParent(parentId);
+	public List<Module> findByParent(int parentId) {
+		return this.moduleDao.findByParent(parentId);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.seelecloud.cms.service.ModelService#findByManagerId(int)
 	 */
 	@Override
-	public List<Model> findByManagerId(int managerId) {
-		return this.modelDao.findByManagerId(managerId);
+	public List<Module> findByManagerId(int managerId) {
+		return this.moduleDao.findByManagerId(managerId);
 	}
 
 }

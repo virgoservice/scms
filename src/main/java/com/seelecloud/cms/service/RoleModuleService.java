@@ -14,7 +14,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.seelecloud.cms.entity.RoleModel;
+import com.seelecloud.cms.entity.RoleModule;
 
 /** 
  * @Desc: (RoleModel Service Interface) 
@@ -22,19 +22,19 @@ import com.seelecloud.cms.entity.RoleModel;
  * @date: 2016年9月7日 下午11:26:24 
  * @email:ramostear@163.com 
  */
-public interface RoleModelService {
+public interface RoleModuleService {
 
 	/**"
 	 * 添加RoleModel
 	 * @param roleModel
 	 */
-	public void save(RoleModel roleModel);
+	public void save(RoleModule roleModel);
 	
 	/**
 	 * update roleModel object
 	 * @param roleModel
 	 */
-	public void update(RoleModel roleModel);
+	public void update(RoleModule roleModel);
 	
 	/**
 	 * delete roleModel object by id
@@ -47,7 +47,7 @@ public interface RoleModelService {
 	 * @param id
 	 * @return
 	 */
-	public RoleModel findById(int id);
+	public RoleModule findById(int id);
 	
 	/**
 	 * find the model id by the role id

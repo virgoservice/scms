@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.seelecloud.cms.dao.ModelDao">
+<mapper namespace="com.seelecloud.cms.dao.ModuleDao">
 	<!-- 字段绑定 -->
-	<resultMap type="Model" id="resultMap">
+	<resultMap type="Module" id="resultMap">
 		<id column="id" property="id"/>
 		<result column="modelName" property="modelName"/>
 		<result column="createTime" property="createTime"/>
@@ -14,7 +14,7 @@
 	</resultMap>
 	
 	<!--保存站点信息  -->	
-	<insert id="save" parameterType="Model">
+	<insert id="save" parameterType="Module">
 		insert into t_model 
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="modelName != null">modelName,</if>
@@ -35,7 +35,7 @@
 	</insert>
 	
 	<!--更新站点信息  -->	
-	<update id="update" parameterType="Model">
+	<update id="update" parameterType="Module">
 		update t_model  
 		<set>
 			<if test="modelName != null">modelName=#{modelName},</if>

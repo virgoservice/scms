@@ -18,7 +18,7 @@ import java.util.Date;
  * @date: 2016年8月18日 下午2:46:36 
  * @email:ramostear@163.com 
  */
-public class Model {
+public class Module {
 	/**
 	 * 模块编号
 	 */
@@ -53,7 +53,7 @@ public class Model {
 	/**
 	 * 无参的构造函数
 	 */
-	public Model() {}
+	public Module() {}
 	/**
 	 * 带参数的构造函数
 	 * @param modelName
@@ -61,7 +61,7 @@ public class Model {
 	 * @param modelIcon
 	 * @param managerId
 	 */
-	public Model(String modelName,String modelUrl,String modelIcon,int managerId){
+	public Module(String modelName,String modelUrl,String modelIcon,int managerId){
 		this.modelName = modelName;
 		this.modelUrl = modelUrl;
 		this.modelIcon = modelIcon;

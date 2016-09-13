@@ -14,7 +14,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.seelecloud.cms.entity.Model;
+import com.seelecloud.cms.entity.Module;
 
 /** 
  * @Desc: (功能模块Service) 
@@ -22,12 +22,12 @@ import com.seelecloud.cms.entity.Model;
  * @date: 2016年9月6日 下午2:29:39 
  * @email:ramostear@163.com 
  */
-public interface ModelService {
+public interface ModuleService {
 	/**
 	 * 添加模块
 	 * @param model
 	 */
-	public void save(Model model);
+	public void save(Module model);
 	/**
 	 * 根据ID删除模块
 	 * @param id
@@ -37,24 +37,24 @@ public interface ModelService {
 	 * 更新模块
 	 * @param model
 	 */
-	public void update(Model model);
+	public void update(Module model);
 	/**
 	 * 根据Id查找模块
 	 * @param id
 	 * @return
 	 */
-	public Model findById(int id);
+	public Module findById(int id);
 	/**
 	 * 根据父Id查询子模块
 	 * @param parentId
 	 * @return
 	 */
-	public List<Model> findByParent(@Param("parentId")int parentId);
+	public List<Module> findByParent(@Param("parentId")int parentId);
 	
 	/**
 	 * 根据管理员来查找
 	 * @param managerId
 	 * @return
 	 */
-	public List<Model> findByManagerId(@Param("managerId")int managerId);
+	public List<Module> findByManagerId(@Param("managerId")int managerId);
 }
