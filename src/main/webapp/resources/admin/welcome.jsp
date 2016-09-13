@@ -29,6 +29,7 @@
 <body>
 <div class="page-container">
 	<p class="f-20 text-success"><i class="Hui-iconfont">&#xe625;</i> 欢迎使用SCMS内容管理系统 <span class="f-14">V1.0.0</span></p>
+	<p><i style="font-size:20px;" class="Hui-iconfont">&#xe6d1;</i> https://github.com/virgoservice/scms.git</p>
 	<p>登录次数：18 </p>
 	<p>上次登录IP： 1.204.236.18  上次登录时间：2016-09-13 11:19:55</p>
 	<table class="table table-border table-bordered table-bg">
@@ -38,6 +39,7 @@
 			</tr>
 			<tr class="text-c">
 				<th>统计</th>
+				<th>站点数</th>
 				<th>资讯库</th>
 				<th>图片库</th>
 				<th>产品库</th>
@@ -48,11 +50,12 @@
 		<tbody>
 			<tr class="text-c">
 				<td>总数</td>
+				<td>5</td>
 				<td>92</td>
 				<td>9</td>
 				<td>0</td>
-				<td>8</td>
 				<td>20</td>
+				<td>8</td>
 			</tr>
 			<tr class="text-c">
 				<td>今日</td>
@@ -61,9 +64,11 @@
 				<td>0</td>
 				<td>0</td>
 				<td>0</td>
+				<td>0</td>
 			</tr>
 			<tr class="text-c">
 				<td>昨日</td>
+				<td>5</td>
 				<td>0</td>
 				<td>0</td>
 				<td>0</td>
@@ -72,6 +77,7 @@
 			</tr>
 			<tr class="text-c">
 				<td>本周</td>
+				<td>5</td>
 				<td>2</td>
 				<td>0</td>
 				<td>0</td>
@@ -80,6 +86,7 @@
 			</tr>
 			<tr class="text-c">
 				<td>本月</td>
+				<td>5</td>
 				<td>2</td>
 				<td>0</td>
 				<td>0</td>
