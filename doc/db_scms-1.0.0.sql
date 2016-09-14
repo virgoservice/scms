@@ -1,7 +1,6 @@
 /*
 SQLyog 企业版 - MySQL GUI v8.14 
 MySQL - 5.6.21-log : Database - db_scms
-ORGANIZATION - SeeleCloud:Author - ramostear[谭朝红]
 *********************************************************************
 */
 
@@ -58,11 +57,11 @@ CREATE TABLE `t_manager` (
 
 insert  into `t_manager`(`id`,`managername`,`managernickname`,`password`,`createtime`,`roleid`,`parentid`) values (2,'administrator','系统管理员','123456','2016-08-18 18:21:01',1,0);
 
-/*Table structure for table `t_model` */
+/*Table structure for table `t_module` */
 
-DROP TABLE IF EXISTS `t_model`;
+DROP TABLE IF EXISTS `t_module`;
 
-CREATE TABLE `t_model` (
+CREATE TABLE `t_module` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '模块编号，自增长类型',
   `modelName` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '模块名称',
   `createTime` datetime DEFAULT NULL COMMENT '创建时间',
@@ -71,11 +70,11 @@ CREATE TABLE `t_model` (
   `modelIcon` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '模块显示图标',
   `managerId` int(11) NOT NULL COMMENT '模块所属管理员编号',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-/*Data for the table `t_model` */
+/*Data for the table `t_module` */
 
-insert  into `t_model`(`id`,`modelName`,`createTime`,`parentId`,`modelUrl`,`modelIcon`,`managerId`) values (6,'管理员管理',NULL,-1,'#','&#xe62d;',2),(7,'角色管理',NULL,6,'#','&#xe70d;',2),(8,'权限管理',NULL,6,'#','&#xe638;',2),(9,'管理员列表',NULL,6,'#','&#xe62b;',2),(10,'系统管理',NULL,-1,'#','&#xe62e;',2),(11,'系统设置',NULL,10,'#','&#xe62e;',2),(12,'系统统计',NULL,-1,'#','&#xe61a;',2),(13,'折线图',NULL,12,'#','&#xe61a;',2),(14,'会员管理',NULL,-1,'#','&#xe60d;',2),(15,'会员列表',NULL,14,'#','&#xe60d;',2),(16,'会员积分',NULL,14,'#','&#xe60d;',2),(17,'评论管理',NULL,-1,'#','&#xe622;',2),(18,'产品管理',NULL,-1,'#','&#xe620;',2),(19,'图片管理',NULL,-1,'#','&#xe613;',2),(20,'资讯管理',NULL,-1,'#','&#xe616;',2),(21,'插件管理',NULL,-1,'#','&#xe654;',2),(22,'模板管理',NULL,-1,'#','&#xe6d2;',2);
+insert  into `t_module`(`id`,`modelName`,`createTime`,`parentId`,`modelUrl`,`modelIcon`,`managerId`) values (6,'管理员管理',NULL,-1,'#','&#xe62d;',2),(7,'角色管理',NULL,6,'#','&#xe70d;',2),(8,'权限管理',NULL,6,'#','&#xe638;',2),(9,'管理员列表',NULL,6,'#','&#xe62b;',2),(10,'系统管理',NULL,-1,'#','&#xe62e;',2),(11,'系统设置',NULL,10,'#','&#xe62e;',2),(12,'系统统计',NULL,-1,'#','&#xe61a;',2),(13,'折线图',NULL,12,'#','&#xe61a;',2),(14,'会员管理',NULL,-1,'#','&#xe60d;',2),(15,'会员列表',NULL,14,'#','&#xe60d;',2),(16,'会员积分',NULL,14,'#','&#xe60d;',2),(17,'评论管理',NULL,-1,'#','&#xe622;',2),(18,'产品管理',NULL,-1,'#','&#xe620;',2),(19,'图片管理',NULL,-1,'#','&#xe613;',2),(20,'资讯管理',NULL,-1,'#','&#xe616;',2),(21,'插件管理',NULL,-1,'#','&#xe654;',2),(22,'模板管理',NULL,-1,'#','&#xe6d2;',2),(23,'站点管理',NULL,-1,'#','&#xe62b;',2);
 
 /*Table structure for table `t_role` */
 
@@ -87,26 +86,26 @@ CREATE TABLE `t_role` (
   `managerId` int(11) DEFAULT NULL COMMENT '管理员编号',
   `createTime` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `t_role` */
 
 insert  into `t_role`(`id`,`roleName`,`managerId`,`createTime`) values (1,'超级管理员',2,'2016-09-06 22:33:03');
 
-/*Table structure for table `t_rolemodel` */
+/*Table structure for table `t_rolemodule` */
 
-DROP TABLE IF EXISTS `t_rolemodel`;
+DROP TABLE IF EXISTS `t_rolemodule`;
 
-CREATE TABLE `t_rolemodel` (
+CREATE TABLE `t_rolemodule` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '角色模块关联编号',
   `roleId` int(11) DEFAULT NULL COMMENT '角色编号',
   `modelId` int(11) DEFAULT NULL COMMENT '模块编号',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-/*Data for the table `t_rolemodel` */
+/*Data for the table `t_rolemodule` */
 
-insert  into `t_rolemodel`(`id`,`roleId`,`modelId`) values (1,1,6),(2,1,7),(3,1,8),(4,1,9),(5,1,10),(6,1,11),(7,1,12),(8,1,13),(9,1,14),(10,1,15),(11,1,16),(12,1,17),(13,1,18),(14,1,19),(15,1,20),(16,1,21),(17,1,22);
+insert  into `t_rolemodule`(`id`,`roleId`,`modelId`) values (1,1,6),(2,1,7),(3,1,8),(4,1,9),(5,1,10),(6,1,11),(7,1,12),(8,1,13),(9,1,14),(10,1,15),(11,1,16),(12,1,17),(13,1,18),(14,1,19),(15,1,20),(16,1,21),(17,1,22),(18,1,23);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
