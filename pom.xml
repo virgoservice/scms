@@ -414,6 +414,15 @@
 		  <artifactId>jstl</artifactId>
 		  <version>1.2</version>
 		</dependency>
+		
+		<!--开始：后期追加的依赖包  -->
+		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+		<dependency>
+		    <groupId>javax.validation</groupId>
+		    <artifactId>validation-api</artifactId>
+		    <version>1.1.0.Final</version>
+		</dependency>
+		<!--结束：后期追加的依赖包  -->
 	</dependencies>
 	<build>
 		<finalName>scms</finalName>
