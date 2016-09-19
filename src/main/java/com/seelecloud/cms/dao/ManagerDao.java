@@ -78,10 +78,5 @@ public interface ManagerDao {
 	 * @param order 		排序方式 true:desc,false:asc
 	 * @return
 	 */
-	public List<Manager> findByPage(@Param("id") int id,@Param("offset")int offset,@Param("size")int size,@Param("oderBy")String orderBy,@Param("order") boolean order);
-	/**
-	 * 修改编号为id的管理员密码
-	 * @param id
-	 */
-	public void updateUserPasswordById(@Param("id") int id);
+	public List<Manager> findByPage(@Param("id") int id,@Param("offset")int offset,@Param("size")int size,@Param("orderBy")String orderBy,@Param("order") boolean order);
 }
