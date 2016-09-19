@@ -49,6 +49,8 @@ public class Manager {
 	
 	private int parentId;
 	
+	private int status;//1为启用，0为停用
+	
 	
 	/**
 	 * 空构造函数
@@ -109,6 +111,12 @@ public class Manager {
 	}
 	public void setParentId(int parentId) {
 		this.parentId = parentId;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	
 }
