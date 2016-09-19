@@ -21,4 +21,15 @@ public final class GeneratorSystemConst {
 	 * 默认的分页大小
 	 */
 	public static int DEFALUT_PAGE_SIZE = 10;
+	/**
+	 * 当前登录管理员
+	 */
+	public static String LOGIN_MANAGER = "LoginManager";
+	/**
+	 * 当前登录的用户
+	 */
+	public static String LOGIN_USER = "LoginUser";
+	
+	
+	
 }
