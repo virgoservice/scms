@@ -82,4 +82,21 @@ public class ManagerServiceImpl implements ManagerService{
 		return this.managerDao.ListAll();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.seelecloud.cms.service.ManagerService#findTotalCount(int)
+	 */
+	@Override
+	public int findTotalCount(int id) {
+		return this.managerDao.findTotalCount(id);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.seelecloud.cms.service.ManagerService#findByPage(int, int, int, java.lang.String, boolean)
+	 */
+	@Override
+	public List<Manager> findByPage(int id, int offset, int size,
+			String orderBy, boolean order) {
+		return this.managerDao.findByPage(id, offset, size, orderBy, order);
+	}
+
 }
