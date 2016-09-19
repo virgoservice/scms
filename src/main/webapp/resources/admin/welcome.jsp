@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/static/h-ui/css/H-ui.min.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/static/h-ui.admin/css/H-ui.admin.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/lib/Hui-iconfont/1.0.7/iconfont.css" />
-<link rel="stylesheet" type="text/css" href="lib/icheck/icheck.css" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/lib/icheck/icheck.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/static/h-ui.admin/css/style.css" />
 <!--[if IE 6]>
@@ -199,7 +199,7 @@
 </div>
 <footer class="footer mt-20">
 	<div class="container">
-			Copyright &copy;www.scms.seelecloud.com All Rights Reserved.<br>
+			Copyright &copy;www.scms.seelecloud.com All Rights Reserved.</br>
 			本后台系统由<a href="http://www.seelecloud.com" target="_blank" title="seelecloud">贵州塞拉科技有限公司</a>提供技术支持</p>
 	</div>
 </footer>
