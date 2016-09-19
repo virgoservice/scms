@@ -50,12 +50,13 @@ CREATE TABLE `t_manager` (
   `createtime` datetime DEFAULT NULL COMMENT '创建时间',
   `roleid` int(11) DEFAULT NULL COMMENT '角色编号',
   `parentid` int(11) NOT NULL COMMENT '父编号',
+  `status` int(11) NOT NULL COMMENT '管理员状态，1：启用，0：停用',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `t_manager` */
 
-insert  into `t_manager`(`id`,`managername`,`managernickname`,`password`,`createtime`,`roleid`,`parentid`) values (2,'administrator','系统管理员','123456','2016-08-18 18:21:01',1,0);
+insert  into `t_manager`(`id`,`managername`,`managernickname`,`password`,`createtime`,`roleid`,`parentid`,`status`) values (2,'administrator','系统管理员','123456','2015-10-27 17:44:37',1,0,1),(3,'siteAdmin','张云鹏','123456','2015-10-27 17:44:37',1,2,1),(4,'tomcat','Ramostear','123456','2016-09-19 17:41:55',0,2,1),(5,'virgotom','张九龄啊','123456','2016-09-19 17:45:57',0,2,0),(6,'abihu','吴邪','123456','2016-09-19 17:51:20',0,2,0);
 
 /*Table structure for table `t_module` */
 
@@ -74,7 +75,7 @@ CREATE TABLE `t_module` (
 
 /*Data for the table `t_module` */
 
-insert  into `t_module`(`id`,`modelName`,`createTime`,`parentId`,`modelUrl`,`modelIcon`,`managerId`) values (6,'管理员管理',NULL,-1,'#','&#xe62d;',2),(7,'角色管理',NULL,6,'#','&#xe70d;',2),(8,'权限管理',NULL,6,'#','&#xe638;',2),(9,'管理员列表',NULL,6,'#','&#xe62b;',2),(10,'系统管理',NULL,-1,'#','&#xe62e;',2),(11,'系统设置',NULL,10,'#','&#xe62e;',2),(12,'系统统计',NULL,-1,'#','&#xe61a;',2),(13,'折线图',NULL,12,'#','&#xe61a;',2),(14,'会员管理',NULL,-1,'#','&#xe60d;',2),(15,'会员列表',NULL,14,'#','&#xe60d;',2),(16,'会员积分',NULL,14,'#','&#xe60d;',2),(17,'评论管理',NULL,-1,'#','&#xe622;',2),(18,'产品管理',NULL,-1,'#','&#xe620;',2),(19,'图片管理',NULL,-1,'#','&#xe613;',2),(20,'资讯管理',NULL,-1,'#','&#xe616;',2),(21,'插件管理',NULL,-1,'#','&#xe654;',2),(22,'模板管理',NULL,-1,'#','&#xe6d2;',2),(23,'站点管理',NULL,-1,'#','&#xe62b;',2);
+insert  into `t_module`(`id`,`modelName`,`createTime`,`parentId`,`modelUrl`,`modelIcon`,`managerId`) values (6,'管理员管理',NULL,-1,'#','&#xe62d;',2),(7,'角色管理',NULL,6,'#','&#xe70d;',2),(8,'权限管理',NULL,6,'#','&#xe638;',2),(9,'管理员列表',NULL,6,'/admin/manager/managerList','&#xe62b;',2),(10,'系统管理',NULL,-1,'#','&#xe62e;',2),(11,'系统设置',NULL,10,'#','&#xe62e;',2),(12,'系统统计',NULL,-1,'#','&#xe61a;',2),(13,'折线图',NULL,12,'#','&#xe61a;',2),(14,'会员管理',NULL,-1,'#','&#xe60d;',2),(15,'会员列表',NULL,14,'#','&#xe60d;',2),(16,'会员积分',NULL,14,'#','&#xe60d;',2),(17,'评论管理',NULL,-1,'#','&#xe622;',2),(18,'产品管理',NULL,-1,'#','&#xe620;',2),(19,'图片管理',NULL,-1,'#','&#xe613;',2),(20,'资讯管理',NULL,-1,'#','&#xe616;',2),(21,'插件管理',NULL,-1,'#','&#xe654;',2),(22,'模板管理',NULL,-1,'#','&#xe6d2;',2),(23,'站点管理',NULL,-1,'#','&#xe62b;',2);
 
 /*Table structure for table `t_role` */
 
