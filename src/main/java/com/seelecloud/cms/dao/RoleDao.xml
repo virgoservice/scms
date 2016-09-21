@@ -8,6 +8,7 @@
 		<result column="roleName" property="roleName"/>
 		<result column="managerId" property="managerId"/>
 		<result column="createTime" property="createTime"/>
+		<result column="description" property="description"/>
 	</resultMap>
 	
 	<!--保存站点信息  -->	
@@ -17,11 +18,13 @@
 			<if test="roleName != null">roleName,</if>
 			<if test="managerId != null">managerId,</if>
 			<if test="createTime != null">createTime,</if>
+			<if test="description != null">description,</if>
 		</trim>
 		<trim prefix="values(" suffix=")" suffixOverrides=",">
 			<if test="roleName != null">#{roleName},</if>
 			<if test="managerId != null">#{managerId},</if>
 			<if test="createTime != null">#{createTime},</if>
+			<if test="description != null">#{description},</if>
 		</trim>
 	</insert>
 	
@@ -32,6 +35,7 @@
 			<if test="roleName != null">roleName=#{roleName},</if>
 			<if test="managerId != null">managerId=#{managerId},</if>
 			<if test="createTime != null">createTime = #{createTime},</if>
+			<if test="description != null">description = #{description},</if>
 		</set>
 		where id = #{id}
 	</update>
