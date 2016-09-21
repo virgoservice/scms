@@ -71,6 +71,9 @@ public class ManagerController {
 		List<Manager> managerList = managerService.findByPage(currentManager.getId(), offset, size, "id", true);
 		//3.返回查询到的数据
 		model.addAttribute("managerList", managerList);
+		//4.添加记录总数
+		int dataSize = this.managerService.findTotalCount(currentManager.getId());
+		model.addAttribute("dataSize", dataSize);
 		return "manager/managerList";
 	}
 	
