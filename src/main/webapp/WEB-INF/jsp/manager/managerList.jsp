@@ -93,6 +93,7 @@
 				</tr>
 			</c:forEach>
 		</tbody>
+		<div id="page1"></div>
 	</table>
 </div>
 <script type="text/javascript" src="<%=path %>/resources/lib/jquery/1.9.1/jquery.min.js"></script>  
@@ -102,5 +103,54 @@
 <script type="text/javascript" src="<%=path %>/resources/static/h-ui/js/H-ui.js"></script> 
 <script type="text/javascript" src="<%=path %>/resources/static/h-ui.admin/js/H-ui.admin.js"></script> 
 <script type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.managerList.js"></script> 
+<!--
+	分页部分的脚本信息
+  -->
+<script type="text/javascript">
+	$(function(){
+		alert("分页");
+		demo();
+		
+	});
+	function demo(curr){
+		var pageSize = 10;//默认的分页大小
+		//以jquery.ajax方法进行请求
+		$.getJSON("<%=path%>/admin/manager/ajaxManagerList",{
+			page:curr||0,
+			pageSize:pageSize
+		}),
+		function(res){
+			laypage({
+				cont:"page1",
+				pages:Math.ceil(res.Total/pageSize),
+				first:"首页",
+				last:"尾页",
+				prev:"<",
+				next:">",
+				jump:function(obj,first){
+					if(!first){
+						demo(obj.curr);
+					}
+				}
+			});
+			$("tbody").html(packageData(res));
+			alert("ok");
+		}
+	}
+	function PackageData(res){
+		var content = "";
+		$.each(res.Rows,function(i,o){
+			content+="<tr><td>";
+			content+=o.id;
+			content+="</td><td>";
+			content+=o.managerName;
+			content+="</td></tr>";
+		});
+		return content;
+	}
+
+</script>
+
+
 </body>
 </html>
