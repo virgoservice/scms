@@ -36,7 +36,12 @@ public class Role {
 	 */
 	private Date createTime;
 	
+	/**
+	 * 角色描述说明
+	 */
+	private String description;
 	
+
 	/**
 	 * 空构造函数
 	 */
@@ -46,10 +51,12 @@ public class Role {
 	 * 带参数的构造函数
 	 * @param roleName
 	 * @param managerId
+	 * @param description
 	 */
-	public Role(String roleName,int managerId){
+	public Role(String roleName,int managerId, String description){
 		this.roleName = roleName;
 		this.managerId = managerId;
+		this.description = description;
 	}
 
 	public int getId() {
@@ -82,5 +89,13 @@ public class Role {
 
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }
