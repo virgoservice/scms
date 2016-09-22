@@ -40,9 +40,9 @@ public class AppController {
 	@RequestMapping(value={"/toAppInfo","/"},method=RequestMethod.GET)
 	public String toAppInfo(HttpSession session,HttpServletRequest request,HttpServletResponse response, Model model){
 		//1.获取当前登录的用户
-		Manager currentManager = (Manager)session.getAttribute("LoginManager");
+		App currentManager = (App)session.getAttribute("LoginManager");
 		if(currentManager == null){
-			currentManager = new Manager();
+			currentManager = new App();
 			currentManager.setId(2);
 		}
 		String offsetStr = request.getParameter("offset");
