@@ -38,11 +38,11 @@
 </head>
 <body>
 <article class="page-container">
-	<form action="./roleSave" modelAttribute="role" method="post" class="form form-horizontal" id="form-admin-role-add">
+	<form action="./roleSave" method="post" class="form form-horizontal" id="form-admin-role-add">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>角色名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="roleName" name="roleName" datatype="*4-16" nullmsg="用户账户不能为空">
+				<input type="text" class="input-text" value="" placeholder="" id="roleName" name="roleName">
 			</div>
 		</div>
 		<div class="row cl">

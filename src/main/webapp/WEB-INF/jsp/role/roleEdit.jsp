@@ -38,11 +38,11 @@
 </head>
 <body>
 <article class="page-container">
-	<form action="./roleEdit" modelAttribute="role" method="post" class="form form-horizontal" id="form-admin-role-add">
+	<form action="../roleEdit" method="post" class="form form-horizontal" id="form-role-edit">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>角色名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${role.roleName}" placeholder="" id="roleName" name="roleName" datatype="*4-16" nullmsg="用户账户不能为空">
+				<input type="text" class="input-text" value="${role.roleName}" placeholder="" id="roleName" name="roleName">
 			</div>
 		</div>
 		<div class="row cl">
@@ -72,11 +72,5 @@
 <script type="text/javascript" src="<%=path %>/resources/static/h-ui.admin/js/H-ui.admin.js"></script> 
 <script type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.roleSave.js"></script> 
 <!--/_footer /作为公共模版分离出去--> 
-
-<!--请在下方写此页面业务相关的脚本--> 
-<script type="text/javascript">
-
-</script> 
-<!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>

@@ -12,7 +12,7 @@
 	</resultMap>
 	
 	<!--保存站点信息  -->	
-	<insert id="save" parameterType="App">
+	<insert id="save" parameterType="Role">
 		insert into t_role 
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="roleName != null">roleName,</if>
@@ -30,12 +30,12 @@
 	
 	<!--更新站点信息  -->	
 	<update id="update" parameterType="Role">
-		update t_role  
+		update t_role 
 		<set>
 			<if test="roleName != null">roleName=#{roleName},</if>
 			<if test="managerId != null">managerId=#{managerId},</if>
 			<if test="createTime != null">createTime = #{createTime},</if>
-			<if test="description != null">description = #{description},</if>
+			<if test="description != null">description = #{description}</if>
 		</set>
 		where id = #{id}
 	</update>

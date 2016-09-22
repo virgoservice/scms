@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.commons.logging.Log;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,6 +45,8 @@ import com.seelecloud.cms.service.RoleService;
 @RequestMapping("/admin/role")
 public class RoleController {
 
+	private static Logger log= Logger.getLogger(RoleController.class);
+	
 	@Autowired
 	private RoleService roleService;
 
@@ -105,6 +108,7 @@ public class RoleController {
 	@RequestMapping(value = "/roleSave", method = RequestMethod.POST)
 	public String roleSave(@Valid Role role, BindingResult br, Model model) {
 		// 如果校验失败，则重新返回添加页面，进行修改
+		log.error("++++" + role.getRoleName());
 		if (br.hasErrors()) {
 			model.addAttribute("role", new Role());
 			return "role/roleSave";
@@ -133,15 +137,22 @@ public class RoleController {
 		Role role = new Role();
 		role = roleService.findById(roleId);
 		model.addAttribute("role", role);
+		log.error(role.getRoleName());
+		log.error(role.getManagerId());
 		return "role/roleEdit";
 	}
 
 	@RequestMapping(value = "/roleEdit", method = RequestMethod.POST)
 	public String roleUpdate(@Valid Role role, BindingResult br, Model model) {
+		log.error("===" + role.getRoleName());
 		if (br.hasErrors()) {
 			model.addAttribute("role", new Role());
-			return "role/roleSave";
+			return "redirect:/admin/role/roleList";
 		}
+		log.error(role.getCreateTime());
+		log.error("mmm"+role.getManagerId());
+		role.setCreateTime(new Date());
+		role.setManagerId(2);
 		this.roleService.update(role);
 		return "redirect:/admin/role/roleList";
 	}

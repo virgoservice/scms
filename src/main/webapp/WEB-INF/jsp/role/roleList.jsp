@@ -60,7 +60,7 @@
 					<td>${role.roleName}</td>
 					<td><fmt:formatDate value="${role.createTime}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 					<td>${role.description}</td>
-					<td class="f-14"><a title="编辑" href="javascript:;" onclick="admin_role_edit('角色编辑','<%=path%>/admin/role/toRoleEdit/${role.id}','1')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_role_del(this,'<%=path%>/admin/role/roleDelete/${role.id}''1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+					<td class="f-14"><a title="编辑" href="javascript:;" onclick="admin_role_edit('角色编辑','<%=path%>/admin/role/toRoleEdit/${role.id}')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_role_del(this,'<%=path%>/admin/role/roleDelete/${role.id}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
