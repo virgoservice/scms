@@ -24,6 +24,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.seelecloud.cms.entity.Manager;
 import com.seelecloud.cms.service.ManagerService;
@@ -75,6 +77,29 @@ public class ManagerController {
 		int dataSize = this.managerService.findTotalCount(currentManager.getId());
 		model.addAttribute("dataSize", dataSize);
 		return "manager/managerList";
+	}
+	/**
+	 * 异步加载列表，进行分页显示
+	 * @param request
+	 * @param page		初始页
+	 * @param pageSize	分页大小
+	 * @return
+	 */
+	@RequestMapping("/ajaxManagerList")
+	@ResponseBody
+	public List<Manager> ajaxManagerList(HttpServletRequest request,HttpSession session,
+										@RequestParam(value="page",defaultValue="1")int page,
+										@RequestParam(value="pageSize",defaultValue="10")int pageSize){
+		//1.获取当前登录的用户
+				Manager currentManager = (Manager)session.getAttribute("LoginManager");
+				if(currentManager == null){
+					currentManager = new Manager();
+					currentManager.setId(2);
+				}
+				//2.根据当前的用户获取他所创建的子管理员
+				List<Manager> managerList = managerService.findByPage(currentManager.getId(), page, pageSize, "id", true);
+				//3.返回查询到的数据
+				return managerList;
 	}
 	
 	/**

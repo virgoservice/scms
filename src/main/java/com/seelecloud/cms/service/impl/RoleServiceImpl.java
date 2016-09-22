@@ -52,7 +52,7 @@ public class RoleServiceImpl implements RoleService{
 	 */
 	@Override
 	public void delete(int id) {
-		this.delete(id);
+		this.roleDao.delete(id);
 	}
 
 	/* (non-Javadoc)
