@@ -37,7 +37,7 @@ public class AppController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value={"/toAppInfo","/"},method=RequestMethod.GET)
+	@RequestMapping(value="/toAppInfo",method=RequestMethod.GET)
 	public String toAppInfo(HttpSession session,HttpServletRequest request,HttpServletResponse response, Model model){
 		//1.获取当前登录的用户
 		App currentManager = (App)session.getAttribute("LoginManager");
@@ -122,11 +122,11 @@ public class AppController {
 	 * 删除某个站点
 	 * @param id
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value="/{id}/toAppDelete",method=RequestMethod.GET)
 	public String toAppDelete(@PathVariable int id) {
 		appService.delete(id);
 		return "redirect:/admin/app/toAppInfo";
-	}
+	}*/
 	
 }
