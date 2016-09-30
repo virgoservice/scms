@@ -136,13 +136,13 @@ public class ManagerController {
 	
 	/**
 	 * 获取管理员的ID，加载管理员的信息，并跳转到更新管理的页面
-	 * @param id
-	 * @param model
+	 * @param id  管理员id	
+	 * @param model   model对象
 	 * @return
 	 */
 	@RequestMapping(value="/update/{id}",method=RequestMethod.GET)
 	public String updateManager(@PathVariable int id,Model model){
-		return "manager/update";
+		return "manager/update"; 
 	}
 	
 	
