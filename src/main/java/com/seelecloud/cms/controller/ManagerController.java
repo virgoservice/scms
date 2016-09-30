@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -133,7 +134,16 @@ public class ManagerController {
 		return "redirect:/admin/manager/managerList";
 	}
 	
-	
+	/**
+	 * 获取管理员的ID，加载管理员的信息，并跳转到更新管理的页面
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/update/{id}",method=RequestMethod.GET)
+	public String updateManager(@PathVariable int id,Model model){
+		return "manager/update";
+	}
 	
 	
 	
