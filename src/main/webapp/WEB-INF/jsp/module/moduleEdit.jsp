@@ -38,23 +38,35 @@
 </head>
 <body>
 <article class="page-container">
-	<sf:form action="./roleSave" modelAttribute="role" method="post" class="form form-horizontal" id="form-admin-role-add">
+	<sf:form action="#" modelAttribute="module" method="post" class="form form-horizontal" id="form-module-add">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>角色名称：</label>
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>模块名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<sf:input path="roleName" type="text" class="input-text" value="" placeholder="" id="roleName" name="roleName" />
+				<sf:input path="moduleName" type="text" class="input-text" value="" placeholder="" id="moduleName" name="moduleName" />
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3">描述：</label>
+			<label class="form-label col-xs-4 col-sm-3">父模块：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<sf:input path="description" type="text" class="input-text" value="" placeholder="" id="description" name="description" />
+				<sf:input path="parentId" type="text" class="input-text" value="" placeholder="" id="parentId" name="parentId" />
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">模块地址：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<sf:input path="moduleUrl" type="text" class="input-text" value="" placeholder="" id="moduleUrl" name="moduleUrl" />
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">模块图标：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<sf:input path="moduleIcon" type="text" class="input-text" value="" placeholder="" id="moduleIcon" name="moduleIcon" />
 			</div>
 		</div>
 
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-				<button type="submit" class="btn btn-success radius" id="admin-role-save" name="admin-role-save"><i class="icon-ok"></i> 确定</button>
+				<button type="submit" class="btn btn-success radius" id="module-save" name="module-save"><i class="icon-ok"></i> 确定</button>
 			</div>
 		</div>
 	</sf:form>
@@ -70,7 +82,6 @@
 <script type="text/javascript" src="<%=path %>/resources/lib/jquery.validation/1.14.0/jquery-form.js"></script>  
 <script type="text/javascript" src="<%=path %>/resources/static/h-ui/js/H-ui.js"></script> 
 <script type="text/javascript" src="<%=path %>/resources/static/h-ui.admin/js/H-ui.admin.js"></script> 
-<script type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.roleSave.js"></script> 
 <!--/_footer /作为公共模版分离出去--> 
 </body>
 </html>

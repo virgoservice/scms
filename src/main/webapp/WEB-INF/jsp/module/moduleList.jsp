@@ -32,56 +32,52 @@
 <script type="text/javascript" src="<%=path %>/resources/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
-<title>角色管理</title>
+<title>功能模块管理</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 角色管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 模块管理 <span class="c-gray en">&gt;</span> 模块列表 <a class="btn btn-success btn-refresh radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
-	<div class="cl pd-5 bg-1 bk-gray"> <span class="l"> <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" href="javascript:;" onclick="admin_role_add('添加角色','<%=path%>/admin/role/toRoleSave','550', '600')"><i class="Hui-iconfont">&#xe600;</i> 添加角色</a> </span> <span class="r">共有数据：<strong>${totalSize}</strong> 条</span> </div>
-	<table class="table table-border table-bordered table-hover table-bg">
+	<div class="cl pd-5 bg-1 bk-gray mt-20">
+		<span class="l">
+			<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">
+	 			<i class="Hui-iconfont">&#xe6e2;</i>批量删除</a>
+	  		<a href="javascript:;" onclick="module_add('添加模块','<%=path%>/module/toModuleSave','800', '600')" class="btn btn-primary radius">
+	  			<i class="Hui-iconfont">&#xe600;</i>添加模块
+	  		</a>
+	  	</span>
+	  	<span class="r">共有数据：<strong></strong> 条</span>
+	</div>
+	<table class="table table-border table-bordered table-bg">
 		<thead>
 			<tr>
-				<th scope="col" colspan="6">角色管理</th>
+				<th scope="col" colspan="9">模块列表</th>
 			</tr>
 			<tr class="text-c">
-				<th width="25"><input type="checkbox" value="" name=""></th>
-				<th width="40">ID</th>
-				<th width="250">角色名</th>
-				<th width="250">创建时间>
-				<th >描述</th>
-				<th width="150">操作</th>
+				<th width="25"><input type="checkbox" name="" value=""></th>
+				<th width="100">ID</th>
+				<th width="150">模块名</th>
+				<th width="150">父模块名</th>
+				<th width="150">创建时间</th>
+				<th width="180">模块地址</th>
+				<th width="100">模块图标</th>
+				<th width="150">创建者</th>
 			</tr>
 		</thead>
-		<tbody id="tal">
-			<c:forEach items="${roleList}" var="role">
- 				<tr class="text-c">
-					<td><input type="checkbox" value="" name=""></td>
-					<td>${role.id}</td>
-					<td>${role.roleName}</td>
-					<td><fmt:formatDate value="${role.createTime}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
-					<td>${role.description}</td>
-					<td class="f-14">
-						<!-- 在这里显示操作方法 -->
-					</td>
+		<tbody>
+			<c:forEach items="${moduleList}" var="module">
+				<tr class="text-c">
+					<td><input type="checkbox" value="1" name=""></td>
+					<td>${module.id }</td>
+					<td>${module.moduleName}</td>
+					<td>${module.parentId }</td>
+					<td><fmt:formatDate value="${module.createTime}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+					<td>${module.moduleUrl}</td>
+					<td><i class="Hui-iconfont">${module.moduleIcon}</i></td>
+					<td>${module.managerId}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	<!-- 定义了一个操作栏的显示 -->
-	<div id="operate"  style="display:none;">
-		<a title="edit" id="_edit" href="javascript:;" onclick="admin_role_edit('角色编辑', url, id, 800, 650)" style="text-decoration:none">
-			<i class="Hui-iconfont">&#xe6df;</i></a>
-			<a title="del" id="_del" href="javascript:;" onclick="admin_role_del(this, url, id)" style="text-decoration:none">
-			<i class="Hui-iconfont">&#xe6e2;</i></a>
-		<a title="module" id="_module" href="javascript:;" onclick="role_module_tree('模块查看', url, id, 750, 600)" style="text-decoration:none">
-			<i class="Hui-iconfont">&#xe667;</i></a>
-	</div>
-	<!-- 页码栏目的显示 -->
-	<div id="pageBar" style="margin-top:4px;text-align:right;"></div>
-	<!-- 用于传递分页所需要的参数值 -->
-	<input  type="hidden" id="ctx" value="<%=path %>"/>
-	<input type="hidden" id="totalSize" value="${totalSize}"/>
-	
 </div>
 <script type="text/javascript" src="<%=path %>/resources/lib/jquery/1.9.1/jquery.min.js"></script>  
 <script type="text/javascript" src="<%=path %>/resources/lib/layer/2.1/layer.js"></script> 
@@ -89,7 +85,6 @@
 <script type="text/javascript" src="<%=path %>/resources/lib/My97DatePicker/WdatePicker.js"></script> 
 <script type="text/javascript" src="<%=path %>/resources/static/h-ui/js/H-ui.js"></script> 
 <script type="text/javascript" src="<%=path %>/resources/static/h-ui.admin/js/H-ui.admin.js"></script> 
-<script type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.plugin.pager.js"></script>
-<script type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.roleList.js"></script>
+<script type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.moduleList.js"></script>
 </body>
 </html>

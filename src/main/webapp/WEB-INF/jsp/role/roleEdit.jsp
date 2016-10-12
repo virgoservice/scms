@@ -38,26 +38,27 @@
 </head>
 <body>
 <article class="page-container">
-	<form action="../roleEdit" method="post" class="form form-horizontal" id="form-role-edit">
+	<sf:form action="../roleEdit/${role.id}" modelAttribute="role" method="POST" class="form form-horizontal" id="form-admin-role-edit">
+		<sf:hidden path="id" id="id" name="id" value="${role.id}" />
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>角色名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${role.roleName}" placeholder="" id="roleName" name="roleName">
+				<sf:input path="roleName" type="text" class="input-text" value="${role.roleName}" placeholder="" id="roleName" name="roleName" />
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">描述：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${role.description}" placeholder="" id="description" name="description">
+				<sf:input path="description" type="text" class="input-text" value="${role.description}" placeholder="" id="description" name="description" />
 			</div>
 		</div>
 
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-				<button type="submit" class="btn btn-success radius" id="admin-role-save" name="admin-role-save"><i class="icon-ok"></i> 确定</button>
+				<button type="submit" class="btn btn-success radius" id="admin-role-edit" name="admin-role-edit"><i class="icon-ok"></i> 确定</button>
 			</div>
 		</div>
-	</form>
+	</sf:form>
 </article>
 
 <!--_footer 作为公共模版分离出去--> 
@@ -70,7 +71,7 @@
 <script type="text/javascript" src="<%=path %>/resources/lib/jquery.validation/1.14.0/jquery-form.js"></script>  
 <script type="text/javascript" src="<%=path %>/resources/static/h-ui/js/H-ui.js"></script> 
 <script type="text/javascript" src="<%=path %>/resources/static/h-ui.admin/js/H-ui.admin.js"></script> 
-<script type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.roleSave.js"></script> 
+<script type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.roleEdit.js"></script> 
 <!--/_footer /作为公共模版分离出去--> 
 </body>
 </html>

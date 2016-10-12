@@ -11,7 +11,7 @@ $(function() {
 		increaseArea: '20%'
 	});
 	
-	$("#form-admin-role-add").validate({
+	$("#form-admin-role-edit").validate({
 		rules:{
 			roleName:{
 				required:true,

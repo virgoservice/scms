@@ -19,7 +19,7 @@ import java.util.List;
  * @date: 2016年9月13日 下午12:44:55 
  * @email:ramostear@163.com 
  */
-public class ModelVo {
+public class ModuleVo {
 	/**
 	 * 模块编号
 	 */
@@ -27,7 +27,7 @@ public class ModelVo {
 	/**
 	 * 模块名称
 	 */
-	private String modelName;
+	private String moduleName;
 	/**
 	 * 模块创建时间
 	 */
@@ -40,45 +40,55 @@ public class ModelVo {
 	/**
 	 * 模块的访问地址
 	 */
-	private String modelUrl;
+	private String moduleUrl;
 	/**
 	 * 模块的显示图标
 	 */
-	private String modelIcon;
+	private String moduleIcon;
 	/**
 	 * 模块的创建者
 	 */
 	private int managerId;
 	
-	private List<ModelVo> child;
+	/**
+	 * 模块编辑树 是否处于勾选状态
+	 */
+	private int checked;
+
+	private List<ModuleVo> child;
 	
 	/**
 	 * 
 	 */
-	public ModelVo() {
+	public ModuleVo() {
 	}
 
-	/**
-	 * @param id
-	 * @param modelName
-	 * @param createTime
-	 * @param parentId
-	 * @param modelUrl
-	 * @param modelIcon
-	 * @param managerId
-	 * @param child
-	 */
-	public ModelVo(int id, String modelName, Date createTime, int parentId,
-			String modelUrl, String modelIcon, int managerId,
-			List<ModelVo> child) {
+	public ModuleVo(int id, String moduleName, Date createTime, int parentId,
+			String moduleUrl, String moduleIcon, int managerId, 
+			List<ModuleVo> child) {
 		super();
 		this.id = id;
-		this.modelName = modelName;
+		this.moduleName = moduleName;
 		this.createTime = createTime;
 		this.parentId = parentId;
-		this.modelUrl = modelUrl;
-		this.modelIcon = modelIcon;
+		this.moduleUrl = moduleUrl;
+		this.moduleIcon = moduleIcon;
 		this.managerId = managerId;
+		this.child = child;
+	}
+	
+	/*
+	 * 用于构造模块树:查看/编辑
+	 */
+	public ModuleVo(int id, String moduleName, int parentId, String moduleUrl, 
+			String moduleIcon, int checked, List<ModuleVo> child) {
+		super();
+		this.id = id;
+		this.moduleName = moduleName;
+		this.parentId = parentId;
+		this.moduleUrl = moduleUrl;
+		this.moduleIcon = moduleIcon;
+		this.checked = checked;
 		this.child = child;
 	}
 
@@ -90,12 +100,12 @@ public class ModelVo {
 		this.id = id;
 	}
 
-	public String getModelName() {
-		return modelName;
+	public String getModuleName() {
+		return moduleName;
 	}
 
-	public void setModelName(String modelName) {
-		this.modelName = modelName;
+	public void setModuleName(String moduleName) {
+		this.moduleName = moduleName;
 	}
 
 	public Date getCreateTime() {
@@ -114,20 +124,20 @@ public class ModelVo {
 		this.parentId = parentId;
 	}
 
-	public String getModelUrl() {
-		return modelUrl;
+	public String getModuleUrl() {
+		return moduleUrl;
 	}
 
-	public void setModelUrl(String modelUrl) {
-		this.modelUrl = modelUrl;
+	public void setModuleUrl(String moduleUrl) {
+		this.moduleUrl = moduleUrl;
 	}
 
-	public String getModelIcon() {
-		return modelIcon;
+	public String getModuleIcon() {
+		return moduleIcon;
 	}
 
-	public void setModelIcon(String modelIcon) {
-		this.modelIcon = modelIcon;
+	public void setModuleIcon(String moduleIcon) {
+		this.moduleIcon = moduleIcon;
 	}
 
 	public int getManagerId() {
@@ -138,11 +148,19 @@ public class ModelVo {
 		this.managerId = managerId;
 	}
 
-	public List<ModelVo> getChild() {
+	public int getChecked() {
+		return checked;
+	}
+
+	public void setChecked(int checked) {
+		this.checked = checked;
+	}
+	
+	public List<ModuleVo> getChild() {
 		return child;
 	}
 
-	public void setChild(List<ModelVo> child) {
+	public void setChild(List<ModuleVo> child) {
 		this.child = child;
 	}
 	

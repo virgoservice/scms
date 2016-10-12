@@ -11,24 +11,19 @@ $(function() {
 		increaseArea: '20%'
 	});
 	
-	$("#form-admin-role-add").validate({
+	$("#form-module-add").validate({
 		rules:{
-			roleName:{
+			moduleName:{
 				required:true,
 				minlength:1,
 				maxlength:16
-			},
-			description:{
-				required:true,
-				minlength:1,
-				maxlength:128
 			},
 		},
 		onkeyup:false,
 		focusCleanup:true,
 		success:"valid",
 		submitHandler:function(form){
-			$(form).submit();
+			$(form).Submit();
 			var index = parent.layer.getFrameIndex(window.name);
 			parent.location.reload();
 			parent.layer.close(index);

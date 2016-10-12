@@ -7,11 +7,11 @@
 		insert into t_roleModule 
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="roleId != null">roleId,</if>
-			<if test="modelId != null">modelId,</if>
+			<if test="moduleId != null">moduleId,</if>
 		</trim>
 		<trim prefix="values(" suffix=")" suffixOverrides=",">
 			<if test="roleId != null">#{roleId},</if>
-			<if test="modelId != null">#{modelId},</if>
+			<if test="moduleId != null">#{moduleId},</if>
 		</trim>
 	</insert>
 	
@@ -19,7 +19,7 @@
 		update t_roleModule  
 		<set>
 			<if test="roleId != null">roleId=#{roleId},</if>
-			<if test="modelId != null">modelId=#{modelId},</if>
+			<if test="moduleId != null">moduleId=#{moduleId},</if>
 		</set>
 		where id = #{id}
 	</update>
@@ -36,16 +36,16 @@
 		id = #{id}
 	</select>
 	
-	<select id="findModelIdsByRole" parameterType="int" resultType="int">
-		select modelId from t_roleModule 
+	<select id="findModuleIdsByRole" parameterType="int" resultType="int">
+		select moduleId from t_roleModule 
 		where 
 		roleId = #{roleId}
 	</select>
 
-	<select id="findRoleIdsByModel" parameterType="int" resultType="int">
+	<select id="findRoleIdsByModule" parameterType="int" resultType="int">
 		select roleId from t_roleModule 
 		where 
-		modelId = #{modelId}
+		moduleId = #{moduleId}
 	</select>
 
 	<select id="deleteByRoleId" parameterType="int">

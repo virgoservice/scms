@@ -26,9 +26,9 @@ public interface ModuleDao {
 
 	/**
 	 * 添加模块
-	 * @param model
+	 * @param module
 	 */
-	public void save(Module model);
+	public void save(Module module);
 	/**
 	 * 根据ID删除模块
 	 * @param id
@@ -36,9 +36,9 @@ public interface ModuleDao {
 	public void delete(@Param("id")int id);
 	/**
 	 * 更新模块
-	 * @param model
+	 * @param module
 	 */
-	public void update(Module model);
+	public void update(Module module);
 	/**
 	 * 根据Id查找模块
 	 * @param id
@@ -59,7 +59,9 @@ public interface ModuleDao {
 	 */
 	public List<Module> findByManagerId(@Param("managerId")int managerId);
 	
-	
-	
+	/**
+	 * 根据角色id联合查询角色-模块表和模块表
+	 */
+	public List<Module> findByRoleId(@Param("roleId")int roleId);
 	
 }

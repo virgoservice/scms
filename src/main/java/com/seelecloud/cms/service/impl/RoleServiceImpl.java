@@ -71,4 +71,9 @@ public class RoleServiceImpl implements RoleService{
 		return this.roleDao.findByManagerId(managerId);
 	}
 
+	@Override
+	public List<Role> findByPage(int mannagerId, int begin, int pageSize, String orderBy, boolean order)
+	{
+		return this.roleDao.findByPage(mannagerId, begin,pageSize, orderBy, order);
+	}
 }
