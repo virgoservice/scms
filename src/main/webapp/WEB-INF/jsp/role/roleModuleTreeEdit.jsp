@@ -35,11 +35,13 @@
 		<ul id="moduleTree" class="ztree"></ul>
 		<button type="button" id="submit" onclick="submit_tree_edit()">确定</button>
 		<button type="button" id="cancel" onclick="cancel_edit()">取消</button>
-		<input type="hidden" id="ctx" value="<%=path%>" />
 	</div>
+	<input type="hidden" id="ctx" value="<%=path%>" />
+	<input type="hidden" id="roleId" value="${roleId}" />
 <script type="text/javascript" src="<%=path %>/resources/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/static/ztree/js/jquery.ztree.core.min.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/static/ztree/js/jquery.ztree.excheck.min.js"></script>
+<script type="text/javascript" src="<%=path %>/resources/lib/layer/2.1/layer.js"></script> 
 <script type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.roleModuleTreeEdit.js"></script>
 </body>
 </html>

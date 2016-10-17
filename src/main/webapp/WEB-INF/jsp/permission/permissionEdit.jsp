@@ -36,30 +36,39 @@
 <title>权限管理</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 权限管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
+<INPUT type="hidden" id="ctx"  value="<%=request.getContextPath()%>"/>
 <article class="page-container">
 	<sf:form action="#" modelAttribute="" method="POST" class="form form-horizontal" id="form-admin-permission-edit">
 		<%-- <sf:hidden id="id" name="id" value="${managerId}" /> --%>
- 		<div>
-	 		<p>管理员名称：${manager.managerName}</p>
+ 		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">管理员名称：${manager.managerName}</label>
  		</div>
  		
-		<div>
-			<b>选择角色:</b>
-			<select onChange="selectChange(this.value)">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">选择角色:</label>
+			<select onChange="select_change(this.value)">
 				<c:forEach items="${roleList}" var="role">
 					<option value="${role.id}">${role.roleName}</option>
 				</c:forEach>
 			</select>
 		</div>
 		
-		<div>
-		    <p>角色描述:</p>		
-			<input type="text" id="description" value="" />
+		<!-- 用来保存roleList的  description值 -->
+		<div id = "roleList" style="display:none;" class="row cl">
+			<c:forEach items="${roleList}" var="role">
+				<input id="${role.id}"  title="desc_${role.id}" value="${role.description}" />
+			</c:forEach>
+		</div>
+		
+		<div class="row cl">
+		    <label class="form-label col-xs-4 col-sm-3">角色描述:</label>		
+			<div id="role_description">
+				<TEXTAREA cols="20" rows="5" disabled="disabled" id ="description"></TEXTAREA>
+			</div>
 		</div>
 
-		<div>
+		<div class="row cl col-xs-4 col-sm-3">
 			<button type="submit" class="btn btn-success radius" id="admin-permission-edit" name="admin-permission-edit"><i class="icon-ok"></i> 确定</button>
 			<button type="button" class="btn btn-secondary radius" id="cancel" name="cancel" onclick="cancel_edit()"><i class="icon-ok"></i>取消</button>
 		</div>

@@ -69,11 +69,11 @@
 	</table>
 	<!-- 定义了一个操作栏的显示 -->
 	<div id="operate"  style="display:none;">
-		<a title="edit" id="_edit" href="javascript:;" onclick="admin_role_edit('角色编辑', url, id, 800, 650)" style="text-decoration:none">
+		<a title="edit" id="_edit" href="javascript:;" onclick="admin_role_edit('角色编辑', url, 800, 650)" style="text-decoration:none">
 			<i class="Hui-iconfont">&#xe6df;</i></a>
-			<a title="del" id="_del" href="javascript:;" onclick="admin_role_del(this, url, id)" style="text-decoration:none">
+			<a title="del" id="_del" href="javascript:;" onclick="admin_role_del(this, url)" style="text-decoration:none">
 			<i class="Hui-iconfont">&#xe6e2;</i></a>
-		<a title="module" id="_module" href="javascript:;" onclick="role_module_tree('模块查看', url, id, 750, 600)" style="text-decoration:none">
+		<a title="module" id="_module" href="javascript:;" onclick="role_module_tree('模块查看', url, 550, 700)" style="text-decoration:none">
 			<i class="Hui-iconfont">&#xe667;</i></a>
 	</div>
 	<!-- 页码栏目的显示 -->

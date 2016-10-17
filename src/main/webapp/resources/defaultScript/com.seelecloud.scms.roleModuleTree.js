@@ -5,21 +5,27 @@
  * @Version:1.0.0
  */
 
+var zTreeObj = null;//
+var zNodes = null;
+
 $(document).ready(function() {
-	var zNodes;
-	var zTreeObj;
-	
 	var setting = {
 			view: {
 				showIcon: false,
 				showLine: true
 			},
+			
 			async: {
 				enable: true,
-				type:"POST",
+				type:"GET",
 				//如果请求到的值是null, 应该如何提示
 				url: $("#ctx").val()+"/admin/role/roleModuleData/" + $("#roleId").val(),
 			},
+			
+			callback: {
+				onAsyncSuccess: zTreeOnAsyncSuccess
+			},
+			
 			data: {
 				simpleData: {
 					enable: true,
@@ -34,17 +40,26 @@ $(document).ready(function() {
 	};
 	
 	zTreeObj = $.fn.zTree.init($("#moduleTree"), setting, zNodes);
-	zTreeObj.expandAll(true);// there is invalid TODO
 });
 
-function edit_moduleTree(title, url, id)
+function zTreeOnAsyncSuccess()
 {
-	var index = parent.layer.getFrameIndex(window.name);
-	//parent.location.reload();
-	url += id;
-	alert(url);
-	layer_show(title, url, 750, 600);
-	parent.layer.close(index);
+	// tips no data TODO
+	zTreeObj.expandAll(true);
+}
+
+function edit_moduleTree(title, url, id, w, h)
+{
+	url = $("#ctx").val() + url + id;
+	layer.open({
+		type: 2,
+		area: [w+'px', h +'px'],
+		fix: false,
+		maxmin: true,
+		shade:0.4,
+		title: title,
+		content: url
+	});
 }
 
 function close_moduleTree()

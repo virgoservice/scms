@@ -18,12 +18,12 @@ function admin_role_add(title, url, w, h) {
 }
 
 /* 管理员-角色-编辑 */
-function admin_role_edit(title, url, id, w, h) {
+function admin_role_edit(title, url, w, h) {
 	layer_show(title, url, w, h);
 }
 
 /* 管理员-角色-删除 */
-function admin_role_del(obj, url, id) {
+function admin_role_del(obj, url) {
 	layer.confirm('角色删除须谨慎，确认要删除吗？', function(index) {
 		// 此处请求后台程序
 		$.post(url, null, null);
@@ -38,7 +38,7 @@ function admin_role_del(obj, url, id) {
 }
 
 /* 管理员查看角色的模块 */
-function role_module_tree(title, url, id, w, h)
+function role_module_tree(title, url, w, h)
 {
 	layer_show(title, url, w, h);
 }

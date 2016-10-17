@@ -26,10 +26,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSONObject;
 import com.seelecloud.cms.entity.Manager;
 import com.seelecloud.cms.entity.Module;
 import com.seelecloud.cms.entity.Role;
+import com.seelecloud.cms.entity.RoleModule;
 import com.seelecloud.cms.service.ModuleService;
 import com.seelecloud.cms.service.RoleModuleService;
 import com.seelecloud.cms.service.RoleService;
@@ -68,7 +68,7 @@ public class RoleController {
 			currentManager = new Manager();
 			currentManager.setId(2);
 		}
-		// 2.根据当前的用户获取他所创建的roles, 只是为了获取中记录数
+		// 2.根据当前的用户获取他所创建的roles, 只是为了获取总记录数
 		List<Role> roleList = this.roleService.findByManangerId(currentManager.getId());
 		model.addAttribute("totalSize", roleList.size());
 		//跳转页面，由分页查找去获取列表数据
@@ -189,99 +189,92 @@ public class RoleController {
 	
 	
 	/************************************************************************************************/
-	@RequestMapping(value="/roleModule/{roleId}", method=RequestMethod.GET)
-	public String listRoleModule(@PathVariable int roleId, Model model)
-	{
+	@RequestMapping(value = "/roleModule/{roleId}", method = RequestMethod.GET)
+	public String listRoleModule(@PathVariable int roleId, Model model) {
 		model.addAttribute("roleId", roleId);
-		//switch into ajaxJson
+
+		// only need page view, get data by AJAX method
 		return "role/roleModuleTree";
 	}
-	
+
 	/**
 	 * 查看指定角色的所有的可操作模块
 	 */
-	@RequestMapping(value="/roleModuleData/{roleId}", method={RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value = "/roleModuleData/{roleId}", method = RequestMethod.GET)
 	@ResponseBody
-	public List<ModuleVo> listRoleModule(@PathVariable int roleId)
-	{
-		//1 获取角色id 对应所有的module ids
-		List<Integer> moduleIds = this.roleModuleService.findModuleIdsByRole(roleId);
-		
-		//2 查询mid对应的模块详细
+	public List<ModuleVo> listRoleModule(@PathVariable int roleId) {
+		// 1 获取角色id 对应所有的module ids
+		List<Integer> moduleIds = this.roleModuleService
+				.findModuleIdsByRole(roleId);
+
+		// 2 查询mid对应的模块详细
 		List<Module> moduleList = new ArrayList<Module>();
 		Module module = new Module();
-		for(int id:moduleIds)
-		{
+		for (int id : moduleIds) {
 			module = this.moduleService.findById(id);
 			moduleList.add(module);
 		}
-		
-		//3 生成模块树展现
+
+		// 3 生成模块树展现
 		List<ModuleVo> mvList = new ArrayList<ModuleVo>();
 		ModuleVo mv = null;
-		for(Module m:moduleList){
-			mv = new ModuleVo(m.getId(), m.getModuleName(), m.getParentId(), null, null, 0, null);
-			if(m.getParentId()==-1){
+		for (Module m : moduleList) {
+			mv = new ModuleVo(m.getId(), m.getModuleName(), m.getParentId(),
+					null, null, 0, null);
+			if (m.getParentId() == -1) {
 				mv.setParentId(0);
 			}
 			mvList.add(mv);
 		}
-		
+
 		return mvList;
 	}
-	
+
 	/**
 	 * 修改可以操作模块
 	 */
-	@RequestMapping(value = "/roleModuleEditData/{roleId}", method= RequestMethod.GET)
+	@RequestMapping(value = "/roleModuleEditData/{roleId}", method = RequestMethod.GET)
 	@ResponseBody
-	public List<ModuleVo> editRoleModule(@PathVariable int roleId)
-	{
-		// 1 当前用户所有的模块，添加到VO
-		// 获取当前登录的用户
-//		Manager currentManager = (Manager) session.getAttribute("LoginManager");
-//		if (currentManager == null) {
-//			//return "error";// invalid login info
-//		}
+	public List<ModuleVo> editRoleModule(@PathVariable int roleId) {
+		// 1 获取当前登录的用户
+		// Manager currentManager = (Manager)
+		// session.getAttribute("LoginManager");
+		// if (currentManager == null) {
+		// //return "error";// invalid login info
+		// }
 		int managerRoleId = 1;
-		
+
 		List<Integer> managerModuleIds = this.roleModuleService.findModuleIdsByRole(managerRoleId);
 		List<Module> moduleList = new ArrayList<Module>();
 		Module module = new Module();
-		for(int id:managerModuleIds)
-		{
+		for (int id : managerModuleIds) {
 			module = this.moduleService.findById(id);
-//			if(module != null)
+			// if(module != null)
 			{
 				moduleList.add(module);
 			}
 		}
-		
-		// 可以考虑对module info进行缓存，除非发生add 或 delete 才更新缓存
-		
+
 		// 2 指定角色所有的模块，更新VO
 		List<Integer> roleModuleIds = this.roleModuleService.findModuleIdsByRole(roleId);
-		
+
 		// 3 tree展示
 		List<ModuleVo> mvList = new ArrayList<ModuleVo>();
 		ModuleVo mv = null;
-		for(Module m: moduleList)
-		{
-			// 设置 checked 状态值
+		for (Module m : moduleList) {
 			int checked = 0;
 			int id = m.getId();
-			for(int i : roleModuleIds)
-			{
-				if(id == i)
-				{
+			for (int i : roleModuleIds) {
+				if (id == i) {
 					checked = 1;
 					break;
 				}
-			}//TODO 应该被优化
-			
+			}// TODO 应该被优化
+
 			// building module tree
-			mv = new ModuleVo(m.getId(), m.getModuleName(), m.getParentId(), null, null, checked, null);
-			if(m.getParentId()==-1){
+			mv = new ModuleVo(m.getId(), m.getModuleName(), m.getParentId(),
+					null, null, checked, null);
+			if (m.getParentId() == -1) {
 				mv.setParentId(0);
 			}
 			mvList.add(mv);
@@ -290,23 +283,31 @@ public class RoleController {
 		return mvList;
 	}
 	
-	@RequestMapping(value = "/roleModuleEdit/{roleId}", method= RequestMethod.GET)
-	public String toRoleModuleEdit()
-	{
+	@RequestMapping(value = "/roleModuleEdit/{roleId}", method = RequestMethod.GET)
+	public String toRoleModuleEdit(@PathVariable int roleId, Model model) {
+		model.addAttribute("roleId", roleId);
 		return "/role/roleModuleTreeEdit";
 	}
-	
+
 	/**
 	 * 修改成功后，返回指定角色模块页面
 	 */
-	@RequestMapping(value = "/roleModuleEditSubmit/{roleId}", method= RequestMethod.GET)
-	public String editRoleModule(int roleId, JSONObject data)
-	{
-		//TODO waiting implementation ... 
-		// 1 解析传回的数据,获取moduleId 与 checked状态
-		
-		// 2 根据check值，确定是否需要修改DB
-		
+	@RequestMapping(value = "/ajaxSendRoleModuleEdit", method = RequestMethod.POST)
+	public String editRoleModule(@RequestParam("roleId") int roleId,
+			@RequestParam("moduleIds[]") int[] moduleIds) {
+
+		// 1 delete all old r-m records
+		this.roleModuleService.deleteByRoleId(roleId);
+
+		// 2 add new r-m records
+		RoleModule rm = new RoleModule();
+		rm.setRoleId(roleId);
+		for (int i = 0; i < moduleIds.length; i++)// effect is lowly ?
+		{
+			rm.setModuleId(moduleIds[i]);
+			this.roleModuleService.save(rm);
+		}
+
 		return "redirect:/admin/role/roleModule/" + roleId;
 	}
 	

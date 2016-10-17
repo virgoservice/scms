@@ -44,7 +44,12 @@ public class PermissionController {
 	@Autowired
 	private ManagerService managerService;
 	
-	//权限列表
+	/**
+	 * 查看用户所对应的权限角色列表
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/permissionList")
 	public String listPermission(HttpSession session, Model model)
 	{
@@ -84,7 +89,11 @@ public class PermissionController {
 		return "permission/permissionList";
 	}
 	
-	//将角色从用户移出之后，用户角色id设置为 0，表示没有角色
+	/**
+	 * 移出指定用户的权限角色
+	 * @param managerId
+	 * @return
+	 */
 	@RequestMapping(value="/permissionRemove/{managerId}", method = RequestMethod.POST)
 	public String removeManagerRole(@PathVariable int managerId)
 	{
@@ -92,23 +101,29 @@ public class PermissionController {
 		manager = this.managerService.findById(managerId);
 		if(manager != null)
 		{
+			//将角色从用户移出之后，用户角色id设置为 0，表示没有角色
 			manager.setRoleId(ConstString.ROLE_NONE);
 			this.managerService.update(manager);
 		}
 		return "redirect:/permission/permissionList";
 	}
 
+	/**
+	 * 修改用户的角色
+	 * @param managerId
+	 * @param model
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="/permissionEdit/{managerId}", method = RequestMethod.GET)
 	public String editManagerRole(@PathVariable int managerId, Model model, HttpSession session)
 	{
-		// 1
 		Manager currentManager = (Manager)session.getAttribute("LoginManager");
 		if(currentManager == null){
 			currentManager = new Manager();
 			currentManager.setId(2);
 		}
 		
-		// 2
 		Manager manager;
 		manager = this.managerService.findById(managerId);
 		if(manager == null)
@@ -130,4 +145,5 @@ public class PermissionController {
 		
 		return "/permission/permissionEdit";
 	}
+	
 }

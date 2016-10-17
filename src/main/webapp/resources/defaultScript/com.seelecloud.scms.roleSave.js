@@ -28,10 +28,15 @@ $(function() {
 		focusCleanup:true,
 		success:"valid",
 		submitHandler:function(form){
-			$(form).submit();
-			var index = parent.layer.getFrameIndex(window.name);
-			parent.location.reload();
-			parent.layer.close(index);
+			$(form).ajaxSubmit();
+			setTimeout("refresh_close()", 15);//这里需要延时等待 ajax提交
 		}
 	});
 });
+
+function refresh_close()
+{
+	var index = parent.layer.getFrameIndex(window.name);
+	parent.location.reload();
+	parent.layer.close(index);
+}

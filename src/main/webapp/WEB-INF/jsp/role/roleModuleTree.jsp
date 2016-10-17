@@ -32,16 +32,17 @@
 <title>角色模块查看</title>
 </head>
 <body>
-	<div>
+	<div id = "tree">
 		<ul id="moduleTree" class="ztree"></ul>
-		<button type="button" class="btn btn-primary radius" id="editBtn" onclick="edit_moduleTree('编辑模块', '/admin/role/roleModuleEdit/', ${roleId})">编辑模块</button>
+		<button type="button" class="btn btn-primary radius" id="editBtn" onclick="edit_moduleTree('编辑模块', '/admin/role/roleModuleEdit/', ${roleId}, 600, 700)">编辑模块</button>
 		<button type="button" class="btn btn-secondary radius" id="closeBtn" onclick="close_moduleTree()">关闭</button>
-		<input type="hidden" id="ctx" value="<%=path%>" />
-		<input type="hidden" id="roleId" value="${roleId}" />
 	</div>
+	<input type="hidden" id="ctx" value="<%=path%>" />
+	<input type="hidden" id="roleId" value="${roleId}" />
 <script type="text/javascript" src="<%=path %>/resources/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/static/ztree/js/jquery.ztree.core.min.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/lib/layer/2.1/layer.js"></script> 
+<script type="text/javascript" src="<%=path %>/resources/static/ztree/js/jquery.ztree.excheck.min.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.roleModuleTree.js"></script>
 </body>
 </html>

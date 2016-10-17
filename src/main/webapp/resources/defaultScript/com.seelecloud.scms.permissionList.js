@@ -20,10 +20,9 @@ function admin_permission_edit(title,url,id,w,h){
 
 /*管理员-权限-删除*/
 function admin_permission_del(obj, url, id){
-	layer.confirm('角色删除须谨慎，确认要删除吗？',function(index){
+	layer.confirm('确实要解除该用户的角色吗？',function(index){
 		url += id;
 		$.post(url, null, null);
-		$(obj).parents("tr").remove();
 		layer.msg('已解除该权限!',{icon:1,time:1000});
 	});
 }
