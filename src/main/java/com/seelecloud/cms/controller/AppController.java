@@ -83,5 +83,10 @@ public class AppController {
 		appService.update(app2);
 		return "redirect:/admin/app/toAppInfo";
 	}
-
+	
+	
+	/**
+	 * 在这里做测试功能演示
+	 */
+	
 }
