@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seelecloud.cms.dao.RoleModuleDao">
+	
+	<insert id="save" parameterType="RoleModule">
+		insert into t_roleModule 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="roleId != null">roleId,</if>
+			<if test="moduleId != null">moduleId,</if>
+		</trim>
+		<trim prefix="values(" suffix=")" suffixOverrides=",">
+			<if test="roleId != null">#{roleId},</if>
+			<if test="moduleId != null">#{moduleId},</if>
+		</trim>
+	</insert>
+	
+	<update id="update" parameterType="RoleModule">
+		update t_roleModule  
+		<set>
+			<if test="roleId != null">roleId=#{roleId},</if>
+			<if test="moduleId != null">moduleId=#{moduleId},</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from t_roleModule 
+		where 
+		id = #{id}
+	</delete>
+
+	<select id="findById" parameterType="int" resultType="RoleModule">
+		select * from t_roleModule 
+		where 
+		id = #{id}
+	</select>
+	
+	<select id="findModuleIdsByRole" parameterType="int" resultType="int">
+		select moduleId from t_roleModule 
+		where 
+		roleId = #{roleId}
+	</select>
+
+	<select id="findRoleIdsByModule" parameterType="int" resultType="int">
+		select roleId from t_roleModule 
+		where 
+		moduleId = #{moduleId}
+	</select>
+
+	<select id="deleteByRoleId" parameterType="int">
+		delete from t_roleModule 
+		where 
+		roleId = #{roleId}
+	</select>
+	
+</mapper>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seelecloud.cms.dao.ManagerDao">
+	
+	<resultMap type="Manager" id="resultMap">
+		<id column="id" property="id"/>
+		<result column="managerName" property="managerName"/>
+		<result column="managerNickname" property="managerNickname"/>
+		<result column="password" property="password"/>
+		<result column="roleId" property="roleId"/>
+		<result column="createTime" property="createTime"/>
+		<result column="parentId" property="parentId"/>
+		<result column="status" property="status"/>
+	</resultMap>
+	
+	<sql id="propSql">
+		id,managerName, managerNickname,password,roleid,createTime,status	
+	</sql>
+	
+	<!--添加管理员  -->
+	<insert id="save" parameterType="Manager">
+		insert into t_manager 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="managerName != null">managerName,</if>
+			<if test="managerNickname != null">managerNickname,</if>
+			<if test="password != null">password,</if>
+			<if test="roleId != null">roleId,</if>
+			<if test="createTime != null">createTime,</if>
+			<if test="parentId != null">parentId,</if>
+			<if test="status != null">status</if>
+		</trim>
+		<trim prefix="values(" suffix=")" suffixOverrides=",">
+			<if test="managerName != null">#{managerName},</if>
+			<if test="managerNickname != null">#{managerNickname},</if>
+			<if test="password != null">#{password},</if>
+			<if test="roleId != null">#{roleId},</if>
+			<if test="createTime != null">#{createTime},</if>
+			<if test="parentId != null">#{parentId},</if>
+			<if test="status != null">#{status},</if>
+		</trim>
+		
+	</insert>
+	<!--更新管理员  -->
+	<update id="update" parameterType="Manager">
+		update t_manager 
+		<set>
+			<if test="managerNickname != null">managerNickname = #{managerNickname}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from t_manager where id=#{id}
+	</delete>
+	
+	<select id="findById" parameterType="int" resultType="Manager">
+		select 
+		<include refid="propSql"></include>
+		from t_manager 
+		where id=#{id}
+	</select>
+	<select id="findByName" parameterType="string" resultType="Manager">
+		select <include refid="propSql"></include> 
+		from t_manager 
+		where 
+		managername=#{managerName}
+	</select>
+	<select id="ListAll" resultType="Manager">
+		select <include refid="propSql"></include> from t_manager
+	</select>
+	
+	<select id="findTotalCount" parameterType="int" resultType="int">
+		select count(*) from t_manager 
+		where parentid = #{id}
+	</select>
+	
+	<select id="findByPage" resultType="Manager">
+		select * from t_manager 
+		where parentid = #{id}
+		order by #{orderBy}
+		<if test="order == true">
+			DESC
+		</if>
+		<if test="order == false">
+			ASC
+		</if>
+		limit #{offset},#{size}
+	</select>	
+</mapper>
