@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.seelecloud.cms.entity.Manager;
 import com.seelecloud.cms.entity.Module;
-import com.seelecloud.cms.entity.Role;
 import com.seelecloud.cms.service.AppService;
 import com.seelecloud.cms.service.ManagerService;
 import com.seelecloud.cms.service.ModuleService;
@@ -69,14 +68,15 @@ public class AdminController {
 			//暂时设定一个用户
 			manager = managerService.findById(2);
 		}
-		List<Role> roleList = roleService.findByManangerId(manager.getId());
 		List<Integer> moduleIds = new ArrayList<Integer>();
 		List<Module> modules = new ArrayList<Module>();
-		if(roleList!=null&&roleList.size()>0){
-			for(Role role:roleList){
-				moduleIds.addAll(roleModuleService.findModuleIdsByRole(role.getId()));
-			}
+		int roleId = manager.getRoleId();
+		if(roleId <= 0)
+		{
+			//no role, return null page
+			return "error.jsp";
 		}
+		moduleIds = roleModuleService.findModuleIdsByRole(manager.getRoleId());
 		for(int id:moduleIds){
 			Module m = moduleService.findById(id);
 			if(m!=null){
