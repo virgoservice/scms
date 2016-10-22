@@ -56,4 +56,5 @@ public interface RoleService {
 	 */
 	public List<Role> findByManangerId(@Param("managerId")int managerId);
 	
+	public List<Role> findByPage(int mannagerId, int begin, int pageSize, String orderBy, boolean order);
 }

@@ -12,6 +12,7 @@ package com.seelecloud.cms.service.impl;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,8 +36,8 @@ public class ModuleServiceImpl implements ModuleService{
 	 * @see com.seelecloud.cms.service.ModelService#save(com.seelecloud.cms.entity.Model)
 	 */
 	@Override
-	public void save(Module model) {
-		this.moduleDao.save(model);
+	public void save(Module module) {
+		this.moduleDao.save(module);
 	}
 
 	/* (non-Javadoc)
@@ -51,8 +52,8 @@ public class ModuleServiceImpl implements ModuleService{
 	 * @see com.seelecloud.cms.service.ModelService#update(com.seelecloud.cms.entity.Model)
 	 */
 	@Override
-	public void update(Module model) {
-		this.moduleDao.update(model);
+	public void update(Module module) {
+		this.moduleDao.update(module);
 	}
 
 	/* (non-Javadoc)
@@ -79,4 +80,9 @@ public class ModuleServiceImpl implements ModuleService{
 		return this.moduleDao.findByManagerId(managerId);
 	}
 
+	@Override
+	public List<Module> findByRoleId(@Param("roleId")int roleId)
+	{
+		return this.moduleDao.findByRoleId(roleId);
+	}
 }

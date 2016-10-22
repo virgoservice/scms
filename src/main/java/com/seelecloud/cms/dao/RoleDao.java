@@ -56,5 +56,18 @@ public interface RoleDao {
 	 * @return
 	 */
 	public List<Role> findByManagerId(@Param("managerId")int managerId);
+
+	/**
+	 * <!--根据创建者id，进行分页查询角色信息  -->
+	 * @param mannagerId
+	 * @param begin
+	 * @param pageSize
+	 * @param orderBy
+	 * @param isAsc
+	 * @return
+	 */
+	public List<Role> findByPage(@Param("managerId")int mannagerId, @Param("begin")int begin, @Param("pageSize")int pageSize,
+			@Param("orderBy")String orderBy, @Param("isAsc")boolean isAsc);
 	
+	public Role findByRoleName(@Param("managerId")int mannagerId, @Param("roleName")String roleName);
 }

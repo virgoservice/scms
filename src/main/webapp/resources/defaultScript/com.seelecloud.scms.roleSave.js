@@ -1,4 +1,11 @@
-$(function(){
+
+/**
+ * @Author:vabo
+ * @DateTime:2016-09-22
+ * @Description:对要添加的角色信息进行校验
+ * @Version:1.0.0
+ */
+$(function() {
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
 		radioClass: 'iradio-blue',
@@ -23,9 +30,14 @@ $(function(){
 		success:"valid",
 		submitHandler:function(form){
 			$(form).ajaxSubmit();
-			var index = parent.layer.getFrameIndex(window.name);
-			parent.location.reload();
-			parent.layer.close(index);
+			setTimeout("refresh_close()", 15);//这里需要延时等待 ajax提交
 		}
 	});
 });
+
+function refresh_close()
+{
+	var index = parent.layer.getFrameIndex(window.name);
+	parent.location.reload();
+	parent.layer.close(index);
+}

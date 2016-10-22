@@ -28,10 +28,12 @@ public class App {
 	/**
 	 * 站点名称
 	 */
+	@NotNull(message="站点名称不能为空")
 	private String appName;
 	/**
 	 * 站点描述
 	 */
+	@NotNull(message="站点的描述不能为空")
 	private String appDescription;
 	/**
 	 * 站点Logo
@@ -40,6 +42,7 @@ public class App {
 	/**
 	 * 站点关键字
 	 */
+	@NotNull(message="站点的关键词不能为空")
 	private String appKeyword;
 	/**
 	 * 站点版权信息
@@ -72,7 +75,6 @@ public class App {
 		this.id = id;
 	}
 
-	@NotNull(message="站点名称不能为空")
 	public String getAppName() {
 		return appName;
 	}
@@ -105,6 +107,7 @@ public class App {
 		this.appKeyword = appKeyword;
 	}
 
+	
 	public String getAppCopyright() {
 		return appCopyright;
 	}
@@ -113,7 +116,7 @@ public class App {
 		this.appCopyright = appCopyright;
 	}
 
-	@NotNull(message="站点的访问域名不能为空")
+	/*@NotNull(message="站点的访问域名不能为空")*/
 	public String getAppUrl() {
 		return appUrl;
 	}
@@ -130,7 +133,7 @@ public class App {
 		this.createTime = createTime;
 	}
 
-	@NotNull(message="站点管理员编号不能为空")
+	/*@NotNull(message="站点管理员编号不能为空")*/
 	public int getAppManagerId() {
 		return appManagerId;
 	}
