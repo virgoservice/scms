@@ -38,17 +38,17 @@
 </head>
 <body>
 <article class="page-container">
-	<sf:form action="./roleSave" modelAttribute="role" method="post" class="form form-horizontal" id="form-admin-role-add">
+	<form action="./roleSave" modelAttribute="role" method="post" class="form form-horizontal" id="form-admin-role-add">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>角色名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<sf:input path="roleName" type="text" class="input-text" value="" placeholder="" id="roleName" name="roleName" />
+				<input type="text" class="input-text" value="" placeholder="" id="roleName" name="roleName" datatype="*4-16" nullmsg="用户账户不能为空">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">描述：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<sf:input path="description" type="text" class="input-text" value="" placeholder="" id="description" name="description" />
+				<input type="text" class="input-text" value="" placeholder="" id="description" name="description">
 			</div>
 		</div>
 
@@ -57,7 +57,7 @@
 				<button type="submit" class="btn btn-success radius" id="admin-role-save" name="admin-role-save"><i class="icon-ok"></i> 确定</button>
 			</div>
 		</div>
-	</sf:form>
+	</form>
 </article>
 
 <!--_footer 作为公共模版分离出去--> 

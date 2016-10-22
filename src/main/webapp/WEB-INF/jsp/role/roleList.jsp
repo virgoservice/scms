@@ -37,7 +37,7 @@
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 角色管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
-	<div class="cl pd-5 bg-1 bk-gray"> <span class="l"> <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" href="javascript:;" onclick="admin_role_add('添加角色','<%=path%>/admin/role/toRoleSave','550', '600')"><i class="Hui-iconfont">&#xe600;</i> 添加角色</a> </span> <span class="r">共有数据：<strong>${totalSize}</strong> 条</span> </div>
+	<div class="cl pd-5 bg-1 bk-gray"> <span class="l"> <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" href="javascript:;" onclick="admin_role_add('添加角色','<%=path%>/admin/role/toRoleSave','500', '600')"><i class="Hui-iconfont">&#xe600;</i> 添加角色</a> </span> <span class="r">共有数据：<strong>${roleList.size()}</strong> 条</span> </div>
 	<table class="table table-border table-bordered table-hover table-bg">
 		<thead>
 			<tr>
@@ -52,36 +52,19 @@
 				<th width="150">操作</th>
 			</tr>
 		</thead>
-		<tbody id="tal">
+		<tbody>
 			<c:forEach items="${roleList}" var="role">
- 				<tr class="text-c">
+				<tr class="text-c">
 					<td><input type="checkbox" value="" name=""></td>
 					<td>${role.id}</td>
 					<td>${role.roleName}</td>
 					<td><fmt:formatDate value="${role.createTime}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 					<td>${role.description}</td>
-					<td class="f-14">
-						<!-- 在这里显示操作方法 -->
-					</td>
+					<td class="f-14"><a title="编辑" href="javascript:;" onclick="admin_role_edit('角色编辑','<%=path%>/admin/role/toRoleEdit/${role.id}','1')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_role_del(this,'<%=path%>/admin/role/roleDelete/${role.id}''1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	<!-- 定义了一个操作栏的显示 -->
-	<div id="operate"  style="display:none;">
-		<a title="edit" id="_edit" href="javascript:;" onclick="admin_role_edit('角色编辑', url, 800, 650)" style="text-decoration:none">
-			<i class="Hui-iconfont">&#xe6df;</i></a>
-			<a title="del" id="_del" href="javascript:;" onclick="admin_role_del(this, url)" style="text-decoration:none">
-			<i class="Hui-iconfont">&#xe6e2;</i></a>
-		<a title="module" id="_module" href="javascript:;" onclick="role_module_tree('模块查看', url, 550, 700)" style="text-decoration:none">
-			<i class="Hui-iconfont">&#xe667;</i></a>
-	</div>
-	<!-- 页码栏目的显示 -->
-	<div id="pageBar" style="margin-top:4px;text-align:right;"></div>
-	<!-- 用于传递分页所需要的参数值 -->
-	<input  type="hidden" id="ctx" value="<%=path %>"/>
-	<input type="hidden" id="totalSize" value="${totalSize}"/>
-	
 </div>
 <script type="text/javascript" src="<%=path %>/resources/lib/jquery/1.9.1/jquery.min.js"></script>  
 <script type="text/javascript" src="<%=path %>/resources/lib/layer/2.1/layer.js"></script> 
@@ -89,7 +72,6 @@
 <script type="text/javascript" src="<%=path %>/resources/lib/My97DatePicker/WdatePicker.js"></script> 
 <script type="text/javascript" src="<%=path %>/resources/static/h-ui/js/H-ui.js"></script> 
 <script type="text/javascript" src="<%=path %>/resources/static/h-ui.admin/js/H-ui.admin.js"></script> 
-<script type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.plugin.pager.js"></script>
-<script type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.roleList.js"></script>
+<script type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.roleList.js"></script> 
 </body>
 </html>

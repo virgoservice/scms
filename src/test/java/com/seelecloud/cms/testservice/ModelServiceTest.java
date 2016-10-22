@@ -44,10 +44,10 @@ public class ModelServiceTest {
 	public void testSave(){
 		Module model = new Module();
 		model.setManagerId(2);
-		model.setModuleName("站点管理");
+		model.setModelName("站点管理");
 		model.setParentId(-1);
-		model.setModuleUrl("#");
-		model.setModuleIcon("&5150");
+		model.setModelUrl("#");
+		model.setModelIcon("&5150");
 		model.setCreateTime(new Date());
 		modelService.save(model);
 		

@@ -37,10 +37,9 @@ public interface AppService {
 	
 	/**
 	 * 更新站点信息
-	 * @param app2
+	 * @param app
 	 */
-	public void update(App app2);
-	
+	public void update(App app);
 	/**
 	 * 根据id查找站点信息
 	 * @param id

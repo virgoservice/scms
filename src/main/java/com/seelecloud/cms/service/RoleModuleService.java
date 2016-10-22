@@ -17,56 +17,60 @@ import org.apache.ibatis.annotations.Param;
 import com.seelecloud.cms.entity.RoleModule;
 
 /** 
- * @Desc: (RoleModule Service Interface) 
+ * @Desc: (RoleModel Service Interface) 
  * @author: 谭朝红 
  * @date: 2016年9月7日 下午11:26:24 
  * @email:ramostear@163.com 
  */
 public interface RoleModuleService {
 
-	/**
-	 * 添加一条角色-模块关系记录
-	 * @param roleModule
+	/**"
+	 * 添加RoleModel
+	 * @param roleModel
 	 */
-	public void save(RoleModule roleModule);
+	public void save(RoleModule roleModel);
 	
 	/**
-	 * 修改一条角色-模块记录
-	 * @param roleModule
+	 * update roleModel object
+	 * @param roleModel
 	 */
-	public void update(RoleModule roleModule);
+	public void update(RoleModule roleModel);
 	
 	/**
-	 * 通过id 删除一条角色-模块关系记录
+	 * delete roleModel object by id
 	 * @param id
 	 */
 	public void delete(int id);
 	
 	/**
-	 * 根据表id查找记录
+	 * 根据关联编号查找
 	 * @param id
 	 * @return
 	 */
 	public RoleModule findById(int id);
 	
 	/**
-	 * 查找与指定角色有关系的所有模块id
+	 * find the model id by the role id
 	 * @param roleId
 	 * @return
 	 */
-	public List<Integer> findModuleIdsByRole(@Param("roleId")int roleId);
+	public List<Integer> findModelIdsByRole(@Param("roleId")int roleId);
 	
 	/**
-	 * 查找与指定模块关联的所有角色id
-	 * @param moduleId
+	 * find role id by the model Id
+	 * @param modelId
 	 * @return
 	 */
-	public List<Integer> findRoleIdsByModule(@Param("moduleId")int moduleId);
+	public List<Integer> findRoleIdsByModel(@Param("modelId")int modelId);
 	
 	/**
-	 * 删除指定角色相关的所有关系记录
+	 * 根据角色Id接触角色和模块的关系
 	 * @param roleId
 	 */
 	public void deleteByRoleId(@Param("roleId")int roleId);
+	
+	
+	
+	
 	
 }

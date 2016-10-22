@@ -20,7 +20,7 @@ import com.seelecloud.cms.entity.RoleModule;
 import com.seelecloud.cms.service.RoleModuleService;
 
 /** 
- * @Desc: (implements the roleModuleService interface file) 
+ * @Desc: (implements the RoleModelService interface file) 
  * @author: 谭朝红 
  * @date: 2016年9月7日 下午11:27:39 
  * @email:ramostear@163.com 
@@ -34,23 +34,23 @@ public class RoleModuleServiceImpl  implements RoleModuleService{
 	
 	
 	/* (non-Javadoc)
-	 * @see com.seelecloud.cms.service.roleModuleService#save(com.seelecloud.cms.entity.roleModule)
+	 * @see com.seelecloud.cms.service.RoleModelService#save(com.seelecloud.cms.entity.RoleModel)
 	 */
 	@Override
-	public void save(RoleModule roleModule) {
-		this.roleModuleDao.save(roleModule);
+	public void save(RoleModule roleModel) {
+		this.roleModuleDao.save(roleModel);
 	}
 
 	/* (non-Javadoc)
-	 * @see com.seelecloud.cms.service.roleModuleService#update(com.seelecloud.cms.entity.roleModule)
+	 * @see com.seelecloud.cms.service.RoleModelService#update(com.seelecloud.cms.entity.RoleModel)
 	 */
 	@Override
-	public void update(RoleModule roleModule) {
-		this.roleModuleDao.update(roleModule);
+	public void update(RoleModule roleModel) {
+		this.roleModuleDao.update(roleModel);
 	}
 
 	/* (non-Javadoc)
-	 * @see com.seelecloud.cms.service.roleModuleService#delete(int)
+	 * @see com.seelecloud.cms.service.RoleModelService#delete(int)
 	 */
 	@Override
 	public void delete(int id) {
@@ -58,23 +58,23 @@ public class RoleModuleServiceImpl  implements RoleModuleService{
 	}
 
 	/* (non-Javadoc)
-	 * @see com.seelecloud.cms.service.roleModuleService#findModuleIdsByRole(int)
+	 * @see com.seelecloud.cms.service.RoleModelService#findModelIdsByRole(int)
 	 */
 	@Override
-	public List<Integer> findModuleIdsByRole(int roleId) {
-		return this.roleModuleDao.findModuleIdsByRole(roleId);
+	public List<Integer> findModelIdsByRole(int roleId) {
+		return this.roleModuleDao.findModelIdsByRole(roleId);
 	}
 
 	/* (non-Javadoc)
-	 * @see com.seelecloud.cms.service.roleModuleService#findRoleIdsByModule(int)
+	 * @see com.seelecloud.cms.service.RoleModelService#findRoleIdsByModel(int)
 	 */
 	@Override
-	public List<Integer> findRoleIdsByModule(int moduleId) {
-		return this.roleModuleDao.findRoleIdsByModule(moduleId);
+	public List<Integer> findRoleIdsByModel(int modelId) {
+		return this.roleModuleDao.findRoleIdsByModel(modelId);
 	}
 
 	/* (non-Javadoc)
-	 * @see com.seelecloud.cms.service.roleModuleService#deleteByRoleId(int)
+	 * @see com.seelecloud.cms.service.RoleModelService#deleteByRoleId(int)
 	 */
 	@Override
 	public void deleteByRoleId(int roleId) {
@@ -82,7 +82,7 @@ public class RoleModuleServiceImpl  implements RoleModuleService{
 	}
 
 	/* (non-Javadoc)
-	 * @see com.seelecloud.cms.service.roleModuleService#findById(int)
+	 * @see com.seelecloud.cms.service.RoleModelService#findById(int)
 	 */
 	@Override
 	public RoleModule findById(int id) {

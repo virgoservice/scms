@@ -54,7 +54,7 @@ public class RoleModuleServiceTest {
 	@Test
 	public void testUpdate(){
 		RoleModule roleModel = this.roleModuleService.findById(2);
-		roleModel.setModuleId(3);
+		roleModel.setModelId(3);
 		this.roleModuleService.update(roleModel);
 		
 	}
@@ -67,13 +67,13 @@ public class RoleModuleServiceTest {
 	
 	@Test
 	public void testFindModelIdsByRole(){
-		List<Integer> modelIds = this.roleModuleService.findModuleIdsByRole(1);
+		List<Integer> modelIds = this.roleModuleService.findModelIdsByRole(1);
 		assertNotNull(modelIds);
 	}
 	
 	@Test
 	public void testFindRoleIdsByModel(){
-		List<Integer> roleIds = this.roleModuleService.findModuleIdsByRole(1);
+		List<Integer> roleIds = this.roleModuleService.findModelIdsByRole(1);
 		assertNotNull(roleIds);
 	}
 	

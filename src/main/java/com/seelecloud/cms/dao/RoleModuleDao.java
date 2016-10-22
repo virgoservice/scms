@@ -17,6 +17,7 @@ import org.apache.ibatis.annotations.Param;
 import com.seelecloud.cms.entity.RoleModule;
 
 /** 
+<<<<<<< HEAD
  * @Desc: 角色-模块关联表(role-module)用以确定角色可以操作的功能模块
  * @author: 谭朝红 
  * @date: 2016年9月6日 下午11:50:28 
@@ -63,9 +64,22 @@ public interface RoleModuleDao {
 	 * @return
 	 */
 	public List<Integer> findRoleIdsByModule(@Param("moduleId")int moduleId);
+	/**
+	 * find the model id by the role id
+	 * @param roleId
+	 * @return
+	 */
+	public List<Integer> findModelIdsByRole(@Param("roleId")int roleId);
 	
 	/**
-	 * 根据角色Id解除角色和模块的关系
+	 * find role id by the model Id
+	 * @param modelId
+	 * @return
+	 */
+	public List<Integer> findRoleIdsByModel(@Param("modelId")int modelId);
+	
+	/**
+	 * 根据角色Id接触角色和模块的关系
 	 * @param roleId
 	 */
 	public void deleteByRoleId(@Param("roleId")int roleId);

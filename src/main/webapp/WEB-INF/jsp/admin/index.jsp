@@ -90,13 +90,13 @@
 <aside class="Hui-aside">
 	<input runat="server" id="divScrollValue" type="hidden" value="" />
 	<div class="menu_dropdown bk_2">
-		<c:forEach items="${modules}" var="module">
+		<c:forEach items="${models}" var="model">
 			<dl id="menu-admin">
-				<dt><i class="Hui-iconfont">${module.moduleIcon }</i> ${module.moduleName }<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+				<dt><i class="Hui-iconfont">${model.modelIcon }</i> ${model.modelName }<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 				<dd>
 					<ul>
-						<c:forEach items="${module.child }" var="child_module">
-							<li> <a _href="<%=path %>/${child_module.moduleUrl}" data-title="${child_module.moduleName }" href="javascript:void(0)"><i class="Hui-iconfont">${child_module.moduleIcon }</i>${child_module.moduleName }</a></li>
+						<c:forEach items="${model.child }" var="module">
+							<li> <a _href="<%=path %>/${module.modelUrl }" data-title="${module.modelName }" href="javascript:void(0)"><i class="Hui-iconfont">${module.modelIcon }</i>${module.modelName }</a></li>
 						</c:forEach>
 					</ul>
 				</dd>

@@ -5,83 +5,75 @@
 	<!-- 字段绑定 -->
 	<resultMap type="Module" id="resultMap">
 		<id column="id" property="id"/>
-		<result column="moduleName" property="moduleName"/>
+		<result column="modelName" property="modelName"/>
 		<result column="createTime" property="createTime"/>
 		<result column="parentId" property="parentId"/>
-		<result column="moduleUrl" property="moduleUrl"/>
-		<result column="moduleIcon" property="moduleIcon"/>
+		<result column="modelUrl" property="modelUrl"/>
+		<result column="modelIcon" property="modelIcon"/>
 		<result column="managerId" property="managerId"/>
 	</resultMap>
 	
-	<!--保存模块信息  -->	
+	<!--保存站点信息  -->	
 	<insert id="save" parameterType="Module">
 		insert into t_module 
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="moduleName != null">moduleName,</if>
+			<if test="modelName != null">modelName,</if>
 			<if test="createTime != null">createTime,</if>
 			<if test="parentId != null">parentId,</if>
-			<if test="moduleUrl != null">moduleUrl,</if>
-			<if test="moduleIcon != null">moduleIcon,</if>
+			<if test="modelUrl != null">modelUrl,</if>
+			<if test="modelIcon != null">modelIcon,</if>
 			<if test="managerId != null">managerId,</if>
 		</trim>
 		<trim prefix="values(" suffix=")" suffixOverrides=",">
-			<if test="moduleName != null">#{moduleName},</if>
+			<if test="modelName != null">#{modelName},</if>
 			<if test="createTime != null">#{createTime},</if>
 			<if test="parentId != null">#{parentId},</if>
-			<if test="moduleUrl != null">#{moduleUrl},</if>
-			<if test="moduleIcon != null">#{moduleIcon},</if>
+			<if test="modelUrl != null">#{modelUrl},</if>
+			<if test="modelIcon != null">#{modelIcon},</if>
 			<if test="managerId != null">#{managerId},</if>
 		</trim>
 	</insert>
 	
-	<!--更新模块信息  -->	
+	<!--更新站点信息  -->	
 	<update id="update" parameterType="Module">
 		update t_module  
 		<set>
-			<if test="moduleName != null">moduleName=#{moduleName},</if>
+			<if test="modelName != null">modelName=#{modelName},</if>
 			<if test="createTime != null">createTime=#{createTime},</if>
 			<if test="parentId != null">parentId = #{parentId},</if>
-			<if test="moduleUrl != null">moduleUrl = #{moduleUrl},</if>
-			<if test="moduleIcon != null">moduleIcon = #{moduleIcon},</if>
+			<if test="modelUrl != null">modelUrl = #{modelUrl},</if>
+			<if test="modelIcon != null">modelIcon = #{modelIcon},</if>
 			<if test="managerId != null">managerId = #{managerId},</if>
 		</set>
 		where id = #{id}
 	</update>
 	
-	<!--删除模块信息  -->
+	<!--删除站点信息  -->
 	<delete id="delete" parameterType="int">
 		delete from t_module 
 		where 
 		id = #{id}
 	</delete>
 
-	<!-- 根据id查找模块信息 -->	
+	<!-- 根据id查找站点信息 -->	
 	<select id="findById" parameterType="int" resultMap="resultMap">
 		select * from t_module 
 		where 
 		id = #{id}
 	</select>
 
-	<!--根据父模块id查找模块信息  -->
+	<!--更具站点名称查找站点信息  -->
 	<select id="findByParent" parameterType="int" resultMap="resultMap">
 		select * from t_module 
 		where 
 		parentId = #{parentId}
 	</select>
 
-	<!-- 根据创建者id查找模块信息 -->
+	<!-- 根据站点域名查找站点信息 -->
 	<select id="findByManagerId" parameterType="int" resultMap="resultMap">
 		select * from t_module 
 		where 
 		managerId = #{managerId}
-	</select>
-	
-	<!-- 根据角色id联合查询所有关联模块信息 -->
-	<select id="findByRoleId" parameterType="int" resultMap="resultMap">
-		select * from t_module
-		where 
-		id in
-		(select moduleId from t_rolemodule where roleId = #{roleId})
 	</select>
 	
 </mapper>

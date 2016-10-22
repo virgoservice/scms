@@ -27,7 +27,7 @@ public class RoleModule {
 	/**
 	 * 模块编号
 	 */
-	private int moduleId;
+	private int modelId;
 	
 	
 	/**
@@ -40,9 +40,9 @@ public class RoleModule {
 	 * @param roleId
 	 * @param modelId
 	 */
-	public RoleModule(int roleId,int moduleId){
+	public RoleModule(int roleId,int modelId){
 		this.roleId = roleId;
-		this.moduleId = moduleId;
+		this.modelId = modelId;
 	}
 	
 	public int getId() {
@@ -57,10 +57,10 @@ public class RoleModule {
 	public void setRoleId(int roleId) {
 		this.roleId = roleId;
 	}
-	public int getModuleId() {
-		return moduleId;
+	public int getModelId() {
+		return modelId;
 	}
-	public void setModuleId(int moduleId) {
-		this.moduleId = moduleId;
+	public void setModelId(int modelId) {
+		this.modelId = modelId;
 	}
 }
