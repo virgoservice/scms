@@ -16,6 +16,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,7 +70,7 @@ public class ModuleController {
 		// 3 通过模块id 查询模块详细信息
 		List<Module> moduleList = new ArrayList<Module>();
 
-		moduleList = this.moduleService.findByRoleId(roleId);
+		//moduleList = this.moduleService.findByRoleId(roleId);
 		model.addAttribute("moduleList", moduleList);
 		return "module/moduleList";
 	}
@@ -123,5 +124,4 @@ public class ModuleController {
 
 		return "/module/moduleList";
 	}
-
 }
