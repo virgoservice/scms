@@ -26,7 +26,7 @@ public class Module {
 	/**
 	 * 模块名称
 	 */
-	private String modelName;
+	private String moduleName;
 	/**
 	 * 模块创建时间
 	 */
@@ -39,11 +39,11 @@ public class Module {
 	/**
 	 * 模块的访问地址
 	 */
-	private String modelUrl;
+	private String moduleUrl;
 	/**
 	 * 模块的显示图标
 	 */
-	private String modelIcon;
+	private String moduleIcon;
 	/**
 	 * 模块的创建者
 	 */
@@ -56,15 +56,15 @@ public class Module {
 	public Module() {}
 	/**
 	 * 带参数的构造函数
-	 * @param modelName
-	 * @param modelUrl
-	 * @param modelIcon
+	 * @param moduleName
+	 * @param moduleUrl
+	 * @param moduleIcon
 	 * @param managerId
 	 */
-	public Module(String modelName,String modelUrl,String modelIcon,int managerId){
-		this.modelName = modelName;
-		this.modelUrl = modelUrl;
-		this.modelIcon = modelIcon;
+	public Module(String moduleName,String moduleUrl,String moduleIcon,int managerId){
+		this.moduleName = moduleName;
+		this.moduleUrl = moduleUrl;
+		this.moduleIcon = moduleIcon;
 		this.managerId = managerId;
 	}
 	public int getId() {
@@ -73,11 +73,11 @@ public class Module {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getModelName() {
-		return modelName;
+	public String getModuleName() {
+		return moduleName;
 	}
-	public void setModelName(String modelName) {
-		this.modelName = modelName;
+	public void setModuleName(String moduleName) {
+		this.moduleName = moduleName;
 	}
 	public Date getCreateTime() {
 		return createTime;
@@ -91,17 +91,17 @@ public class Module {
 	public void setParentId(int parentId) {
 		this.parentId = parentId;
 	}
-	public String getModelUrl() {
-		return modelUrl;
+	public String getModuleUrl() {
+		return moduleUrl;
 	}
-	public void setModelUrl(String modelUrl) {
-		this.modelUrl = modelUrl;
+	public void setModuleUrl(String moduleUrl) {
+		this.moduleUrl = moduleUrl;
 	}
-	public String getModelIcon() {
-		return modelIcon;
+	public String getModuleIcon() {
+		return moduleIcon;
 	}
-	public void setModelIcon(String modelIcon) {
-		this.modelIcon = modelIcon;
+	public void setModuleIcon(String moduleIcon) {
+		this.moduleIcon = moduleIcon;
 	}
 	public int getManagerId() {
 		return managerId;

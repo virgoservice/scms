@@ -56,6 +56,7 @@ public interface RoleDao {
 	 * @return
 	 */
 	public List<Role> findByManagerId(@Param("managerId")int managerId);
+
 	/**
 	 * <!--根据创建者id，进行分页查询角色信息  -->
 	 * @param mannagerId
@@ -69,5 +70,4 @@ public interface RoleDao {
 			@Param("orderBy")String orderBy, @Param("isAsc")boolean isAsc);
 	
 	public Role findByRoleName(@Param("managerId")int mannagerId, @Param("roleName")String roleName);
-	
 }

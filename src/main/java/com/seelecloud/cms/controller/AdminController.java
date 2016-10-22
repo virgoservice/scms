@@ -30,7 +30,7 @@ import com.seelecloud.cms.service.ManagerService;
 import com.seelecloud.cms.service.ModuleService;
 import com.seelecloud.cms.service.RoleModuleService;
 import com.seelecloud.cms.service.RoleService;
-import com.seelecloud.cms.vo.ModelVo;
+import com.seelecloud.cms.vo.ModuleVo;
 
 /** 
  * @Desc: () 
@@ -70,47 +70,47 @@ public class AdminController {
 			manager = managerService.findById(2);
 		}
 		List<Role> roleList = roleService.findByManangerId(manager.getId());
-		List<Integer> modelIds = new ArrayList<Integer>();
-		List<Module> models = new ArrayList<Module>();
+		List<Integer> moduleIds = new ArrayList<Integer>();
+		List<Module> modules = new ArrayList<Module>();
 		if(roleList!=null&&roleList.size()>0){
 			for(Role role:roleList){
-				modelIds.addAll(roleModuleService.findModelIdsByRole(role.getId()));
+				moduleIds.addAll(roleModuleService.findModuleIdsByRole(role.getId()));
 			}
 		}
-		for(int id:modelIds){
+		for(int id:moduleIds){
 			Module m = moduleService.findById(id);
 			if(m!=null){
-				models.add(m);
+				modules.add(m);
 			}
 		}
-		List<ModelVo> mv = this.modelTree(models);
+		List<ModuleVo> mv = this.moduleTree(modules);
 		//2.根据用户角色编号查找用户所能得到的模块，
 		//3.获取模块信息，返回视图，如果没有任何模块可用，则提示用户还没有被分配任何可用模块
-		model.addAttribute("models", mv);
+		model.addAttribute("modules", mv);
 		return "admin/index";
 	}
 	
 	/**
 	 * 组织模块树
-	 * @param models
+	 * @param modules
 	 * @return
 	 */
-	private List<ModelVo> modelTree(List<Module> models){
-		List<Module> pmodel = new ArrayList<Module>();
-		List<ModelVo> mv = new ArrayList<ModelVo>();
-		for(Module m:models){
+	private List<ModuleVo> moduleTree(List<Module> modules){
+		List<Module> moduleList = new ArrayList<Module>();
+		List<ModuleVo> mv = new ArrayList<ModuleVo>();
+		for(Module m:modules){
 			if(m.getParentId()==-1){
-				pmodel.add(m);
+				moduleList.add(m);
 			}
 		}
-		for(Module pm:pmodel){
-			List<ModelVo> cmv = new ArrayList<ModelVo>();
-			for(Module m:models){
+		for(Module pm:moduleList){
+			List<ModuleVo> cmv = new ArrayList<ModuleVo>();
+			for(Module m:modules){
 				if(m.getParentId()==pm.getId()){
-					cmv.add(new ModelVo(m.getId(), m.getModelName(), null, m.getParentId(), m.getModelUrl(), m.getModelIcon(), m.getManagerId(), null));
+					cmv.add(new ModuleVo(m.getId(), m.getModuleName(), null, m.getParentId(), m.getModuleUrl(), m.getModuleIcon(), m.getManagerId(), null));
 				}
 			}
-			mv.add(new ModelVo(pm.getId(), pm.getModelName(), null, pm.getParentId(), pm.getModelUrl(), pm.getModelIcon(), pm.getManagerId(), cmv));
+			mv.add(new ModuleVo(pm.getId(), pm.getModuleName(), null, pm.getParentId(), pm.getModuleUrl(), pm.getModuleIcon(), pm.getManagerId(), cmv));
 		}
 		return mv;
 	}

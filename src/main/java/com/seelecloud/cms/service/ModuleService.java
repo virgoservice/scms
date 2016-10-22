@@ -25,9 +25,9 @@ import com.seelecloud.cms.entity.Module;
 public interface ModuleService {
 	/**
 	 * 添加模块
-	 * @param model
+	 * @param module
 	 */
-	public void save(Module model);
+	public void save(Module module);
 	/**
 	 * 根据ID删除模块
 	 * @param id
@@ -35,9 +35,9 @@ public interface ModuleService {
 	public void delete(@Param("id")int id);
 	/**
 	 * 更新模块
-	 * @param model
+	 * @param module
 	 */
-	public void update(Module model);
+	public void update(Module module);
 	/**
 	 * 根据Id查找模块
 	 * @param id
@@ -57,4 +57,12 @@ public interface ModuleService {
 	 * @return
 	 */
 	public List<Module> findByManagerId(@Param("managerId")int managerId);
+
+	/**
+	 * 角色-模块表 与 模块信息表联合查询
+	 * @param roleId
+	 * @return
+	 */
+	public List<Module> findByRoleId(@Param("roleId")int roleId);
 }
+
