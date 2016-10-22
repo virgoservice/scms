@@ -12,8 +12,6 @@ package com.seelecloud.cms.entity;
 
 import java.util.Date;
 
-import javax.validation.constraints.NotNull;
-
 /** 
  * @Desc: (站点实体，用来定义这个站点的属性，有父子关系，最多出现一级的父子关系) 
  * @author: 谭朝红 
