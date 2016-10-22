@@ -34,13 +34,6 @@
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
 <!--/meta 作为公共模版分离出去-->
-<style>   
-.error {   
-    color: #ff0000;   
-    font-weight: bold;
-    backgroud:#ccc;   
-}   
-</style> 
 <title>站点信息管理</title>
 </head>
 <body>
@@ -48,7 +41,6 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span> 基本设置 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<sf:form modelAttribute="app" method="post" class="form form-horizontal" id="form-article-add">
-		 <sf:errors path="*" cssClass="error" />
 		<div id="tab-system" class="HuiTab">
 			<div class="tabBar cl"><span>基本设置</span><span>安全设置</span><span>邮件设置</span><span>其他设置</span></div>
 			<div class="tabCon">
@@ -56,7 +48,6 @@
 					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>网站名称：</label>
 					<div class="formControls col-xs-8 col-sm-9">
 						<sf:input path="appName" name="appName" type="text" id="website-title" placeholder="控制在25个字、50个字节以内" value="" class="input-text" />
-						<sf:errors path="appName" cssClass="error" />
 						<input type="hidden" name="appManagerId" value="2">
 					</div>
 				</div>
@@ -64,14 +55,12 @@
 					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>关键词：</label>
 					<div class="formControls col-xs-8 col-sm-9">
 						<sf:input path="appKeyword" name="appKeyword" type="text" id="website-Keywords" placeholder="5个左右,8汉字以内,用英文,隔开" value="" class="input-text" />
-						<sf:errors path="appKeyword" cssClass="error" />
 					</div>
 				</div>
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>描述：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<sf:input path="appDescription" name="appDescription" type="text" id="website-description" placeholder="空制在80个汉字，160个字符以内" value="" class="input-text" />
-						<sf:errors path="appDescription" cssClass="error" />
+						<sf:input path="appDescription" name="appDescription" type="text" id="website-description" placeholder="控制在80个汉字，160个字符以内" value="" class="input-text" />
 					</div>
 				</div>
 				<div class="row cl">
@@ -89,13 +78,13 @@
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>底部版权信息：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<sf:input path="appCopyright" name="appCopyright" type="text" id="website-copyright" placeholder="&copy; 2016 H-ui.net" value="" class="input-text"/>
+						<sf:input path="" type="text" id="website-copyright" placeholder="&copy; 2016 H-ui.net" value="" class="input-text"/>
 					</div>
 				</div>
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2">备案号：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<sf:input path="" type="text" id="website-icp" placeholder="京ICP备00000000号" value="" class="input-text" />
+						<sf:input path="appCopyright"  name="appCopyright" type="text" id="website-icp" placeholder="京ICP备00000000号" value="" class="input-text" />
 					</div>
 				</div>
 				<div class="row cl">
@@ -170,7 +159,7 @@
 	</sf:form>
 </div>
 
-<!--_footer 作为公共模版分离出去-->
+<!--_footer 作为公共模版分离出去-->                                                 
 <script type="text/javascript" src="<%=path %>/resources/lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="<%=path %>/resources/lib/layer/2.1/layer.js"></script> 
 <script type="text/javascript" src="<%=path %>/resources/lib/icheck/jquery.icheck.min.js"></script> 
@@ -179,6 +168,6 @@
 <script type="text/javascript" src="<%=path %>/resources/lib/jquery.validation/1.14.0/messages_zh.min.js"></script> 
 <script type="text/javascript" src="<%=path %>/resources/static/h-ui/js/H-ui.js"></script> 
 <script type="text/javascript" src="<%=path %>/resources/static/h-ui.admin/js/H-ui.admin.js"></script> 
-<SCRIPT type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.appinfo.js"></SCRIPT>
+<script type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.appinfo.js"></script>
 </body>
 </html>
