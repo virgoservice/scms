@@ -103,10 +103,6 @@ public class LoginController {
 			loginManager = this.manangerService.findByName(username);
 			// authenticate password and authorization
 			session.setAttribute("LoginManager", loginManager);
-
-			// shiro session manager
-			// currentUser.getSession();
-
 			return "redirect:/admin/index";
 		}
 

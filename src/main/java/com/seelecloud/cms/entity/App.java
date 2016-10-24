@@ -12,8 +12,6 @@ package com.seelecloud.cms.entity;
 
 import java.util.Date;
 
-import javax.validation.constraints.NotNull;
-
 /** 
  * @Desc: (站点实体，用来定义这个站点的属性，有父子关系，最多出现一级的父子关系) 
  * @author: 谭朝红 
@@ -72,7 +70,6 @@ public class App {
 		this.id = id;
 	}
 
-	@NotNull(message="站点名称不能为空")
 	public String getAppName() {
 		return appName;
 	}
@@ -105,6 +102,7 @@ public class App {
 		this.appKeyword = appKeyword;
 	}
 
+	
 	public String getAppCopyright() {
 		return appCopyright;
 	}
@@ -113,7 +111,6 @@ public class App {
 		this.appCopyright = appCopyright;
 	}
 
-	@NotNull(message="站点的访问域名不能为空")
 	public String getAppUrl() {
 		return appUrl;
 	}
@@ -130,7 +127,6 @@ public class App {
 		this.createTime = createTime;
 	}
 
-	@NotNull(message="站点管理员编号不能为空")
 	public int getAppManagerId() {
 		return appManagerId;
 	}
