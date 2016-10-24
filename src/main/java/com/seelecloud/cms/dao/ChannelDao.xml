@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seelecloud.cms.dao.ChannelDao">
+  <resultMap id="BaseResultMap" type="com.seelecloud.cms.entity.Channel">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="frontCover" jdbcType="VARCHAR" property="frontCover" />
+    <result column="keyword" jdbcType="VARCHAR" property="keyword" />
+    <result column="creatorId" jdbcType="INTEGER" property="creatorId" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="publishTime" jdbcType="TIMESTAMP" property="publishTime" />
+    <result column="publisherId" jdbcType="INTEGER" property="publisherId" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="hint" jdbcType="INTEGER" property="hint" />
+    <result column="channelOrder" jdbcType="INTEGER" property="channelOrder" />
+    <result column="parentId" jdbcType="INTEGER" property="parentId" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="recommend" jdbcType="BIT" property="recommend" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, title, description, icon, frontCover, keyword, creatorId, createTime, publishTime, 
+    publisherId, type, hint, channelOrder, parentId, status, recommend
+  </sql>
+  
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from t_channel
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.seelecloud.cms.entity.Channel">
+    insert into t_channel (id, title, description, 
+      icon, frontCover, keyword, 
+      creatorId, createTime, publishTime, 
+      publisherId, type, hint, 
+      channelOrder, parentId, status, 
+      recommend)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=VARCHAR}, #{frontCover,jdbcType=VARCHAR}, #{keyword,jdbcType=VARCHAR}, 
+      #{creatorId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{publishTime,jdbcType=TIMESTAMP}, 
+      #{publisherId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{hint,jdbcType=INTEGER}, 
+      #{channelOrder,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{status,jdbcType=BIT}, 
+      #{recommend,jdbcType=BIT})
+  </insert>
+  
+  <update id="update" parameterType="com.seelecloud.cms.entity.Channel">
+    update t_channel
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="frontCover != null">
+        frontCover = #{frontCover,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null">
+        keyword = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorid != null">
+        creatorId = #{creatorId,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishTime != null">
+        publishTime = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publisherid != null">
+        publisherId = #{publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="hint != null">
+        hint = #{hint,jdbcType=INTEGER},
+      </if>
+      <if test="channelorder != null">
+        channelOrder = #{channelOrder,jdbcType=INTEGER},
+      </if>
+      <if test="parentid != null">
+        parentId = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="recommend != null">
+        recommend = #{recommend,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_channel
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="lsitChannelByIds">
+  </select>
+  
+  <select id="listChannelByType" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+   select t_channel
+   where id = #{id}
+  </select>
+</mapper>

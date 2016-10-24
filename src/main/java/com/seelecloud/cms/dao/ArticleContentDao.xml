@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seelecloud.cms.dao.ArticleContentDao">
+  <resultMap id="BaseResultMap" type="com.seelecloud.cms.entity.ArticleContent">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sectionNum" jdbcType="INTEGER" property="sectionNum" />
+    <result column="text" jdbcType="VARCHAR" property="text" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, sectionNum, text
+  </sql>
+  
+  <select id="findArticleSection" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_articlecontent
+    where id = #{id,jdbcType=INTEGER}
+    and sectionNum = #{sectionNum, jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from t_articlecontent
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.seelecloud.cms.entity.ArticleContent">
+    insert into t_articlecontent (id, sectionNum, text
+      )
+    values (#{id,jdbcType=INTEGER}, #{sectionNum,jdbcType=INTEGER}, #{text,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <select id="listArticleContent" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+      select 
+    <include refid="Base_Column_List" />
+    from t_articlecontent
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

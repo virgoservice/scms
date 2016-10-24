@@ -12,6 +12,15 @@ package com.seelecloud.cms.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +39,9 @@ import com.seelecloud.cms.service.ManagerService;
 @Controller
 @RequestMapping("/manager")
 public class LoginController {
+
+	private static final transient Logger log = LoggerFactory
+			.getLogger(LoginController.class);
 
 	@Autowired
 	private ManagerService manangerService;
@@ -55,23 +67,63 @@ public class LoginController {
 		// model.addAttribute("error","验证码出错，请重新输入");
 		// return "admin/login";
 		// }
+		log.info(username + ":" + password);
 
-		Manager loginManager = new Manager();
-		loginManager = this.manangerService.findByName(username);
-		// authenticate password and authorization
+		Subject currentUser = SecurityUtils.getSubject();
 
-		session.setAttribute("LoginManager", loginManager);
+		if (!currentUser.isAuthenticated()) {
+			UsernamePasswordToken token = new UsernamePasswordToken(username,
+					password);
+			token.setRememberMe(true);
+			try {
+				currentUser.login(token);
+			} catch (UnknownAccountException uae) {
+				log.info("There is no user with username of "
+						+ token.getPrincipal());
+			} catch (IncorrectCredentialsException ice) {
+				log.info("Password for account " + token.getPrincipal()
+						+ " was incorrect!");
+			} catch (LockedAccountException lae) {
+				log.info("The account for username " + token.getPrincipal()
+						+ " is locked.  "
+						+ "Please contact your administrator to unlock it.");
+			}
+			// ... catch more exceptions here (maybe custom ones specific to
+			// your application?
+			catch (AuthenticationException ae) {
+				// unexpected condition? error?
+			}
+		} else {
+			log.info("user has authc!");
+		}
+
+		// 验证是否成功登录的方法
+		if (currentUser.isAuthenticated()) {
+			Manager loginManager = new Manager();
+			loginManager = this.manangerService.findByName(username);
+			// authenticate password and authorization
+			session.setAttribute("LoginManager", loginManager);
+
+			// shiro session manager
+			// currentUser.getSession();
+
+			return "redirect:/admin/index";
+		}
+
 		// session.removeAttribute("cc");
 
-		return "admin/index";
+		return "admin/login";
 	}
 
 	/**
 	 * sign out, remove session
 	 */
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		// remove session
 
+		Subject subject = SecurityUtils.getSubject();
+		subject.logout();
 		return "redirect:admin/login";
 	}
 
