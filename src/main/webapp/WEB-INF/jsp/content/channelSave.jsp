@@ -28,7 +28,7 @@
 	href="<%=path %>/resources/static/h-ui.admin/css/H-ui.admin.css" />
 <link rel="stylesheet" type="text/css"
 	href="<%=path %>/resources/lib/Hui-iconfont/1.0.7/iconfont.css" />
-<link rel="stylesheet" type="text/css" href="lib/icheck/icheck.css" />
+<link rel="stylesheet" type="text/css" href="<%=path %>/resources/lib/icheck/icheck.css" />
 <link rel="stylesheet" type="text/css"
 	href="<%=path %>/resources/static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css"
@@ -135,7 +135,7 @@
 <script type="text/javascript" src="<%=path %>/resources/static/h-ui.admin/js/H-ui.admin.js"></script> 
 <!--/_footer /作为公共模版分离出去-->
 <script type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.channelSave.js"></script>
-
+<script type="text/javascript" src="<%=path %>/resources/lib/ztree/js/jquery.ztree.all-3.5.min.js"></script> 
 <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>

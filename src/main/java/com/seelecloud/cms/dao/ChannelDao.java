@@ -11,8 +11,9 @@ package com.seelecloud.cms.dao;
 
 import java.util.List;
 
-import com.seelecloud.cms.entity.Channel;
+import org.apache.ibatis.annotations.Param;
 
+import com.seelecloud.cms.entity.Channel;
 /**
  * @description:
  * @author: vabo
@@ -22,15 +23,34 @@ import com.seelecloud.cms.entity.Channel;
  */
 public interface ChannelDao {
 
-	int deleteById(Integer id);
+	public void deleteById(Integer id);
 
-	int insert(Channel channel);
+	public void insert(Channel channel);
 
 	int update(Channel channel);
-
-	Channel selectById(Integer id);
-
+	
+	/**
+	 * 根据id获取所有值
+	 * @param id
+	 * @return
+	 */
+	public Channel selectById(Integer id);
+	
+	/**
+	 * 根据父id获取所有的子栏目
+	 * @param pid
+	 * @return
+	 */
+	public List<Channel> listChannelByParent(Integer pid);
+	
+	/**
+	 * 生成一棵树
+	 * @return
+	 */
+	public List<Channel> listChannelByTree();
+	
 	public List<Channel> listChannelByIds(List<Integer> channelIds);
 
 	public List<Channel> listChannelByType(Integer type);
+	
 }

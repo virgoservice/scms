@@ -30,7 +30,25 @@ public interface ChannelService {
 	
 	public void delete(@Param("id")int id);
 	
+	/**
+	 * 根据id获取所有值
+	 * @param id
+	 * @return
+	 */
 	public Channel findChannelById(@Param("id")int id);
+	
+	/**
+	 * 生成一棵树
+	 * @return
+	 */
+	public List<Channel> listChannelByTree();	
+	
+	/**
+	 * 根据父id获取所有的子栏目
+	 * @param pid
+	 * @return
+	 */
+	public List<Channel> listChannelByParent(Integer pid);
 	
 	/**
 	 * 通过传入一组id值查询栏目列表

@@ -9,18 +9,26 @@
  */
 package com.seelecloud.cms.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.seelecloud.cms.entity.Channel;
+import com.seelecloud.cms.service.ChannelService;
 import com.seelecloud.cms.service.ContentTypeService;
 
 /**
  * @description: 内容管理控制器: 栏目管理, 文章管理, 多媒体资源管理, 资源下载管理
- * @author: vabo
+ * @author: 张瑞
  * @version:
- * @Datetime:2016年10月13日
- * @Email:
+ * @Datetime:2016年10月28日
+ * @Email: 2411685663@qq.com
  */
 @Controller
 @RequestMapping("/admin/content")
@@ -28,6 +36,8 @@ public class ContentController {
 	
 	@Autowired
 	private ContentTypeService contentTypeService;
+	@Autowired
+	private ChannelService channelService;
 	
 	/**
 	 * 文章列表
@@ -49,18 +59,51 @@ public class ContentController {
 		return "content/articleSave";
 	}
 	
+	/***********************************栏目管理***********************************************/
+	
 	/**
-	 * 导航列表
+	 * 栏目列表
 	 * @return
 	 */
-	@RequestMapping("/channel")
-	public String channel(){
-		
+	@RequestMapping(value="/channel", method = RequestMethod.GET)
+	public String channel(Model model){		
 		return "content/channel";
 	}
 	
 	/**
-	 * 添加导航
+	 * 栏目树：获取id,parentId,Name
+	 * 异步ajax
+	 * @return
+	 */
+	@RequestMapping("/ajaxchannel")
+	@ResponseBody
+	public List<Channel> ajaxchannel(){
+		List<Channel> mvList = channelService.listChannelByTree();
+		return mvList;
+	}
+	
+	/**
+	 * 点击任意栏目,列出该栏目下的子栏目
+	 * @param pid
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/channel/{pid}")
+	public String listChannelByParent(@PathVariable Integer pid,Model model){
+		Channel pc = null;
+		if (pid == -1) {//根栏目
+			pc = new Channel();
+			pc.setTitle(Channel.ROOT_NAME);
+		}
+		pc = channelService.findChannelById(pid);
+		model.addAttribute("pc", pc); //获取当前操作栏目名称
+		model.addAttribute("channels", channelService.listChannelByParent(pid));
+		return "content/channel_child";
+	}
+	
+	
+	/**
+	 * 添加栏目
 	 * @return
 	 */
 	@RequestMapping("/channelSave")
