@@ -23,7 +23,7 @@ import com.seelecloud.cms.entity.Channel;
  * @Email:
  */
 public interface ChannelService {
-
+	
 	public void save(Channel channel);
 	
 	public void update(Channel channel);
@@ -51,11 +51,16 @@ public interface ChannelService {
 	public List<Channel> listChannelByParent(Integer pid);
 	
 	/**
+	 * 获取子栏目的最大的排序号
+	 * @param pid
+	 * @return
+	 */
+	public Integer getMaxOrderByParent(Integer pid);
+	
+	/**
 	 * 通过传入一组id值查询栏目列表
 	 * @param channelIds
 	 * @return
 	 */
 	public List<Channel> listChannelByIds(@Param("channelIds")List<Integer> channelIds);
-	
-	public List<Channel> listChannelByType(@Param("type")int type);
 }

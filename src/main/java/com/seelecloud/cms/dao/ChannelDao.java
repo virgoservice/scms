@@ -11,8 +11,6 @@ package com.seelecloud.cms.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.seelecloud.cms.entity.Channel;
 /**
  * @description:
@@ -27,7 +25,7 @@ public interface ChannelDao {
 
 	public void insert(Channel channel);
 
-	int update(Channel channel);
+	public int update(Channel channel);
 	
 	/**
 	 * 根据id获取所有值
@@ -44,13 +42,18 @@ public interface ChannelDao {
 	public List<Channel> listChannelByParent(Integer pid);
 	
 	/**
-	 * 生成一棵树
+	 * 生成树
 	 * @return
 	 */
 	public List<Channel> listChannelByTree();
 	
+	/**
+	 * 获取子栏目的最大的排序号
+	 * @param pid
+	 * @return
+	 */
+	public Integer getMaxOrderByParent(Integer pid);
+	
 	public List<Channel> listChannelByIds(List<Integer> channelIds);
 
-	public List<Channel> listChannelByType(Integer type);
-	
 }

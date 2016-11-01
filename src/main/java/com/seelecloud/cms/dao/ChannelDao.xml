@@ -44,7 +44,7 @@
       #{channelOrder,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{status,jdbcType=BIT}, 
       #{recommend,jdbcType=BIT})
   </insert>
-  
+
   <update id="update" parameterType="com.seelecloud.cms.entity.Channel">
     update t_channel
     <set>
@@ -63,16 +63,16 @@
       <if test="keyword != null">
         keyword = #{keyword,jdbcType=VARCHAR},
       </if>
-      <if test="creatorid != null">
+      <if test="creatorId != null">
         creatorId = #{creatorId,jdbcType=INTEGER},
       </if>
-      <if test="createtime != null">
+      <if test="createTime != null">
         createTime = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="publishTime != null">
         publishTime = #{publishTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="publisherid != null">
+      <if test="publisherId != null">
         publisherId = #{publisherId,jdbcType=INTEGER},
       </if>
       <if test="type != null">
@@ -81,10 +81,10 @@
       <if test="hint != null">
         hint = #{hint,jdbcType=INTEGER},
       </if>
-      <if test="channelorder != null">
+      <if test="channelOrder != null">
         channelOrder = #{channelOrder,jdbcType=INTEGER},
       </if>
-      <if test="parentid != null">
+      <if test="parentId != null">
         parentId = #{parentId,jdbcType=INTEGER},
       </if>
       <if test="status != null">
@@ -104,25 +104,21 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
   
-   <!--  根据父id获取所有的子栏目 -->
   <select id="listChannelByParent" parameterType="java.lang.Integer"  resultMap="BaseResultMap">
   	 select * 	 
   	 from t_channel
-  	 where ifnull(parentId,0) = #{parentId,jdbcType=INTEGER}
+  	 where parentId = #{parentId,jdbcType=INTEGER}
   </select>
-  
-  <!--  获取树所需字段 -->
+ 
   <select id="listChannelByTree"  resultMap="BaseResultMap">
   	 select id,title,parentId 	 
   	 from t_channel
   </select>
   
-  <select id="lsitChannelByIds">
-  	
+  <select id="getMaxOrderByParent" parameterType="java.lang.Integer"  resultType="java.lang.Integer">
+    select max(c.channelOrder) 
+    from t_channel c 
+    where c.parentId= #{parentId,jdbcType=INTEGER}
   </select>
   
-  <select id="listChannelByType" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-   select t_channel
-   where id = #{id}
-  </select>
 </mapper>

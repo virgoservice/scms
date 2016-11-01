@@ -20,8 +20,6 @@ import java.util.Date;
  */
 public class Channel {
 	
-	public static final String ROOT_NAME = "网站内容管理栏目";
-
 	/**
 	 * 栏目的主键
 	 */
@@ -73,7 +71,8 @@ public class Channel {
 	/**
 	 *栏目的排列
 	 */
-	private int chanenlOrder; // 排列的优先顺序
+	private int channelOrder; // 排列的优先顺序
+
 	/**
 	 *父类栏目Id
 	 */
@@ -93,7 +92,7 @@ public class Channel {
 	public Channel(int id, String title, String description, String icon,
 			String frontCover, String keyword, int creatorId, Date createTime,
 			Date publishTime, int publisherId, int type, int hint,
-			int chanenlOrder, int parentId, byte status, boolean recommend) {
+			int channelOrder, int parentId, byte status, boolean recommend) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -107,7 +106,7 @@ public class Channel {
 		this.publisherId = publisherId;
 		this.type = type;
 		this.hint = hint;
-		this.chanenlOrder = chanenlOrder;
+		this.channelOrder = channelOrder;
 		this.parentId = parentId;
 		this.status = status;
 		this.recommend = recommend;
@@ -209,12 +208,12 @@ public class Channel {
 		this.hint = hint;
 	}
 
-	public int getChanenlOrder() {
-		return chanenlOrder;
+	public int getChannelOrder() {
+		return channelOrder;
 	}
-
-	public void setChanenlOrder(int chanenlOrder) {
-		this.chanenlOrder = chanenlOrder;
+	
+	public void setChannelOrder(int channelOrder) {
+		this.channelOrder = channelOrder;
 	}
 
 	public int getParentId() {
@@ -239,7 +238,7 @@ public class Channel {
 
 	public void setRecommend(boolean recommend) {
 		this.recommend = recommend;
-	} 
+	}
 
 	@Override
 	public String toString() {
@@ -248,7 +247,7 @@ public class Channel {
 				+ ", keyword=" + keyword + ", creatorId=" + creatorId
 				+ ", createTime=" + createTime + ", publishTime=" + publishTime
 				+ ", publisherId=" + publisherId + ", type=" + type + ", hint="
-				+ hint + ", chanenlOrder=" + chanenlOrder + ", parentId="
+				+ hint + ", channelOrder=" + channelOrder + ", parentId="
 				+ parentId + ", status=" + status + ", recommend=" + recommend
 				+ "]";
 	}

@@ -9,13 +9,15 @@
  */
 package com.seelecloud.cms.service;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.seelecloud.cms.entity.ContentType;
 
 /**
  * @description:
- * @author: vabo
+ * @author: 张瑞
  * @version:
  * @Datetime:2016年10月24日
  * @Email:
@@ -31,5 +33,7 @@ public interface ContentTypeService {
 	public ContentType findById(@Param("id") int id);
 
 	public ContentType findByName(@Param("name") String name);
+	
+	public List<ContentType> findNameById(@Param("id") Integer id);
 
 }

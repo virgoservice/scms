@@ -9,6 +9,8 @@
  */
 package com.seelecloud.cms.dao;
 
+import java.util.List;
+
 import com.seelecloud.cms.entity.ContentType;
 
 /**
@@ -26,7 +28,14 @@ public interface ContentTypeDao {
 
     ContentType selectByPrimaryKey(Integer id);
     
-    ContentType selectByName(String name);
+    public ContentType selectByName(String name);
+    
+    /**
+     * 根据Channel表的type字段获取此表的name字段
+     * @param name
+     * @return
+     */
+    public List<ContentType> selectNameById(Integer tid);
 
     int updateByPrimaryKeySelective(ContentType contentType);
 
