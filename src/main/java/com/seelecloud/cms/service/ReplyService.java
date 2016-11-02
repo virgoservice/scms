@@ -9,8 +9,14 @@
  */
 package com.seelecloud.cms.service;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.seelecloud.cms.entity.Reply;
+
 /**
- * @description: 
+ * @description: 评论下的回复, 有方法 查询 新增 删除 更新状态 更新回复数量 更新点赞
  * @author: vabo
  * @version:
  * @Datetime:2016年10月24日
@@ -18,4 +24,68 @@ package com.seelecloud.cms.service;
  */
 public interface ReplyService {
 
+	/**
+	 * 保存新增回复记录
+	 * 
+	 * @param reply
+	 * @return
+	 */
+	public int save(Reply reply);
+
+	/**
+	 * 根据id更新指定的回复记录
+	 * 
+	 * @param reply
+	 * @return
+	 */
+	public int update(Reply reply);
+
+	/**
+	 * 根据id查找一条指定回复记录
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Reply findById(@Param("id") int id);
+
+	/**
+	 * 列出当前评论下的所有回复记录
+	 * 
+	 * @param parentId
+	 * @return
+	 */
+	public List<Reply> listByCommentId(@Param("commentId") int commentId);
+
+	/**
+	 * 列出当前回复节点下的所有回复记录
+	 * 
+	 * @param parentId
+	 * @return
+	 */
+	public List<Reply> listByParentId(@Param("parentId") int parentId);
+
+	/**
+	 * 根据id删除指定回复记录
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public int deleteById(@Param("id") int id);
+
+	/**
+	 * 删除指定回复节点下的所有回复记录
+	 * 
+	 * @param parentIds
+	 *            要删除的回复组
+	 * @return
+	 */
+	public int deleteByParentIds(@Param("parentIds") List<Integer> parentIds);
+
+	/**
+	 * 删除评论下的所有回复记录
+	 * 
+	 * @param commentIds
+	 * @return
+	 */
+	public int deleteByCommentIds(@Param("commentIds") List<Integer> commentIds);
 }

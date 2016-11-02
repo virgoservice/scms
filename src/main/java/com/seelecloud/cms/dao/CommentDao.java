@@ -9,8 +9,14 @@
  */
 package com.seelecloud.cms.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.seelecloud.cms.entity.Comment;
+
 /**
- * @description: 
+ * @description:
  * @author: vabo
  * @version:
  * @Datetime:2016年10月24日
@@ -18,4 +24,16 @@ package com.seelecloud.cms.dao;
  */
 public interface CommentDao {
 
+	public List<Comment> listCommentByPage(@Param("contentId") int contentId,
+			@Param("pageSize") int pageSize, @Param("pageNumber") int pageNumber);
+
+	public Comment findById(@Param("id") int id);
+
+	public int deleteById(Integer id);
+
+	public int save(Comment comment);
+
+	public int update(Comment comment);
+
+	public int getTotal(@Param("contentId") Integer contentId);
 }

@@ -23,26 +23,26 @@ import com.seelecloud.cms.entity.Article;
  */
 public interface ArticleDao {
 
-	public int insert(Article record);
+	public int save(Article article);
 
-	public int update(Article record);
+	public int update(Article article);
 
 	public int deleteById(Integer id);
 
-	public Article selectByPrimaryKey(Integer id);
+	public Article findById(Integer id);
 	
-	public List<Article> findByChannelId(int channelId);
+	public List<Article> listByChannelId(int channelId);
 	
-	public List<Article> findByPublisherId(int publisherId);
+	public List<Article> listByPublisherId(int publisherId);
 	
-	public List<Article> findByPublishTime(Date publishStartTime,
+	public List<Article> listByPublishTime(Date publishStartTime,
 			Date publishEndTime);
 	
-	public List<Article> findByCreatorId(int creatorId);
+	public List<Article> listByCreatorId(int creatorId);
 	
-	public List<Article> findByCreateTime(Date createStartTime,
+	public List<Article> listByCreateTime(Date createStartTime,
 			Date createEndTime);
 
-	public List<Article> findBySource(String source);
+	public List<Article> listBySource(String source);
 	
 }

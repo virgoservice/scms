@@ -34,7 +34,7 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public void save(Article article) {
-		this.articleDao.insert(article);
+		this.articleDao.save(article);
 	}
 
 	@Override
@@ -49,39 +49,39 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public Article findById(int id) {
-		return this.articleDao.selectByPrimaryKey(id);
+		return this.articleDao.findById(id);
 	}
 
 	@Override
-	public List<Article> findByChannelId(int channelId) {
-		return this.articleDao.findByChannelId(channelId);
+	public List<Article> listByChannelId(int channelId) {
+		return this.articleDao.listByChannelId(channelId);
 	}
 
 	@Override
-	public List<Article> findByPublisherId(int publisherId) {
-		return this.articleDao.findByPublisherId(publisherId);
+	public List<Article> listByPublisherId(int publisherId) {
+		return this.articleDao.listByPublisherId(publisherId);
 	}
 
 	@Override
-	public List<Article> findByPublishTime(Date publishStartTime,
+	public List<Article> listByPublishTime(Date publishStartTime,
 			Date publishEndTime) {
-		return this.articleDao.findByPublishTime(publishStartTime, publishEndTime);
+		return this.articleDao.listByPublishTime(publishStartTime, publishEndTime);
 	}
 
 	@Override
-	public List<Article> findByCreatorId(int creatorId) {
-		return this.articleDao.findByCreatorId(creatorId);
+	public List<Article> listByCreatorId(int creatorId) {
+		return this.articleDao.listByCreatorId(creatorId);
 	}
 
 	@Override
-	public List<Article> findByCreateTime(Date createStartTime,
+	public List<Article> listByCreateTime(Date createStartTime,
 			Date createEndTime) {
-		return this.articleDao.findByCreateTime(createStartTime, createEndTime);
+		return this.articleDao.listByCreateTime(createStartTime, createEndTime);
 	}
 
 	@Override
-	public List<Article> findBySource(String source) {
-		return this.articleDao.findBySource(source);
+	public List<Article> listBySource(String source) {
+		return this.articleDao.listBySource(source);
 	}
 
 }

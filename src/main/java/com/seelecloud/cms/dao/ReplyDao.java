@@ -9,10 +9,14 @@
  */
 package com.seelecloud.cms.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.seelecloud.cms.entity.Reply;
 
 /**
- * @description: 
+ * @description:
  * @author: vabo
  * @version:
  * @Datetime:2016年10月24日
@@ -20,15 +24,68 @@ import com.seelecloud.cms.entity.Reply;
  */
 public interface ReplyDao {
 
-    int deleteByPrimaryKey(Integer id);
+	/**
+	 * 保存新增回复记录
+	 * 
+	 * @param reply
+	 * @return
+	 */
+	public int save(Reply reply);
 
-    int insert(Reply record);
+	/**
+	 * 根据id更新指定的回复记录
+	 * 
+	 * @param reply
+	 * @return
+	 */
+	public int update(Reply reply);
 
-    int insertSelective(Reply record);
+	/**
+	 * 根据id查找一条指定回复记录
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Reply findById(Integer id);
 
-    Reply selectByPrimaryKey(Integer id);
+	/**
+	 * 列出当前评论下的所有回复记录
+	 * 
+	 * @param commentId
+	 * @return
+	 */
+	public List<Reply> listByCommentId(@Param("commentId") Integer commentId);
 
-    int updateByPrimaryKeySelective(Reply record);
+	/**
+	 * 列出当前回复节点下的所有回复记录
+	 * 
+	 * @param parentId
+	 * @return
+	 */
+	public List<Reply> listByParentId(@Param("parentId") Integer parentId);
 
-    int updateByPrimaryKey(Reply record);
+	/**
+	 * 根据id删除指定回复记录
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public int deleteById(Integer id);
+
+	/**
+	 * 删除指定回复节点下的所有回复记录
+	 * 
+	 * @param parentIds
+	 *            要删除的回复组
+	 * @return
+	 */
+	public int deleteByParentIds(@Param("parentIds") List<Integer> parentIds);
+
+	/**
+	 * 删除评论下的所有回复记录
+	 * 
+	 * @param commentIds
+	 * @return
+	 */
+	public int deleteByCommentIds(@Param("commentIds") List<Integer> commentIds);
 }

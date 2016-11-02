@@ -20,49 +20,118 @@ import java.util.Date;
  */
 public class Article {
 
+	/**
+	 * 文章id,数据库主键
+	 */
 	private int id;
+
+	/**
+	 * 文章标题
+	 */
 	private String title;
+
+	/**
+	 * 文章副标题
+	 */
+	private String subtitle;
+
+	/**
+	 * 文章摘要描述
+	 */
 	private String description;
-	private String icon;
+
+	/**
+	 * 文章封面图片URL,默认为null
+	 */
 	private String frontCover;
+
+	/**
+	 * 文章关键词,用于检索
+	 */
 	private String keyword;
+
+	/**
+	 * 文章创建者
+	 */
 	private int creatorId;
+
+	/**
+	 * 文章创建时间
+	 */
 	private Date createTime;
+
+	/**
+	 * 文章发布时间
+	 */
 	private Date publishTime;
+
+	/**
+	 * 文章发布者(审核并发布)
+	 */
 	private int publisherId;
-	private int type; // 类型是文章
+
+	/**
+	 * 文章分类
+	 */
+	private int category;
+
+	/**
+	 * 文章的大小,单位 KB
+	 */
 	private int size;
-	private String author; // 原作者
-	private String source; // 来源(原创, 转载)
-	private int channelId; //
-	private int hint; // 点击量
+
+	/**
+	 * 文章来源, 原创还是转载自某处
+	 */
+	private String source;
+
+	/**
+	 * 文章绝对隶属栏目, 其他栏目可以引用
+	 */
+	private int channelId;
+
+	/**
+	 * 文章点击量
+	 */
+	private int hint;
+
+	/**
+	 * 点赞
+	 */
 	private int agree;
-	private byte status; // 1 可用, 0不可用
-	private boolean recommend; // true 推荐置顶, false不推荐
+
+	/**
+	 * 文章处于状态(已发布1, 停用0, 删除等)
+	 */
+	private byte status;
+
+	/**
+	 * 推荐true, 不推荐false
+	 */
+	private boolean recommend;
 
 	public Article() {
 		super();
 	}
 
-	public Article(int id, String title, String description, String icon,
+	public Article(int id, String title, String subtitle, String description,
 			String frontCover, String keyword, int creatorId, Date createTime,
-			Date publishTime, int publisherId, int type, int size,
+			Date publishTime, int publisherId, int category, int size,
 			String author, String source, int channelId, int hint, int agree,
 			byte status, boolean recommend) {
 		super();
 		this.id = id;
 		this.title = title;
+		this.subtitle = subtitle;
 		this.description = description;
-		this.icon = icon;
 		this.frontCover = frontCover;
 		this.keyword = keyword;
 		this.creatorId = creatorId;
 		this.createTime = createTime;
 		this.publishTime = publishTime;
 		this.publisherId = publisherId;
-		this.type = type;
+		this.category = category;
 		this.size = size;
-		this.author = author;
 		this.source = source;
 		this.channelId = channelId;
 		this.hint = hint;
@@ -87,20 +156,20 @@ public class Article {
 		this.title = title;
 	}
 
+	public String getSubtitle() {
+		return subtitle;
+	}
+
+	public void setSubtitle(String subtitle) {
+		this.subtitle = subtitle;
+	}
+
 	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public String getIcon() {
-		return icon;
-	}
-
-	public void setIcon(String icon) {
-		this.icon = icon;
 	}
 
 	public String getFrontCover() {
@@ -151,12 +220,12 @@ public class Article {
 		this.publisherId = publisherId;
 	}
 
-	public int getType() {
-		return type;
+	public int getCategory() {
+		return category;
 	}
 
-	public void setType(int type) {
-		this.type = type;
+	public void setCategory(int category) {
+		this.category = category;
 	}
 
 	public int getSize() {
@@ -165,14 +234,6 @@ public class Article {
 
 	public void setSize(int size) {
 		this.size = size;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
 	}
 
 	public String getSource() {
@@ -225,15 +286,14 @@ public class Article {
 
 	@Override
 	public String toString() {
-		return "Article [id=" + id + ", title=" + title + ", description="
-				+ description + ", icon=" + icon + ", frontCover=" + frontCover
-				+ ", keyword=" + keyword + ", creatorId=" + creatorId
-				+ ", createTime=" + createTime + ", publishTime=" + publishTime
-				+ ", publisherId=" + publisherId + ", type=" + type + ", size="
-				+ size + ", author=" + author + ", source=" + source
-				+ ", channelId=" + channelId + ", hint=" + hint + ", agree="
-				+ agree + ", status=" + status + ", recommend=" + recommend
-				+ "]";
+		return "Article [id=" + id + ", title=" + title + ", subtitle="
+				+ subtitle + ", description=" + description + ", frontCover="
+				+ frontCover + ", keyword=" + keyword + ", creatorId="
+				+ creatorId + ", createTime=" + createTime + ", publishTime="
+				+ publishTime + ", publisherId=" + publisherId + ", category="
+				+ ", source=" + source + ", channelId=" + channelId + ", hint="
+				+ hint + ", agree=" + agree + ", status=" + status
+				+ ", recommend=" + recommend + "]";
 	}
 
 }

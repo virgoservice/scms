@@ -4,17 +4,16 @@
 	<resultMap id="BaseResultMap" type="com.seelecloud.cms.entity.Article">
 		<id column="id" jdbcType="INTEGER" property="id" />
 		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="subtitle" jdbcType="VARCHAR" property="subtitle" />
 		<result column="description" jdbcType="VARCHAR" property="description" />
-		<result column="icon" jdbcType="VARCHAR" property="icon" />
 		<result column="frontCover" jdbcType="VARCHAR" property="frontCover" />
 		<result column="keyword" jdbcType="VARCHAR" property="keyword" />
 		<result column="creatorId" jdbcType="INTEGER" property="creatorId" />
 		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
 		<result column="publishTime" jdbcType="TIMESTAMP" property="publishTime" />
 		<result column="publisherId" jdbcType="INTEGER" property="publisherId" />
-		<result column="type" jdbcType="INTEGER" property="type" />
+		<result column="category" jdbcType="INTEGER" property="category" />
 		<result column="size" jdbcType="INTEGER" property="size" />
-		<result column="author" jdbcType="VARCHAR" property="author" />
 		<result column="source" jdbcType="VARCHAR" property="source" />
 		<result column="channelId" jdbcType="INTEGER" property="channelId" />
 		<result column="hint" jdbcType="INTEGER" property="hint" />
@@ -24,63 +23,48 @@
 	</resultMap>
 
 	<sql id="Base_Column_List">
-		id, title, description, icon, frontCover, keyword,
-		creatorId, createTime, publishTime,	publisherId, type,
-		size, author, source, channelId, hint, agree, status,
-		recommend
+		id, title, subtitle, description, frontCover, keyword,
+		creatorId, createTime, publishTime, publisherId, category,
+		size, source, channelId, hint, agree, status, recommend
 	</sql>
 
-	<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from t_article
-		where id = #{id,jdbcType=INTEGER}
-	</select>
-	
-	<delete id="deleteById" parameterType="java.lang.Integer">
-		delete from
-		t_article
-		where id = #{id,jdbcType=INTEGER}
-	</delete>
-	
-	<insert id="insert" parameterType="com.seelecloud.cms.entity.Article">
+	<insert id="save" parameterType="com.seelecloud.cms.entity.Article">
 		insert into t_article (id,
-		title, description,	icon, frontCover, keyword, creatorId, createTime,
-		publishTime, publisherId, type, size, author, source, channelId,
-		hint, agree, status, recommend)
+		title, subtitle, description, frontCover, keyword, creatorId,
+		createTime,	publishTime, publisherId, category, size, source,
+		channelId, hint, agree, status, recommend)
 		values (
-			#{id,jdbcType=INTEGER},
-			#{title,jdbcType=VARCHAR},
-			#{description,jdbcType=VARCHAR},
-			#{icon,jdbcType=VARCHAR}, 
-			#{frontCover,jdbcType=VARCHAR},
-			#{keyword,jdbcType=VARCHAR},
-			#{creatorId,jdbcType=INTEGER},
-			#{createTime,jdbcType=TIMESTAMP},
-			#{publishTime,jdbcType=TIMESTAMP},
-			#{publisherId,jdbcType=INTEGER}, 
-			#{type,jdbcType=INTEGER},
-			#{size,jdbcType=INTEGER},
-			#{author,jdbcType=VARCHAR},
-			#{source,jdbcType=VARCHAR},
-			#{channelId,jdbcType=INTEGER}, 
-			#{hint,jdbcType=INTEGER},
-			#{agree,jdbcType=INTEGER},
-			#{status,jdbcType=BIT},
-			#{recommend,jdbcType=BIT})
+		#{id,jdbcType=INTEGER},
+		#{title,jdbcType=VARCHAR},
+		#{subtitle,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR},
+		#{frontCover,jdbcType=VARCHAR},
+		#{keyword,jdbcType=VARCHAR},
+		#{creatorId,jdbcType=INTEGER},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{publishTime,jdbcType=TIMESTAMP},
+		#{publisherId,jdbcType=INTEGER},
+		#{category,jdbcType=INTEGER},
+		#{size,jdbcType=INTEGER},
+		#{source,jdbcType=VARCHAR},
+		#{channelId,jdbcType=INTEGER},
+		#{hint,jdbcType=INTEGER},
+		#{agree,jdbcType=INTEGER},
+		#{status,jdbcType=BIT},
+		#{recommend,jdbcType=BIT})
 	</insert>
-	
+
 	<update id="update" parameterType="com.seelecloud.cms.entity.Article">
 		update t_article
 		<set>
 			<if test="title != null">
 				title = #{title,jdbcType=VARCHAR},
 			</if>
+			<if test="subtitle != null">
+				subtitle = #{subtitle,jdbcType=VARCHAR},
+			</if>
 			<if test="description != null">
 				description = #{description,jdbcType=VARCHAR},
-			</if>
-			<if test="icon != null">
-				icon = #{icon,jdbcType=VARCHAR},
 			</if>
 			<if test="frontCover != null">
 				frontCover = #{frontCover,jdbcType=VARCHAR},
@@ -100,14 +84,11 @@
 			<if test="publisherId != null">
 				publisherId = #{publisherId,jdbcType=INTEGER},
 			</if>
-			<if test="type != null">
-				type = #{type,jdbcType=INTEGER},
+			<if test="category != null">
+				category = #{category,jdbcType=INTEGER},
 			</if>
 			<if test="size != null">
 				size = #{size,jdbcType=INTEGER},
-			</if>
-			<if test="author != null">
-				author = #{author,jdbcType=VARCHAR},
 			</if>
 			<if test="source != null">
 				source = #{source,jdbcType=VARCHAR},
@@ -130,47 +111,68 @@
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
-	
-	<select id="findByChannelId"  parameterType="java.lang.Integer" resultMap="BaseResultMap">
+
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		delete from
+		t_article
+		where
+		id = #{id,jdbcType=INTEGER}
+	</delete>
+
+	<select id="findById" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_article
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<select id="listByChannelId" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from t_article
 		where id = #{channelId,jdbcType=INTEGER}
 	</select>
-	
-	<select id="findByCreatorId"  parameterType="java.lang.Integer" resultMap="BaseResultMap">
+
+	<select id="listByCreatorId" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from t_article
 		where id = #{creatorId,jdbcType=INTEGER}
 	</select>
-	
-	<select id="findByPublisherId"  parameterType="java.lang.Integer" resultMap="BaseResultMap">
+
+	<select id="listByPublisherId" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from t_article
 		where id = #{publisherId,jdbcType=INTEGER}
 	</select>
-	
-	<select id="findByPublishTime"  parameterType="java.util.Date" resultMap="BaseResultMap">
+
+	<select id="listByPublishTime" parameterType="java.util.Date"
+		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from t_article
 		where id = 1
 	</select>
-	
-	<select id="findByCreateTime"  parameterType="java.util.Date" resultMap="BaseResultMap">
+
+	<select id="listByCreateTime" parameterType="java.util.Date"
+		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from t_article
 		where id = 1
 	</select>
-	
-	<select id="findBySource"  parameterType="java.lang.String" resultMap="BaseResultMap">
+
+	<select id="listBySource" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from t_article
 		where id = #{source,jdbcType=VARCHAR}
 	</select>
-	
+
 </mapper>

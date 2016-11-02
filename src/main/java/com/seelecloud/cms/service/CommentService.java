@@ -9,8 +9,14 @@
  */
 package com.seelecloud.cms.service;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.seelecloud.cms.entity.Comment;
+
 /**
- * @description: 
+ * @description:
  * @author: vabo
  * @version:
  * @Datetime:2016年10月24日
@@ -18,4 +24,18 @@ package com.seelecloud.cms.service;
  */
 public interface CommentService {
 
+	public List<Comment> selectCommentByPage(@Param("contentId") int contentId,
+			@Param("pageSize") int pageSize, @Param("pageNumber") int pageNumber);
+
+	public Comment findById(@Param("id") int id);
+	
+	public int save(Comment comment);
+
+	public int update(Comment comment);
+
+	public int deleteById(@Param("id") int id);
+
+	public int deleteCommentByContentId(@Param("contentId") int contentId);
+
+	public int getTotal(@Param("contentId") int contentId);
 }

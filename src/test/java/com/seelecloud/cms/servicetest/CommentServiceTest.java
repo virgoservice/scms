@@ -9,6 +9,8 @@
  */
 package com.seelecloud.cms.servicetest;
 
+import java.util.Date;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -16,19 +18,19 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.seelecloud.cms.entity.Channel;
-import com.seelecloud.cms.service.ChannelService;
+import com.seelecloud.cms.entity.Comment;
+import com.seelecloud.cms.service.CommentService;
 
 /**
  * @description:
  * @author: vabo
  * @version:
- * @Datetime:2016年10月24日
+ * @Datetime:2016年10月29日
  * @Email:
  */
-public class ChannelServiceTest {
+public class CommentServiceTest {
 
-	private ChannelService channelService;
+	private CommentService commentService;
 
 	@Before
 	public void before() {
@@ -37,39 +39,27 @@ public class ChannelServiceTest {
 		ApplicationContext context = new ClassPathXmlApplicationContext(
 				new String[] { "classpath:/spring.xml",
 						"classpath:/spring-mybatis.xml" });
-		channelService = (ChannelService) context.getBean("channelService");
+		this.commentService = (CommentService) context
+				.getBean("commentService");
 	}
 
-	@Test
-	public void testSave() {
-		Channel ch = new Channel();
-		
-		int i = 5;
-		while (i-- >= 1) {
-			ch.setId(i);
-			ch.setTitle("channel-" + i);
-			this.channelService.save(ch);
-		}
-	}
-	
 	@Ignore
 	@Test
-	public void testFind() {
-		Channel ch = null;
+	public void testSave() {
+		Comment comment = new Comment(13, 2, 1, 10, 0, (byte)1, 	6, new Date(), "test null");
+		
+		System.out.println(comment.toString());
+//		comment.setText("3333");
+		this.commentService.save(comment);
 
-		ch = this.channelService.findChannelById(1);
-		if(ch != null)
-		{
-			System.out.println(ch.toString());
-		}
-		else{
-			System.out.println(" no found!");			
-		}
+		comment.setId(14);
+		comment.setText(null);
+		this.commentService.save(comment);
+
 	}
-	
+
 	@After
-	public void tearDown()
-	{
-		System.out.println(" test end !");			
+	public void tearDown() {
+		System.out.println("the end!");
 	}
 }

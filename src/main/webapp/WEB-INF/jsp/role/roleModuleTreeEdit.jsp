@@ -22,7 +22,7 @@
 <script type="text/javascript" src="<%=path %>/resources/lib/respond.min.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/lib/PIE_IE678.js"></script>
 <![endif]-->
-<link rel="stylesheet" type="text/css" href="<%=path %>/resources/lib/ztree/css/demo.css" />
+<link rel="stylesheet" type="text/css" href="<%=path %>/resources/static/h-ui/css/H-ui.min.css" />
 <link rel="stylesheet" type="text/css" href="<%=path %>/resources/lib/ztree/css/zTreeStyle.css" />
 <!--[if IE 6]>
 <script type="text/javascript" src="<%=path %>/resources/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
@@ -31,7 +31,7 @@
 <title>角色模块编辑</title>
 </head>
 <body>
-	<div>
+	<div class="ml-50">
 		<ul id="moduleTree" class="ztree"></ul>
 		<button type="button" id="submit" onclick="submit_tree_edit()">确定</button>
 		<button type="button" id="cancel" onclick="cancel_edit()">取消</button>

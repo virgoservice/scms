@@ -60,7 +60,7 @@ public interface ArticleService {
 	 * @param channelId
 	 * @return
 	 */
-	public List<Article> findByChannelId(@Param("channelId") int channelId);
+	public List<Article> listByChannelId(@Param("channelId") int channelId);
 
 	/**
 	 * 根据发布者id 查找文章列表
@@ -68,7 +68,7 @@ public interface ArticleService {
 	 * @param publisherId
 	 * @return
 	 */
-	public List<Article> findByPublisherId(@Param("publisherId") int publisherId);
+	public List<Article> listByPublisherId(@Param("publisherId") int publisherId);
 
 	/**
 	 * 根据发布的时间段，查找文章列表
@@ -77,7 +77,7 @@ public interface ArticleService {
 	 * @param publishEndTime
 	 * @return
 	 */
-	public List<Article> findByPublishTime(
+	public List<Article> listByPublishTime(
 			@Param("publishStartTime") Date publishStartTime,
 			@Param("publishEndTime") Date publishEndTime);
 
@@ -87,7 +87,7 @@ public interface ArticleService {
 	 * @param publisherId
 	 * @return
 	 */
-	public List<Article> findByCreatorId(@Param("creatorId") int creatorId);
+	public List<Article> listByCreatorId(@Param("creatorId") int creatorId);
 
 	/**
 	 * 根据创建的时间段，查找文章列表
@@ -96,7 +96,7 @@ public interface ArticleService {
 	 * @param createEndTime
 	 * @return
 	 */
-	public List<Article> findByCreateTime(
+	public List<Article> listByCreateTime(
 			@Param("createStartTime") Date createStartTime,
 			@Param("createEndTime") Date createEndTime);
 
@@ -106,5 +106,5 @@ public interface ArticleService {
 	 * @param source
 	 * @return
 	 */
-	public List<Article> findBySource(@Param("source") String source);
+	public List<Article> listBySource(@Param("source") String source);
 }

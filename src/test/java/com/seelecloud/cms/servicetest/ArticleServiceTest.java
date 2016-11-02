@@ -13,6 +13,7 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,13 +46,14 @@ public class ArticleServiceTest {
 		articleService = (ArticleService) context.getBean("articleService");
 	}
 
+	@Ignore
 	@Test
 	public void testSave() {
 		Article article = new Article();
 		article.setId(14);
-		article.setTitle("bbbbb");
+		article.setTitle("title");
+		article.setSubtitle("sub title");
 		article.setDescription("abcdef");
-		article.setIcon("icon");
 		article.setFrontCover("fc");
 		article.setKeyword("kw");
 		article.setCreateTime(new Date());
@@ -59,6 +61,19 @@ public class ArticleServiceTest {
 		this.articleService.save(article);
 	}
 
+	@Test
+	public void testUpdate() {
+		Article article = this.articleService.findById(14);
+		if (article != null) {
+			article.setDescription("hhhhhhh");
+			article.setKeyword("kw");
+			article.setPublishTime(new Date());
+			article.setSubtitle("sub title 2");
+			this.articleService.update(article);
+		}
+	}
+
+	@Ignore
 	@Test
 	public void testFindById() {
 		Article article = null;
@@ -70,10 +85,11 @@ public class ArticleServiceTest {
 		}
 	}
 
+	@Ignore
 	@Test
 	public void testFindByChannelId() {
 		List<Article> articleList = null;
-		articleList = this.articleService.findByChannelId(0);
+		articleList = this.articleService.listByChannelId(0);
 		if (articleList != null) {
 			for (Article a : articleList)
 				log.info(a.toString());
