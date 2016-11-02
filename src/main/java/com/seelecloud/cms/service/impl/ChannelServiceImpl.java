@@ -57,8 +57,18 @@ public class ChannelServiceImpl implements ChannelService {
 	}
 
 	@Override
-	public List<Channel> listChannelByType(int type) {
-		return this.channelDao.listChannelByType(type);
+	public List<Channel> listChannelByTree() {
+		return this.channelDao.listChannelByTree();
+	}
+
+	@Override
+	public List<Channel> listChannelByParent(Integer pid) {
+		return this.channelDao.listChannelByParent(pid);
+	}
+
+	@Override
+	public Integer getMaxOrderByParent(Integer pid) {
+		return this.channelDao.getMaxOrderByParent(pid);
 	}
 
 }

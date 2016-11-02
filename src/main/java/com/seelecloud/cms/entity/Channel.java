@@ -19,25 +19,72 @@ import java.util.Date;
  * @Email:
  */
 public class Channel {
-
+	
 	/**
+	 * 栏目的主键
 	 */
 	private int id;
+	/**
+	 *栏目的名称 
+	 */
 	private String title;
+	/**
+	 *栏目的描述
+	 */
 	private String description;
+	/**
+	 *栏目的图标
+	 */
 	private String icon;
+	/**
+	 *栏目标题处的封面
+	 */
 	private String frontCover;
+	/**
+	 *栏目的关键字
+	 */
 	private String keyword;
+	/**
+	 *栏目的创建者
+	 */
 	private int creatorId;
+	/**
+	 *栏目创建时间
+	 */
 	private Date createTime;
+	/**
+	 *栏目的发布时间
+	 */
 	private Date publishTime;
+	/**
+	 *栏目的发布id
+	 */
 	private int publisherId;
+	/**
+	 *栏目的类型
+	 */
 	private int type; // 栏目, 专题
+	/**
+	 *栏目的点击量
+	 */
 	private int hint;
-	private int chanenlOrder; // 排列的优先顺序
+	/**
+	 *栏目的排列
+	 */
+	private int channelOrder; // 排列的优先顺序
+
+	/**
+	 *父类栏目Id
+	 */
 	private int parentId; // 方便逆向查找, 以及不同上层栏目下面包含同一栏目,(保留字段)
-	private byte status; // 1 可用, 0不可用
-	private boolean recommend; // true 推荐, false不推荐
+	/**
+	 * 栏目的状态，1 可用, 0不可用
+	 */
+	private byte status; 
+	/**
+	 * 是否是推荐栏目， true 推荐, false不推荐
+	 */
+	private boolean recommend; 
 
 	public Channel() {
 	}
@@ -45,7 +92,7 @@ public class Channel {
 	public Channel(int id, String title, String description, String icon,
 			String frontCover, String keyword, int creatorId, Date createTime,
 			Date publishTime, int publisherId, int type, int hint,
-			int chanenlOrder, int parentId, byte status, boolean recommend) {
+			int channelOrder, int parentId, byte status, boolean recommend) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -59,7 +106,7 @@ public class Channel {
 		this.publisherId = publisherId;
 		this.type = type;
 		this.hint = hint;
-		this.chanenlOrder = chanenlOrder;
+		this.channelOrder = channelOrder;
 		this.parentId = parentId;
 		this.status = status;
 		this.recommend = recommend;
@@ -161,12 +208,12 @@ public class Channel {
 		this.hint = hint;
 	}
 
-	public int getChanenlOrder() {
-		return chanenlOrder;
+	public int getChannelOrder() {
+		return channelOrder;
 	}
-
-	public void setChanenlOrder(int chanenlOrder) {
-		this.chanenlOrder = chanenlOrder;
+	
+	public void setChannelOrder(int channelOrder) {
+		this.channelOrder = channelOrder;
 	}
 
 	public int getParentId() {
@@ -200,7 +247,7 @@ public class Channel {
 				+ ", keyword=" + keyword + ", creatorId=" + creatorId
 				+ ", createTime=" + createTime + ", publishTime=" + publishTime
 				+ ", publisherId=" + publisherId + ", type=" + type + ", hint="
-				+ hint + ", chanenlOrder=" + chanenlOrder + ", parentId="
+				+ hint + ", channelOrder=" + channelOrder + ", parentId="
 				+ parentId + ", status=" + status + ", recommend=" + recommend
 				+ "]";
 	}

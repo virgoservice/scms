@@ -17,7 +17,7 @@ package com.seelecloud.cms.entity;
  * @Email:
  */
 public class ContentType {
-
+	
 	/**
 	 * 类型的编号
 	 */

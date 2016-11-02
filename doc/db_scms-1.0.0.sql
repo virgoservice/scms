@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50162
 File Encoding         : 65001
 
-Date: 2016-10-25 21:25:12
+Date: 2016-10-29 09:44:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -104,11 +104,27 @@ CREATE TABLE `t_channel` (
   `status` tinyint(1) DEFAULT NULL,
   `recommend` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='栏目实体，作为一个分类，其下可以包含其他栏目，或文章，媒体文件等';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='栏目实体，作为一个分类，其下可以包含其他栏目，或文章，媒体文件等';
 
 -- ----------------------------
 -- Records of t_channel
 -- ----------------------------
+INSERT INTO `t_channel` VALUES ('0', '网站内容管理栏目', null, null, null, null, null, null, null, null, '0', '12', null, '-1', '0', '0');
+INSERT INTO `t_channel` VALUES ('1', '校园趣味', null, null, null, null, null, null, null, null, '1', '1', null, null, '1', '1');
+INSERT INTO `t_channel` VALUES ('2', '校园趣味1', null, null, null, null, null, null, null, null, '2', '32', null, '1', '1', '0');
+INSERT INTO `t_channel` VALUES ('3', '校园趣味2', null, null, null, null, null, null, null, null, '3', '12', null, '1', '1', '0');
+INSERT INTO `t_channel` VALUES ('4', '校园趣味3', null, null, null, null, null, null, null, null, '4', '23', null, '1', '0', '1');
+INSERT INTO `t_channel` VALUES ('5', '校园趣味4', null, null, null, null, null, null, null, null, '5', '343', null, '1', '0', '0');
+INSERT INTO `t_channel` VALUES ('6', '文化交流', null, null, null, null, null, null, null, null, '6', '343', null, null, '1', '0');
+INSERT INTO `t_channel` VALUES ('7', '文化交流1', null, null, null, null, null, null, null, null, '7', '33', null, '6', '1', '1');
+INSERT INTO `t_channel` VALUES ('8', '文化交流2', null, null, null, null, null, null, null, null, '8', '22', null, '6', '0', '0');
+INSERT INTO `t_channel` VALUES ('9', '文化交流3', null, null, null, null, null, null, null, null, '9', '434', null, '6', '1', '1');
+INSERT INTO `t_channel` VALUES ('10', '文化交流4', null, null, null, null, null, null, null, null, '10', '54', null, '6', '0', '0');
+INSERT INTO `t_channel` VALUES ('11', '校园天地', null, null, null, null, null, null, null, null, '11', '56', null, null, '1', '1');
+INSERT INTO `t_channel` VALUES ('12', '校园天地1', null, null, null, null, null, null, null, null, '12', '7687', null, '11', '1', '0');
+INSERT INTO `t_channel` VALUES ('13', '校园天地2', null, null, null, null, null, null, null, null, '13', '676', null, '11', '0', '1');
+INSERT INTO `t_channel` VALUES ('14', '校园天地3', null, null, null, null, null, null, null, null, '14', '7898', null, '11', '1', '0');
+INSERT INTO `t_channel` VALUES ('15', '校园天地4', null, null, null, null, null, null, null, null, '15', '768', null, '11', '0', '0');
 
 -- ----------------------------
 -- Table structure for `t_channelcontent`
@@ -198,7 +214,7 @@ CREATE TABLE `t_module` (
   `moduleIcon` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '模块显示图标',
   `managerId` int(11) NOT NULL COMMENT '模块所属管理员编号',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of t_module

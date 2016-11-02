@@ -43,7 +43,7 @@
 					<span>基本设置</span>
 				</div>
 			<div class="tabCon">
-			
+			<sf:hidden path="id"/>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-3"><span
 						class="c-red">*</span>栏目名称：</label>
