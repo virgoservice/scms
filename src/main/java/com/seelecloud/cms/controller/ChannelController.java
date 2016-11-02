@@ -135,10 +135,6 @@ public class ChannelController {
 			channel.setParentId(pid);
 			channel.setChannelOrder(channelOrder + 1);
 		}
-		/*if (pid > 0 || pid == null) {
-			channel.setParentId(pid);
-			channel.setChannelOrder(channelOrder + 1);
-		}*/
 		channelService.save(channel);
 		return "redirect:/admin/content/channel/" + pid;
 	}
