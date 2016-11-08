@@ -78,7 +78,10 @@
 						<td>${c.title}</td>
 						<td>${c.hint }</td>
 						<td>${c.channelOrder }</td>
-						<td>${c.recommend }</td>
+						<td>
+							<c:if test="${c.recommend eq false }">不推荐</c:if>
+							<c:if test="${c.recommend eq true }">推荐</c:if>
+						</td>
 						<c:if test="${c.status eq 1}">
 							<td class="td-status"><span class="label label-success radius">启用</span></td>
 							<td class="f-14"><a title="编辑" href="javascript:;" onclick="system_channel_edit('编辑【 ${currentChannelName.title }】子栏目功能','<%=path%>/admin/content/channelUpdate/ ${c.id }' ,'800','600')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a></td>

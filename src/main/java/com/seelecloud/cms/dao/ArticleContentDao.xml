@@ -4,11 +4,11 @@
   <resultMap id="BaseResultMap" type="com.seelecloud.cms.entity.ArticleContent">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="sectionNum" jdbcType="INTEGER" property="sectionNum" />
-    <result column="text" jdbcType="VARCHAR" property="text" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
   </resultMap>
   
   <sql id="Base_Column_List">
-    id, sectionNum, text
+    id, sectionNum, content
   </sql>
   
   <select id="findArticleSection" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -19,15 +19,24 @@
     and sectionNum = #{sectionNum, jdbcType=INTEGER}
   </select>
   
+	<update id="update" parameterType="com.seelecloud.cms.entity.ArticleContent">
+		update t_articlecontent
+		<set>
+			<if test="sectionNum != null">sectionNum = #{sectionNum},</if>
+			<if test="content != null">content = #{content,jdbcType=VARCHAR},</if>
+		</set>
+		where id = #{id}
+	</update>
+  
   <delete id="deleteById" parameterType="java.lang.Integer">
     delete from t_articlecontent
     where id = #{id,jdbcType=INTEGER}
   </delete>
   
   <insert id="insert" parameterType="com.seelecloud.cms.entity.ArticleContent">
-    insert into t_articlecontent (id, sectionNum, text
+    insert into t_articlecontent (id, sectionNum, content
       )
-    values (#{id,jdbcType=INTEGER}, #{sectionNum,jdbcType=INTEGER}, #{text,jdbcType=VARCHAR}
+    values (#{id,jdbcType=INTEGER}, #{sectionNum,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}
       )
   </insert>
   
@@ -37,4 +46,12 @@
     from t_articlecontent
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+   <select id="listArticleById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+      select 
+    <include refid="Base_Column_List" />
+    from t_articlecontent
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
 </mapper>

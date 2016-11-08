@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%
@@ -38,15 +39,21 @@
 <div class="page-container">
 	<div class="text-c"> 
 	日期范围：
-		<input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}'})" id="logmin" class="input-text Wdate" style="width:120px;">
+		<input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}'})" id="logmin" class="input-text Wdate" style="width:120px;"/>
 		-
-		<input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d'})" id="logmax" class="input-text Wdate" style="width:120px;">
-		<input type="text" name="" id="" placeholder=" 文章名称" style="width:250px" class="input-text">
+		<input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d'})" id="logmax" class="input-text Wdate" style="width:120px;"/>
+		<input type="text" name="" id="" placeholder=" 文章名称" style="width:250px" class="input-text"/>
 		<span class="select-box inline">
 			<select name="" class="select">
 				<option value="0">选择栏目</option>
-				<option value="1">分类一</option>
-				<option value="2">分类二</option>
+			    <c:forEach items="${publishChannel }" var="c">
+			    	<c:if test="${c.id eq cid }">
+						<option value="${c.id }" selected="selected">${c.title }</option>
+					</c:if>
+					<c:if test="${c.id ne cid }">
+						<option value="${c.id }">${c.title }</option>
+					</c:if>
+				</c:forEach>
 			</select>
 		</span>
 		<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索文章</button>
@@ -54,12 +61,12 @@
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
 	<a href="javascript:;" onclick="datadelTest()" class="btn btn-danger radius">
 			<i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-		<a href="javascript:;" onclick="article_add('添加文章','<%=path%>/admin/content/articleSave','900','700')" class="btn btn-primary radius">
+		<a href="javascript:;" onclick="article_add('添加文章','<%=path%>/article/articleSave','900','700')" class="btn btn-primary radius">
 			<i class="Hui-iconfont">&#xe600;</i> 添加文章</a> 
-			<a href="javascript:;" onclick="datadelTest()" class="btn btn-success radius">
+			<a href="<%=path%>/article/publicationArticleList"  data-title="已发布文章" class="btn btn-success radius">
 			<i class="Hui-iconfont">&#xe676;</i> 已发布文章</a> 
-			<a class="btn btn-danger radius" data-title="未发布文章" href="article-add.html" onclick="Hui_admin_tab(this)" href="javascript:;">
-				<i class="Hui-iconfont">&#xe706;</i> 未发布文章</a></span> 
+			<a href="<%=path%>/article/unpublicationArticleList"  data-title="未发布文章" class="btn btn-danger radius">
+			<i class="Hui-iconfont">&#xe706;</i> 未发布文章</a></span> 
 			<span class="r">共有数据：<strong>54</strong> 条</span> </div>
 			<span style="position:relative;top:10px;left:10px;">显示
 			<select name="" style="width:50px;" class="select">
@@ -72,107 +79,48 @@
 		<table class="table table-border table-bordered table-bg table-hover table-sort">
 			<thead>
 				<tr class="text-c">
-					<th width="50">原作者</th>
-					<th width="180">标题</th>	
-					<th width="80">分类</th>
-					<th width="80">推荐</th>
-					<th width="120">更新时间</th>					
-					<th width="75">浏览次数</th>
-					<th width="60">发布状态</th>
-					<th width="120">操作</th>
+					<th width="120">文章标题</th>
+					<th width="70">创建者</th>	
+					<th width="110">创建时间</th>
+					<th width="70">发布者</th>	
+					<th width="110">发布时间</th>	
+					<th width="80">发布状态</th>
+					<th width="80">所属栏目</th>
+					<th width="50">是否推荐</th>	
+					<th width="50">操作</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="text-c">
-					<td>行业动态</td>
-					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">资讯标题</u></td>
-					<td>H-ui</td>
-					<td>2014-6-11 11:11:42</td>
-					<td>21212</td>
-					<td class="td-status"><span class="label label-success radius">已发布</span></td>
-					<td>21212</td>
-					<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+			<c:forEach items="${articleVos }" var="a">
+				<tr class="text-c" >
+					<td class="text-l">
+					<a href="javascript:;" onclick="article_add('文章查看','<%=path%>/article/articleShow/${a.id }','900','700')" style="cursor:pointer;position:relative;left:18%" class="text-primary" title="查看">
+						<IMG alt="" src="<%=path %>/resources/img/1.jpg" style="width:100px;height:100px;" /> ${a.title }
+					</a>
+					</td>
+					<td>${a.publisher }</td>
+					<%-- <td><fmt:formatDate value="${a.createTime }" pattern="yyyy-MM-dd"/> </td> --%>
+					<td><fmt:formatDate value="${a.createTime }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
+					<c:if test="${a.status eq 1}">
+						<td>${a.publisher }</td>
+						<td><fmt:formatDate value="${a.publishTime }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
+						<td class="td-status"><span class="label label-success radius">已发布</span></td>
+					</c:if>
+					<c:if test="${a.status eq 0}">
+						<td>待定</td>
+						<td>待定</td>
+						<td class="td-status"><span class="label label-danger radius">未发布</span></td>
+					</c:if>
+					<td>${a.channelName }</td>
+					<td>
+						<c:if test="${a.recommend eq false }">不推荐</c:if>
+						<c:if test="${a.recommend eq true }">推荐</c:if>
+					</td>					
+					<td class="f-14 td-manage"> 
+					<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','<%=path%>/article/articleUpdate/${a.id }','900','700')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> 
+					<a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 				</tr>
-				<tr class="text-c">
-					<td>行业动态</td>
-					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">资讯标题</u></td>
-					<td>H-ui</td>
-					<td>2014-6-11 11:11:42</td>
-					<td>21212</td>
-					<td class="td-status"><span class="label label-success radius">已发布</span></td>
-					<td>21212</td>
-					<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>
-				<tr class="text-c">
-					<td>行业动态</td>
-					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">资讯标题</u></td>
-					<td>H-ui</td>
-					<td>2014-6-11 11:11:42</td>
-					<td>21212</td>
-					<td class="td-status"><span class="label label-success radius">已发布</span></td>
-					<td>21212</td>
-					<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>
-				<tr class="text-c">
-					<td>行业动态</td>
-					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">资讯标题</u></td>
-					<td>H-ui</td>
-					<td>2014-6-11 11:11:42</td>
-					<td>21212</td>
-					<td class="td-status"><span class="label label-success radius">已发布</span></td>
-					<td>21212</td>
-					<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>
-				<tr class="text-c">
-					<td>行业动态</td>
-					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">资讯标题</u></td>
-					<td>H-ui</td>
-					<td>2014-6-11 11:11:42</td>
-					<td>21212</td>
-					<td class="td-status"><span class="label label-success radius">已发布</span></td>
-					<td>21212</td>
-					<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>
-				<tr class="text-c">
-					<td>行业动态</td>
-					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">资讯标题</u></td>
-					<td>H-ui</td>
-					<td>2014-6-11 11:11:42</td>
-					<td>21212</td>
-					<td class="td-status"><span class="label label-success radius">已发布</span></td>
-					<td>21212</td>
-					<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>
-				<tr class="text-c">
-					<td>行业动态</td>
-					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">资讯标题</u></td>
-					<td>H-ui</td>
-					<td>2014-6-11 11:11:42</td>
-					<td>21212</td>
-					<td class="td-status"><span class="label label-success radius">已发布</span></td>
-					<td>21212</td>
-					<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>
-				<tr class="text-c">
-					<td>行业动态</td>
-					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">资讯标题</u></td>
-					<td>H-ui</td>
-					<td>2014-6-11 11:11:42</td>
-					<td>21212</td>
-					<td class="td-status"><span class="label label-success radius">已发布</span></td>
-					<td>21212</td>
-					<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>
-				<tr class="text-c">
-					<td>行业动态</td>
-					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">资讯标题</u></td>
-					<td>H-ui</td>
-					<td>2014-6-11 11:11:42</td>
-					<td>21212</td>
-					<td class="td-status"><span class="label label-success radius">已发布</span></td>
-					<td>21212</td>
-					<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>		
+			</c:forEach>	
 			</tbody>
 		</table>
 	</div>

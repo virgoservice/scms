@@ -51,4 +51,14 @@ public class ArticleContentServiceImpl implements ArticleContentService {
 		return this.articleContentDao.findArticleSection(id, sectionNum);
 	}
 
+	@Override
+	public void update(ArticleContent articleContent) {
+		this.articleContentDao.update(articleContent);
+	}
+
+	@Override
+	public ArticleContent listArticleById(int id) {
+		return this.articleContentDao.listArticleById(id);
+	}
+
 }

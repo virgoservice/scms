@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.seelecloud.cms.dao.ArticleDao;
 import com.seelecloud.cms.entity.Article;
 import com.seelecloud.cms.service.ArticleService;
@@ -84,4 +83,8 @@ public class ArticleServiceImpl implements ArticleService {
 		return this.articleDao.listBySource(source);
 	}
 
+	@Override
+	public List<Article> listByBases(Integer creatorId, Integer status ,Integer channelId,String title) {
+		return this.articleDao.listByBases(creatorId,status,channelId,title);
+	}
 }

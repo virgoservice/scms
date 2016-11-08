@@ -111,6 +111,91 @@ $(function(){
         }
     });
 	
-	var ue = UE.getEditor('editor');
+//	var ue = 
+		UE.getEditor('editor');
 	
+	$("#form-article-add").validate({
+		rules:{
+			title:{
+				required:true,	
+			},
+			channelName:{
+				 required: true,
+			     minlength: 1
+			}
+		},
+		 messages: {
+			 title:{
+			        required: "请输入您的文章名称",
+			      },
+			      channelName:{
+				 	minlength: "请选择一个栏目"
+			 	 }
+		    },
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){ //提交表单，跳转页面
+			form.submit();
+			setTimeout("refresh_close()", 15);//这里需要延时等待 ajax提交
+		}
+	});
+	
+	function showMenu() {
+		$("#mytree").width($(this).width()+30);
+		$("#mytree").height($(this).height()+250);
+		var channelObj = $("#channelName");
+		var channelOffset = $("#channelName").offset();
+		$("#menuContent").css({
+			left : channelOffset.left + "px",
+			top : channelOffset.top + channelObj.outerHeight() + "px"
+		}).slideDown("fast");
+
+		$("body").bind("mousedown", onBodyDown);
+	}
+	
+	function hideMenu() {
+		$("#menuContent").fadeOut("fast");
+		$("body").unbind("mousedown", onBodyDown);
+	}
+		
+	function onBodyDown(event) {
+		if (!(event.target.id == "menuContent" || $(event.target).parents(
+				"#menuContent").length > 0)) {
+			hideMenu();
+		}
+	}
+
+	var tree = null;
+	tree = $("#mytree").mytree({
+		async: {
+			enable: true,
+			type:"GET",
+			//如果请求到的值是null, 应该如何提示 代表当前路径：$("#ctx")
+			url: "/scms/article/ajaxchannel"
+		},
+		callback:{
+			onAsyncSuccess:function(){
+				tree.expandAll(true);
+			},
+			onDblClick: function beforeonClick(event, treeId, treeNode) {
+				$("#channelName").val(treeNode.title);
+				$("#channelId").val(treeNode.id);
+				hideMenu();
+			},
+			beforeClick:function beforeClick(treeId, treeNode) {
+				var check = (treeNode && !treeNode.isParent);
+				if (!check) alert("不能选择根节点...");
+				return check;								
+			}
+		}
+	}); 
+	$("#channelName").click(showMenu);
 });
+
+function refresh_close()
+{
+	var index = parent.layer.getFrameIndex(window.name);
+	parent.location.reload();
+	parent.layer.close(index);
+}

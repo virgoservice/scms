@@ -12,33 +12,26 @@ id		需要操作的数据id
 w		弹出层宽度（缺省调默认值）
 h		弹出层高度（缺省调默认值）
 */
-/*资讯-添加*/
+/*文章-添加*/
 function article_add(title,url,w,h){
 	layer_show(title,url,w,h);
-	/* var index = layer.open({ 打开一个新的页面
-		type: 2,
-		title: title,
-		content: url
-	});
-	layer.full(index); */
 }
-/*资讯-编辑*/
-function article_edit(title,url,id,w,h){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
-	});
-	layer.full(index);
+/*文章-添加*/
+function article_show(title,url,w,h){
+	layer_show(title,url,w,h);
 }
-/*资讯-删除*/
+/*文章-编辑*/
+function article_edit(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+/*文章-删除*/
 function article_del(obj,id){
 	layer.confirm('确认要删除吗？',function(index){
 		$(obj).parents("tr").remove();
 		layer.msg('已删除!',1);
 	});
 }
-/*资讯-审核*/
+/*文章-审核*/
 function article_shenhe(obj,id){
 	layer.confirm('审核文章？', {
 		btn: ['通过','不通过','取消'], 
@@ -58,17 +51,8 @@ function article_shenhe(obj,id){
     	layer.msg('未通过', {icon:5,time:1000});
 	});	
 }
-/*资讯-下架*/
-function article_stop(obj,id){
-	layer.confirm('确认要下架吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_start(this,id)" href="javascript:;" title="发布"><i class="Hui-iconfont">&#xe603;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已下架</span>');
-		$(obj).remove();
-		layer.msg('已下架!',{icon: 5,time:1000});
-	});
-}
 
-/*资讯-发布*/
+/*文章-发布*/
 function article_start(obj,id){
 	layer.confirm('确认要发布吗？',function(index){
 		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_stop(this,id)" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>');
@@ -77,7 +61,7 @@ function article_start(obj,id){
 		layer.msg('已发布!',{icon: 6,time:1000});
 	});
 }
-/*资讯-申请上线*/
+/*文章-申请上线*/
 function article_shenqing(obj,id){
 	$(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">待审核</span>');
 	$(obj).parents("tr").find(".td-manage").html("");

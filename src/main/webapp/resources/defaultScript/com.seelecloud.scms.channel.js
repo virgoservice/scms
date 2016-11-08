@@ -47,7 +47,10 @@ var zTreeObj = null;//
 					srcElement:"#listChannel"
 				},
 				callback: {
-					onAsyncSuccess: zTreeOnAsyncSuccess,
+					onAsyncSuccess: function zTreeOnAsyncSuccess()
+					{
+						zTreeObj.expandAll(true);
+					},
 				},
 				
 				data: {

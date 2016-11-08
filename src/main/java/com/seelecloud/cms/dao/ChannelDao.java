@@ -54,6 +54,8 @@ public interface ChannelDao {
 	 */
 	public Integer getMaxOrderByParent(Integer pid);
 	
+	public List<Channel> listPublishChannel();
+	
 	public List<Channel> listChannelByIds(List<Integer> channelIds);
 
 }

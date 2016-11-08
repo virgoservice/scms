@@ -52,7 +52,7 @@ public class ArticleContentServiceTest {
 		int i = 3;
 		while (i-- >= 0) {
 			articleContent.setSectionNum(i);
-			articleContent.setText(i + "this is a text!");
+			articleContent.setContent(i + "this is a text!");
 			this.articleContentService.SaveArticleSection(articleContent);
 		}
 	}

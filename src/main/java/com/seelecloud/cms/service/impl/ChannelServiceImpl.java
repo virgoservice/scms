@@ -71,4 +71,9 @@ public class ChannelServiceImpl implements ChannelService {
 		return this.channelDao.getMaxOrderByParent(pid);
 	}
 
+	@Override
+	public List<Channel> listPublishChannel() {
+		return this.channelDao.listPublishChannel();
+	}
+
 }

@@ -29,6 +29,12 @@ public interface ArticleContentService {
 	 * @param articleContent
 	 */
 	public void SaveArticleSection(ArticleContent articleContent);
+	
+	/**
+	 * 根据对象更新文章所有内容
+	 * @param articleContent
+	 */
+	public void update(ArticleContent articleContent);
 
 	/**
 	 * 根据id删除文章所有内容
@@ -37,13 +43,21 @@ public interface ArticleContentService {
 	public void deleteArticleContent(@Param("id")int id);
 	
 	/**
+	 * 根据文章id，查找正文片段
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public ArticleContent listArticleById(@Param("id") int id);
+	
+	/**
 	 * 根据文章id，查找所有正文片段
 	 * 
 	 * @param id
 	 * @return
 	 */
 	public List<ArticleContent> listArticleContent(@Param("id") int id);
-
+	
 	/**
 	 * 根据片段编号查找指定片段内容
 	 * 

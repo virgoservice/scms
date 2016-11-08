@@ -31,7 +31,7 @@ public interface ArticleService {
 	 * @Article
 	 */
 	public void save(Article article);
-
+	
 	/**
 	 * 更新文章
 	 * 
@@ -107,4 +107,14 @@ public interface ArticleService {
 	 * @return
 	 */
 	public List<Article> listBySource(@Param("source") String source);
+
+	/**
+	 * 根据用户，栏目和标题和状态进行检索
+	 * @param creatorId:用户id
+	 * @param channelId
+	 * @param title
+	 * @param status
+	 * @return
+	 */
+	public List<Article> listByBases(@Param("creatorId")Integer creatorId,@Param("status")Integer status,@Param("channelId")Integer channelId,@Param("title")String title);
 }

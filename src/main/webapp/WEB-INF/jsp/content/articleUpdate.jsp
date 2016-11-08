@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+	pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "//:"
@@ -63,8 +61,8 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" readonly  placeholder="请选择一个文章栏目"  name="channelName" id="channelName" style="cursor:pointer;height:26px;font-size:13.3px;padding-left:8px;"/>
-				<input type="hidden" id="channelId" name="channelId" value="0"  />
+				<input type="text" readonly  placeholder="请选择一个文章栏目" value=${articleVo.channelName }  name="channelName" id="channelName" style="cursor:pointer;height:26px;font-size:13.3px;padding-left:8px;"/>
+				<input type="hidden" id="channelId" name="channelId" value="0" /> <!-- 到时候传递栏目id给文章 -->
 			</div>
 		</div>
 		<div class="row cl">
@@ -77,16 +75,16 @@
 		<%-- <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">文章创建者：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<sf:input path="publisher" class="input-text" placeholder="请输入文章创建者"/>
+				<sf:input path="publisher" class="input-text" placeholder="请输入文章发布者"/>
 			</div>
-		</div> --%>
-		<!-- <div class="row cl">
+		</div>
+		 --%>
+		 <%-- <div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">文章创建日期：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input name="createTime" type="text" onfocus="WdatePicker({isShowWeek:true})" id="datemin" class="input-text Wdate"/>
+				<sf:input path="createTime" onfocus="WdatePicker({isShowWeek:true})" id="datemin" class="input-text Wdate"/>
 			</div>
-		</div> -->
-	<%-- 	<sf:hidden path="createTime" /> --%>
+		</div> --%>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">文章来源：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -107,6 +105,7 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">文章内容：</label>
 			<div class="formControls col-xs-8 col-sm-9"> 
+			<!-- 	<script id="editor" type="text/plain" style="width:100%;height:400px;"></script>  -->
 				<sf:textarea path="content" id="editor" type="text/plain" style="width:100%;height:400px;"/>
 			</div>
 		</div>
@@ -119,7 +118,6 @@
 		</div>
 	</sf:form>
 </article>
-
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="<%=path %>/resources/lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="<%=path %>/resources/lib/layer/2.1/layer.js"></script> 
@@ -139,5 +137,6 @@
 <script type="text/javascript" src="<%=path %>/resources/lib/ztree/js/jquery.ztree.core.min.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.channel.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.articleSave.js"></script>
+<script type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.articleUpdate.js"></script>
 </body>
 </html>

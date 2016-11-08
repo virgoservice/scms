@@ -97,6 +97,18 @@ public class ArticleServiceTest {
 			log.info("no data");
 		}
 	}
+	
+	@Test
+	public void testListByBases() {
+		List<Article> articleList = null;
+		articleList = this.articleService.listByBases(0, 1 ,6,"csdn");
+		if (articleList != null) {
+			for (Article a : articleList)
+				log.info(a.toString());
+		} else {
+			log.info("no data");
+		}
+	}
 
 	@After
 	public void tearDown() {

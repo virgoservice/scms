@@ -58,6 +58,12 @@ public interface ChannelService {
 	public Integer getMaxOrderByParent(Integer pid);
 	
 	/**
+	 * 获取所有已发布的栏目
+	 * @return
+	 */
+	public List<Channel> listPublishChannel();
+	
+	/**
 	 * 通过传入一组id值查询栏目列表
 	 * @param channelIds
 	 * @return

@@ -31,16 +31,16 @@ public class ArticleContent {
 	/**
 	 * 文章正文
 	 */
-	private String text;
+	private String content;
 
 	public ArticleContent() {
 	}
 
-	public ArticleContent(int id, int sectionNum, String text) {
+	public ArticleContent(int id, int sectionNum, String content) {
 		super();
 		this.id = id;
 		this.sectionNum = sectionNum;
-		this.text = text;
+		this.content = content;
 	}
 
 	public int getId() {
@@ -59,18 +59,18 @@ public class ArticleContent {
 		this.sectionNum = sectionNum;
 	}
 
-	public String getText() {
-		return text;
+	public String getContent() {
+		return content;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	@Override
 	public String toString() {
 		return "ArticleContent [id=" + id + ", sectionNum=" + sectionNum
-				+ ", text=" + text + "]";
+				+ ", content=" + content + "]";
 	}
 
 }

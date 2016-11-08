@@ -88,7 +88,7 @@ public class Channel {
 
 	public Channel() {
 	}
-
+	
 	public Channel(int id, String title, String description, String icon,
 			String frontCover, String keyword, int creatorId, Date createTime,
 			Date publishTime, int publisherId, int type, int hint,

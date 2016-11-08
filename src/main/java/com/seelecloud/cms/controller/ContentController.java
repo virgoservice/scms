@@ -9,12 +9,29 @@
  */
 package com.seelecloud.cms.controller;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.seelecloud.cms.entity.Article;
+import com.seelecloud.cms.entity.ArticleContent;
+import com.seelecloud.cms.entity.Channel;
+import com.seelecloud.cms.service.ArticleContentService;
+import com.seelecloud.cms.service.ArticleService;
 import com.seelecloud.cms.service.ChannelService;
-import com.seelecloud.cms.service.ContentTypeService;
+import com.seelecloud.cms.service.ManagerService;
+import com.seelecloud.cms.vo.ArticleVo;
 
 /**
  * @description: 内容管理控制器: 文章管理, 多媒体资源管理, 资源下载管理
@@ -24,35 +41,169 @@ import com.seelecloud.cms.service.ContentTypeService;
  * @Email: 2411685663@qq.com
  */
 @Controller
-@RequestMapping("/admin/content")
+@RequestMapping("/article")
 public class ContentController {
 
 	@Autowired
-	private ContentTypeService contentTypeService;
-	@Autowired
 	private ChannelService channelService;
+	@Autowired
+	private ArticleService articleService;
+	@Autowired
+	private ManagerService managerService;
+	@Autowired
+	private ArticleContentService articleContentService;
 
+	private void initList(String con,Integer cid,Model model,HttpSession session,Integer status){
+//		// 1.获取当前登录的用户
+//		Manager manager =  session.getAttribute("loginManager");
+//		if (manager==null) {
+//			manager = new Manager();
+//			manager.setPublisherId(0); //系统管理员,创建文章的人就是登陆系统后台的人。根据登陆者来查看自己要发布或者已发布文章。后面在做修改(CRUD)
+//		}
+//		
+//		// 2.根据当前的用户获取他所创建的managerName
+//		Manager manager = managerService.findById(0);
+		String managerName = "administrator1";// manager.getManagerName();
+		List<ArticleVo> articleVoList = new ArrayList<ArticleVo>();
+		ArticleVo articleVo = null;
+		
+		if (managerName.equals("administrator1")) {
+			//可以查看所有已发布文章
+			List<Article> articles = articleService.listByBases(null, status, cid, con);
+			for (Article article2 : articles) {
+				articleVo = new ArticleVo(article2.getId(), article2.getTitle(), article2.getDescription(), article2.getCreateTime(),article2.getPublishTime(), managerName, channelService.findChannelById(article2.getChannelId()).getTitle(), article2.getStatus(), article2.isRecommend());
+				articleVoList.add(articleVo);
+			}
+			model.addAttribute("articleVos",articleVoList);
+		}else {
+			//只能查看自己已发布的文章：这里有问题，实体为用户。后面在做修改//TODO
+			List<Article> articles = articleService.listByBases(0, status, cid, con);
+			for (Article article2 : articles) {
+				articleVo = new ArticleVo(article2.getId(), article2.getTitle(), article2.getDescription(),article2.getCreateTime(), article2.getPublishTime(), managerName, channelService.findChannelById(article2.getChannelId()).getTitle(), article2.getStatus(), article2.isRecommend());
+				articleVoList.add(articleVo);
+			}
+			model.addAttribute("articleVos",articleVoList);
+		}
+		model.addAttribute("publishChannel", this.channelService.listPublishChannel());//获取当前已发布栏目:下拉栏目
+	}
+	
 	/**
-	 * 文章列表
-	 * 
+	 * 已发布文章列表：登陆的超级管理员可以查看所有文章，普通管理员只能查看自己发布的文章。
+	 * @param model
+	 * @param con: 搜索内容(关键字)
+	 * @param cid:栏目id
+	 * @param uid:用户id
 	 * @return
 	 */
-	@RequestMapping("/articleList")
-	public String articleList() {
-
+	@RequestMapping(value="/publicationArticleList")
+	public String publicationArticleList(@RequestParam(required=false) String con,@RequestParam(required=false) Integer cid,Model model,HttpSession session) {
+		initList(con, cid, model, session,1);
 		return "content/articleList";
 	}
+	
+	/**
+	 * 未发布文章
+	 * @param model
+	 * @param content
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/unpublicationArticleList")
+	public String unpublicationArticleList(@RequestParam(required=false) String con,@RequestParam(required=false) Integer cid,Model model,HttpSession session) {
+		initList(con, cid, model, session,0);
+		return "content/articleList";
+	}
+	
+	/**
+	 * 栏目树：获取id,parentId,Name 异步ajax
+	 * 添加文章模块，栏目树不是普通管理员可以看见的，比如：只能是文章发布人员等。后期要做权限分配
+	 * @return
+	 */
+	@RequestMapping("/ajaxchannel")
+	@ResponseBody
+	public List<Channel> ajaxchannel() {
+		List<Channel> mvList = channelService.listChannelByTree();
+		return mvList;
+	}
 
+	
 	/**
 	 * 添加文章
+	 * 文章创建者先不为登陆的用户，后面在做修改
+	 * @return
+	 */
+	@RequestMapping(value="/articleSave",method=RequestMethod.GET)
+	public String articleSave(Model model) {
+		model.addAttribute("articleVo",new ArticleVo());
+		return "content/articleSave";
+	}
+	
+	/**
+	 * 添加文章后跳转
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/articleSave")
-	public String articleSave() {
-
-		return "content/articleSave";
+	@RequestMapping(value="/articleSave",method=RequestMethod.POST)
+	public String articleSave(ArticleVo articleVo) {//当传递的参数为空时，不进入post请求中
+		Article article = new Article();
+		ArticleContent articleContent = new ArticleContent();
+		article.setTitle(articleVo.getTitle());
+		article.setChannelId(articleVo.getChannelId());
+		article.setSubtitle(articleVo.getSubtitle());
+		article.setSource(articleVo.getSource());
+		article.setCreateTime(new Date());
+		article.setDescription(articleVo.getDescription());
+		articleContent.setContent(articleVo.getContent());
+		articleContentService.SaveArticleSection(articleContent);
+		articleService.save(article);
+		return "redirect:/article/unpublicationArticleList";
 	}
-
-
+	
+	/**
+	 * 更新文章
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value="/articleUpdate/{id}",method=RequestMethod.GET)
+	public String articleUpdate(@PathVariable Integer id,Model model) {
+		Article article = articleService.findById(id);
+		ArticleContent articleContent = articleContentService.listArticleById(1);//id之后修改
+		ArticleVo articleVo = new ArticleVo(article,managerService.findById(0).getManagerName(),channelService.findChannelById(article.getChannelId()).getTitle(),articleContent.getContent());//article.getCreatorId()后面修改id
+		model.addAttribute("articleVo", articleVo);
+		return "content/articleUpdate";
+	}
+	
+	/**
+	 * 更新文章后跳转
+	 * 文章创建者先不为登陆的用户，后面在做修改
+	 * @return
+	 */
+	@RequestMapping(value="/articleUpdate/{id}",method=RequestMethod.POST)
+	public String articleUpdate(@PathVariable Integer id,ArticleVo articleVo) {//当传递的参数为空时，不进入post请求中
+		Article article = articleService.findById(id);
+		ArticleContent articleContent = articleContentService.listArticleById(1);
+		article.setId(articleVo.getId());
+		article.setTitle(articleVo.getTitle());
+		article.setChannelId(articleVo.getChannelId());
+		article.setSubtitle(articleVo.getSubtitle());
+		article.setSource(articleVo.getSource());
+		article.setDescription(articleVo.getDescription());
+		articleContent.setContent(articleVo.getContent());
+		articleContentService.update(articleContent);//更新文章
+		articleService.update(article);
+		return "redirect:/article/unpublicationArticleList";
+	}
+	
+	/**
+	 * 显示文章页面： id暂时设置为1，之后修改
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/articleShow/{id}")
+	public String articleShow(@PathVariable int id,Model model) {
+		model.addAttribute("article",articleService.findById(id));
+		model.addAttribute("content",articleContentService.listArticleById(7));
+		return "content/article";
+	}
 }

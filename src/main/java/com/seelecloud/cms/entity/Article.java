@@ -54,7 +54,12 @@ public class Article {
 	 * 文章创建者
 	 */
 	private int creatorId;
-
+	
+	/**
+	 * 文章原作者
+	 */
+	private String author;
+	
 	/**
 	 * 文章创建时间
 	 */
@@ -195,6 +200,14 @@ public class Article {
 	public void setCreatorId(int creatorId) {
 		this.creatorId = creatorId;
 	}
+	
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
 
 	public Date getCreateTime() {
 		return createTime;
@@ -289,11 +302,11 @@ public class Article {
 		return "Article [id=" + id + ", title=" + title + ", subtitle="
 				+ subtitle + ", description=" + description + ", frontCover="
 				+ frontCover + ", keyword=" + keyword + ", creatorId="
-				+ creatorId + ", createTime=" + createTime + ", publishTime="
-				+ publishTime + ", publisherId=" + publisherId + ", category="
-				+ ", source=" + source + ", channelId=" + channelId + ", hint="
-				+ hint + ", agree=" + agree + ", status=" + status
-				+ ", recommend=" + recommend + "]";
+				+ creatorId + ", author=" + author + ", createTime="
+				+ createTime + ", publishTime=" + publishTime
+				+ ", publisherId=" + publisherId + ", category=" + category
+				+ ", size=" + size + ", source=" + source + ", channelId="
+				+ channelId + ", hint=" + hint + ", agree=" + agree
+				+ ", status=" + status + ", recommend=" + recommend + "]";
 	}
-
 }

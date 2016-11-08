@@ -121,4 +121,10 @@
     where c.parentId= #{parentId,jdbcType=INTEGER}
   </select>
   
+  <select id="listPublishChannel"  resultMap="BaseResultMap">
+  	 select id,title	 
+  	 from t_channel
+  	 where status=1
+  </select>
+  
 </mapper>

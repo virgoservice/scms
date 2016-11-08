@@ -12,6 +12,8 @@ package com.seelecloud.cms.dao;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.seelecloud.cms.entity.Article;
 
 /**
@@ -44,5 +46,7 @@ public interface ArticleDao {
 			Date createEndTime);
 
 	public List<Article> listBySource(String source);
+	
+	public List<Article> listByBases(@Param("creatorId")Integer creatorId,@Param("status")Integer status,@Param("channelId")Integer channelId,@Param("title")String title);
 	
 }

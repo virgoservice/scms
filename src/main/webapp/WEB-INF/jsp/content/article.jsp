@@ -20,12 +20,13 @@
 	content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <!--[if lt IE 9]>
-<script type="text/javascript" src="lib/html5.js"></script>
-<script type="text/javascript" src="lib/respond.min.js"></script>
-<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<script type="text/javascript" src="<%=path %>/resources/lib/html5.js"></script>
+<script type="text/javascript" src="<%=path %>/resources/lib/respond.min.js"></script>
+<script type="text/javascript" src="<%=path %>/resources/lib/PIE_IE678.js"></script>
 <![endif]-->
 <link rel="stylesheet" type="text/css"
 	href="<%=path%>/resources/static/h-ui/css/H-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="<%=path %>/resources/static/h-ui.admin/css/H-ui.admin.css" />
 <link rel="stylesheet" type="text/css"
 	href="<%=path%>/resources/lib/Hui-iconfont/1.0.7/iconfont.css" />
 <!--[if IE 6]>
@@ -35,17 +36,34 @@
 <!-- 文章标题 -->
 <title>文章</title>
 </head>
-<body>
-	<!-- 头部 -->
-	<nav class="breadcrumb">
-		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>栏目
-		<span class="c-gray en">&gt;</span>正文<a
-			class="btn btn-success radius r"
-			style="line-height: 1.6em; margin-top: 3px"
-			href="javascript:location.replace(location.href);" title="刷新"><i
-			class="Hui-iconfont">&#xe68f;</i></a>
-	</nav>
-
+<body style="background:#F0F0F0;">
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 内容管理 <span class="c-gray en">&gt;</span> 查看文章 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">	
+	<div class="mt-20">
+	<h3 class="admin_link_bar" style="text-align:center">
+	<span>${article.title }</span>
+	</h3>
+		<table  class="table table-border table-bordered table-bg table-hover table-sort">
+			<tbody>
+				<tr>
+					<td style="text-align:center;">作者：administrator1 &nbsp;&nbsp;&nbsp;&nbsp;
+					创建时间：<fmt:formatDate value="${article.createTime }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+				</tr>
+				<tr>
+					<td colspan="2">文章摘要:&nbsp;&nbsp;${article.description }</td>
+				</tr>
+				<tr>
+					<td colspan="2">文章内容:</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="background:#F0F0F0;">
+						${content.content }
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
 	<!-- 正文 -->
 	<div class="page-container">
 		<p>文章正文</p>

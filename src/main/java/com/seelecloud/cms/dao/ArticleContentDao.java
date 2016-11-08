@@ -24,10 +24,14 @@ public interface ArticleContentDao {
 
     public int deleteById(Integer id);
 
-    public int insert(ArticleContent articleContent);
+    public void insert(ArticleContent articleContent);
 
     public ArticleContent findArticleSection(int id, int sectionNum);
     
     public List<ArticleContent> listArticleContent(int id);
+    
+    public void update(ArticleContent articleContent);
+    
+    public ArticleContent listArticleById(int id);
 
 }
