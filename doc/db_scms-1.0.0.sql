@@ -348,3 +348,43 @@ INSERT INTO `t_rolemodule` VALUES ('25', '1', '26');
 INSERT INTO `t_rolemodule` VALUES ('26', '1', '27');
 INSERT INTO `t_rolemodule` VALUES ('27', '1', '28');
 INSERT INTO `t_rolemodule` VALUES ('28', '1', '29');
+
+
+/*Table structure for table `t_download` */
+
+DROP TABLE IF EXISTS `t_download`;
+
+CREATE TABLE `t_download` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `resourceId` int(11) DEFAULT NULL,
+  `channelId` int(11) DEFAULT NULL,
+  `time` datetime DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
+
+/*Table structure for table `t_fileentity` */
+
+DROP TABLE IF EXISTS `t_fileentity`;
+
+CREATE TABLE `t_fileentity` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(64) DEFAULT NULL,
+  `description` varchar(256) DEFAULT NULL,
+  `format` int(11) DEFAULT NULL,
+  `keyword` varchar(128) DEFAULT NULL,
+  `resourceUrl` varchar(128) DEFAULT NULL,
+  `category` int(11) DEFAULT NULL,
+  `creatorId` int(11) DEFAULT NULL,
+  `createTime` datetime DEFAULT NULL,
+  `publishTime` datetime DEFAULT NULL,
+  `publisherId` int(11) DEFAULT NULL,
+  `size` int(11) DEFAULT NULL,
+  `source` varchar(128) DEFAULT NULL,
+  `channelId` int(11) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  `recommend` tinyint(1) DEFAULT NULL,
+  `permission` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
