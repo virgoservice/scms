@@ -61,7 +61,7 @@
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
 	<a href="javascript:;" onclick="datadelTest()" class="btn btn-danger radius">
 			<i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-		<a href="javascript:;" onclick="article_add('添加文章','<%=path%>/article/articleSave','900','700')" class="btn btn-primary radius">
+		<a href="javascript:;" onclick="article_add('添加文章','<%=path%>/article/articleSave','1000','700')" class="btn btn-primary radius">
 			<i class="Hui-iconfont">&#xe600;</i> 添加文章</a> 
 			<a href="<%=path%>/article/publicationArticleList"  data-title="已发布文章" class="btn btn-success radius">
 			<i class="Hui-iconfont">&#xe676;</i> 已发布文章</a> 
@@ -94,7 +94,7 @@
 			<c:forEach items="${articleVos }" var="a">
 				<tr class="text-c" >
 					<td class="text-l">
-					<a href="javascript:;" onclick="article_add('文章查看','<%=path%>/article/articleShow/${a.id }','900','700')" style="cursor:pointer;position:relative;left:18%" class="text-primary" title="查看">
+					<a href="javascript:;" onclick="article_add('文章查看','<%=path%>/article/articleShow/${a.id }','1000','700')" style="cursor:pointer;position:relative;left:18%" class="text-primary" title="查看">
 						<IMG alt="" src="<%=path %>/resources/img/1.jpg" style="width:100px;height:100px;" /> ${a.title }
 					</a>
 					</td>
@@ -117,7 +117,7 @@
 						<c:if test="${a.recommend eq true }">推荐</c:if>
 					</td>					
 					<td class="f-14 td-manage"> 
-					<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','<%=path%>/article/articleUpdate/${a.id }','900','700')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> 
+					<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','<%=path%>/article/articleUpdate/${a.id }','1000','700')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> 
 					<a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 				</tr>
 			</c:forEach>	

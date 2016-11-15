@@ -11,12 +11,17 @@ $(function(){
 		increaseArea: '20%'
 	});
 	
+	/* 系统-栏目-添加 */
+	function picture_add(title, url, w, h) {
+		layer_show(title, url, w, h);
+	}
 	
 	$list = $("#fileList"),
 	$btn = $("#btn-star"),
 	state = "pending",
 	uploader;
-
+	
+	
 	var uploader = WebUploader.create({
 		auto: true,
 		swf: 'lib/webuploader/0.1.5/Uploader.swf',
@@ -26,7 +31,7 @@ $(function(){
 	
 		// 选择文件的按钮。可选。
 		// 内部根据当前运行是创建，可能是input元素，也可能是flash.
-		pick: '#filePicker',
+		pick: '',
 	
 		// 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
 		resize: false,

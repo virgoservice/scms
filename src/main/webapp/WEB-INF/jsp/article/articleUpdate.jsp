@@ -32,6 +32,11 @@
 <link rel="stylesheet" type="text/css" href="<%=path %>/resources/static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="<%=path %>/resources/static/h-ui.admin/css/style.css" />
 <link rel="stylesheet" type="text/css" href="<%=path %>/resources/lib/ztree/css/zTreeStyle.css" />
+<link rel="stylesheet" type="text/css" href="<%=path %>/resources/lib/ueditor/1.4.3.3/third-party/webuploader/webuploader.css" />
+<link rel="stylesheet" type="text/css" href="<%=path %>/resources/cropper/css/bootstraps.min.css">
+<link rel="stylesheet" type="text/css" href="<%=path %>/resources/cropper/css/cropper.min.css">
+<link rel="stylesheet" type="text/css" href="<%=path %>/resources/cropper/css/mains.css">
+<link rel="stylesheet" type="text/css" href="<%=path %>/resources/cropper/css/font-awesome.min.css">
 <!--[if IE 6]>
 <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
@@ -45,6 +50,100 @@
 <div id="menuContent" class="menuContent" style="display:none; position: absolute;background:#eee;z-index:999;border:1px solid #999">
 	<ul id="mytree" class="ztree" style="margin-top:0;overflow: auto;"></ul>
 </div>
+<div class="row cl">
+	<label class="form-label col-xs-4 col-sm-2" style="left:55px;">文章封面：</label>
+	<div class="formControls col-xs-8 col-sm-9">
+	<div class="uploader-thum-container">
+		<div id="fileList" class="uploader-list"></div>
+		<div id="filePicker" style="float:left;">
+	<!-- start -->	
+		<div class="container" id="crop-avatar">
+		   <!-- Current avatar -->
+		<div class="avatar-view" title="Change the avatar">
+		  <img src="<%=path %>/resources/cropper/img/picture.jpg" alt="Avatar" style="height:100%;">
+		</div>
+		<!-- Cropping modal -->
+		<div class="modal fade" style="width:660px;height:490px;margin-top:-320px;margin-left:auto;margin-right:auto;" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+		  <div class=" modal-lg">
+		    <div>
+		      <form class="avatar-form" action="uploadImage" enctype="multipart/form-data" method="post" accept="image/*">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title" id="avatar-modal-label">更改封面</h4>
+		        </div>
+		        <div class="modal-body">
+		          <div class="avatar-body">
+		            <!-- avatar_file(源文件),avatar_data(裁剪参数JSON[x,y,w,h]),avatar-src(源文件路径) -->
+		            <div class="avatar-upload">
+		              <input type="hidden" class="avatar-src" name="avatar_src">
+		              <input type="hidden" class="avatar-data" name="avatar_data">
+		              <label for="avatarInput" class="btn btn-primary" style="width:100px;">选择图片</label>
+		              <input type="file" class="avatar-input" id="avatarInput" name="avatar_file" style="display: none;" accept="image/*">
+		            </div>
+		            <!-- Crop and preview -->
+		            <div class="row">
+		              <div class="col-md-6">
+		                <div class="avatar-wrapper"></div>
+		              </div>
+		              <div class="col-md-6">
+		                <div class="avatar-preview preview-lg"></div>
+		                <div class="avatar-preview preview-md"></div>
+		                <div class="avatar-preview preview-sm"></div>
+		              </div>
+		            </div>
+		<!-- 操作按钮 -->
+            <div class="row avatar-btns">
+              <div class="col-md-6">
+                 <div class="btn-group">
+		         <button type="button" class="btn btn-primary" data-method="setDragMode" data-option="move" title="Move">
+		           <span class="docs-tooltip" data-toggle="tooltip" title="$('#avatarInput').cropper(&quot;setDragMode&quot;, &quot;move&quot;)">
+		             <span class="fa fa-arrows"></span>
+		           </span>
+		         </button>
+		         <button type="button" class="btn btn-primary" data-method="setDragMode" data-option="crop" title="Crop">
+		           <span class="docs-tooltip" data-toggle="tooltip" title="$('#avatarInput').cropper(&quot;setDragMode&quot;, &quot;crop&quot;)">
+		             <span class="fa fa-crop"></span>
+		           </span>
+		         </button>
+		       </div>
+		        <div class="btn-group">
+		         <button type="button" class="btn btn-primary" data-method="zoom" data-option="0.1" title="Zoom In">
+		           <span class="docs-tooltip" data-toggle="tooltip" title="$('#avatarInput').cropper(&quot;zoom&quot;, 0.1)">
+		             <span class="fa fa-search-plus"></span>
+		           </span>
+		         </button>
+		         <button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.1" title="Zoom Out">
+		           <span class="docs-tooltip" data-toggle="tooltip" title="$('#avatarInput').cropper(&quot;zoom&quot;, -0.1)">
+		             <span class="fa fa-search-minus"></span>
+		           </span>
+		         </button>
+		       </div>
+		       <div class="btn-group">
+		         <button type="button" class="btn btn-primary" data-method="rotate" data-option="45" title="Rotate Right">
+		           <span class="docs-tooltip" data-toggle="tooltip" title="$('#avatarInput').cropper(&quot;rotate&quot;, 45)">
+		             <span class="fa fa-rotate-right"></span>
+		           </span>
+		         </button>
+		       </div>
+	              </div>
+	              <div class="col-md-2">
+	                <button type="submit" class="btn btn-primary btn-block avatar-save">提交</button>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	      </form>
+	    </div>
+		  </div>
+		</div><!-- /.modal -->
+		<!-- Loading state -->
+		  <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+		</div>
+		<!-- end -->
+			</div>
+		 </div>
+	  </div>
+    </div>
 	<sf:form method="post" modelAttribute="articleVo" class="form form-horizontal" id="form-article-add">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>文章标题：</label>
@@ -97,15 +196,14 @@
 			<div class="formControls col-xs-8 col-sm-9">
 				<div class="uploader-thum-container">
 					<div id="fileList" class="uploader-list"></div>
-					<div id="filePicker">选择图片</div><br>
-					<button id="btn-star" class="btn btn-default btn-uploadstar radius ml-10">开始上传</button>
+					<div id="filePicker" style="float:left;">选择图片</div>
+					<button id="btn-star" style="height:40px;" class="btn btn-default btn-uploadstar radius ml-10">开始上传</button>
 				</div>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">文章内容：</label>
 			<div class="formControls col-xs-8 col-sm-9"> 
-			<!-- 	<script id="editor" type="text/plain" style="width:100%;height:400px;"></script>  -->
 				<sf:textarea path="content" id="editor" type="text/plain" style="width:100%;height:400px;"/>
 			</div>
 		</div>
@@ -135,8 +233,10 @@
 <script type="text/javascript" src="<%=path %>/resources/lib/ueditor/1.4.3.3/ueditor.all.min.js"> </script> 
 <script type="text/javascript" src="<%=path %>/resources/lib/ueditor/1.4.3.3/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/lib/ztree/js/jquery.ztree.core.min.js"></script>
+<script type="text/javascript" src="<%=path %>/resources/cropper/js/bootstraps.min.js"></script>
+<script type="text/javascript" src="<%=path %>/resources/cropper/js/cropper.min.js"></script>
+<script type="text/javascript" src="<%=path %>/resources/cropper/js/mains.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.channel.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.articleSave.js"></script>
-<script type="text/javascript" src="<%=path %>/resources/defaultScript/com.seelecloud.scms.articleUpdate.js"></script>
 </body>
 </html>
