@@ -17,7 +17,7 @@ import org.apache.ibatis.annotations.Param;
 import com.seelecloud.cms.entity.Download;
 
 /**
- * @description: 
+ * @description: 管理资源文件被下载的详细记录
  * @author: vabo
  * @version:
  * @Datetime:2016年11月8日
@@ -27,50 +27,52 @@ public interface DownloadDao {
 
 	/**
 	 * 写入一条新的下载记录
+	 * 
 	 * @param download
 	 */
 	public void save(Download download);
 
 	/**
 	 * 按时间查询指定资源的下载记录
+	 * 
+	 * @param resourceUuid
 	 * @param startTime
 	 * @param endTime
 	 * @return
 	 */
 	public int getTotalByTime(
-			@Param("resourceId")int resourceId,
-			@Param("channelId")int channelId,
+			@Param("resourceUuid") String resourceUuid,
 			@Param("startTime") Date startTime,
 			@Param("endTime") Date endTime);
 
 	/**
 	 * 列出指定资源在时间段内的下载记录
-	 * @param resourceId
+	 * 
+	 * @param resourceUuid
 	 * @param channelId
 	 * @param startTime
 	 * @param endTime
 	 * @return
 	 */
 	public List<Download> listByTime(
-			@Param("resourceId")int resourceId,
-			@Param("channelId")int channelId,
+			@Param("resourceUuid") String resourceUuid,
 			@Param("startTime") Date startTime,
 			@Param("endTime") Date endTime);
-	
+
 	/**
 	 * 查询资源的所有下载记录
-	 * @param userId
+	 * 
+	 * @param resourceUuid
 	 * @return
 	 */
-	public List<Download> listByResource(
-			@Param("resourceId")int resourceId,
-			@Param("channelId")int channelId);
-	
+	public List<Download> listByResourceUuid(@Param("resourceUuid") String resourceUuid);
+
 	/**
 	 * 查询用户的下载记录
+	 * 
 	 * @param userId
 	 * @return
 	 */
 	public List<Download> listByUser(@Param("userId") int userId);
-	
+
 }

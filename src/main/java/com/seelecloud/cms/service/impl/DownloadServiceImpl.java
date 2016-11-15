@@ -39,18 +39,15 @@ public class DownloadServiceImpl implements DownloadService {
 	}
 
 	@Override
-	public int getTotalByTime(int resourceId, int channelId, Date startTime,
-			Date endTime) {
-		return this.downloadDao.getTotalByTime(resourceId, channelId,
-				startTime, endTime);
+	public int getTotalByTime(String resourceUuid, Date startTime, Date endTime) {
+		return this.downloadDao
+				.getTotalByTime(resourceUuid, startTime, endTime);
 	}
 
 	@Override
-	public List<Download> listByTime(@Param("resourceId") int resourceId,
-			@Param("channelId") int channelId,
+	public List<Download> listByTime(@Param("resourceId") String resourceUuid,
 			@Param("startTime") Date startTime, @Param("endTime") Date endTime) {
-		return this.downloadDao.listByTime(resourceId, channelId, startTime,
-				endTime);
+		return this.downloadDao.listByTime(resourceUuid, startTime, endTime);
 	}
 
 	@Override
@@ -59,8 +56,8 @@ public class DownloadServiceImpl implements DownloadService {
 	}
 
 	@Override
-	public List<Download> listByResource(int resourceId, int channelId) {
-		return this.downloadDao.listByResource(resourceId, channelId);
+	public List<Download> listByResourceUuid(String resourceUuid) {
+		return this.downloadDao.listByResourceUuid(resourceUuid);
 	}
 
 }

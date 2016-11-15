@@ -11,9 +11,9 @@ import com.seelecloud.cms.entity.Article;
  */
 public class ArticleVo {
 	/**
-	 * 文章id,数据库主键
+	 * 文章UUID,数据库主键
 	 */
-	private int id;
+	private String uuid;
 
 	/**
 	 * 文章标题
@@ -95,12 +95,12 @@ public class ArticleVo {
 	 */
 	private String content;
 	
-	public int getId() {
-		return id;
+	public String getUuid() {
+		return uuid;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 
 	public String getTitle() {
@@ -233,10 +233,10 @@ public class ArticleVo {
 
 	
 	
-	public ArticleVo(int id, String title, String description,Date createTime,Date publishTime, String publisher, String channelName,
+	public ArticleVo(String uuid, String title, String description,Date createTime,Date publishTime, String publisher, String channelName,
 			byte status, boolean recommend) {
 		super();
-		this.id = id;
+		this.uuid = uuid;
 		this.title = title;
 		this.description = description;
 		this.createTime = createTime;
@@ -252,7 +252,7 @@ public class ArticleVo {
 	}
 
 	public ArticleVo(Article article,String publisher,String channelName,String content) {
-		this.setId(article.getId());
+		this.setUuid(article.getUuid());
 		this.setTitle(article.getTitle());
 		this.setChannelName(channelName);
 		this.setSubtitle(article.getSubtitle());
@@ -266,7 +266,7 @@ public class ArticleVo {
 
 	@Override
 	public String toString() {
-		return "ArticleVo [id=" + id + ", title=" + title + ", subtitle="
+		return "ArticleVo [uuid=" + uuid + ", title=" + title + ", subtitle="
 				+ subtitle + ", description=" + description + ", frontCover="
 				+ frontCover + ", keyword=" + keyword + ", creator=" + creator
 				+ ", publishTime=" + publishTime + ", publisher=" + publisher

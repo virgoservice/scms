@@ -16,8 +16,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.seelecloud.cms.entity.ContentType;
-import com.seelecloud.cms.service.ContentTypeService;
+import com.seelecloud.cms.entity.ChannelType;
+import com.seelecloud.cms.service.ChannelTypeService;
 
 /**
  * @description: 
@@ -26,62 +26,47 @@ import com.seelecloud.cms.service.ContentTypeService;
  * @Datetime:2016年10月24日
  * @Email:
  */
-public class ContentTypeServiceTest {
+public class ChannelTypeServiceTest {
 
-	private ContentTypeService contentTypeService;
+	private ChannelTypeService channelTypeService;
 	
 	@Before
 	public void before(){
 		System.out.print("begin test!");
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"classpath:/spring.xml","classpath:/spring-mybatis.xml"});
-		contentTypeService = (ContentTypeService)context.getBean("contentTypeService");
+		channelTypeService = (ChannelTypeService)context.getBean("channelTypeService");
 	}
 	
 	@Test
 	public void testSave()
 	{
-		ContentType contentType = new ContentType();
-		contentType.setId(4);
-		contentType.setName("media");
-		contentType.setDescription("media");
-		this.contentTypeService.save(contentType);
+		ChannelType ChannelType = new ChannelType();
+		ChannelType.setId(4);
+		ChannelType.setName("media");
+		ChannelType.setDescription("media");
+		this.channelTypeService.save(ChannelType);
 	}
 
 	@Ignore
 	@Test
 	public void testUpdate()
 	{
-		ContentType contentType = new ContentType();
-		contentType.setId(2);
-		contentType.setName("article");
-		contentType.setDescription("description");
-		this.contentTypeService.save(contentType);
+		ChannelType ChannelType = new ChannelType();
+		ChannelType.setId(2);
+		ChannelType.setName("article");
+		ChannelType.setDescription("description");
+		this.channelTypeService.save(ChannelType);
 	}
 	
 	@Test
 	public void testFindById()
 	{
-		ContentType contentType = null;
-		contentType = this.contentTypeService.findById(3);
-		if(contentType != null)
+		ChannelType ChannelType = null;
+		ChannelType = this.channelTypeService.findById(3);
+		if(ChannelType != null)
 		{
-			System.out.println(contentType.toString());
-		}
-		else{
-			System.out.println("no found!");
-		}
-	}
-	
-	@Ignore
-	@Test
-	public void testFindByName()
-	{
-		ContentType contentType = null;
-		contentType = this.contentTypeService.findByName("article");
-		if(contentType != null)
-		{
-			System.out.println(contentType.toString());
+			System.out.println(ChannelType.toString());
 		}
 		else{
 			System.out.println("no found!");

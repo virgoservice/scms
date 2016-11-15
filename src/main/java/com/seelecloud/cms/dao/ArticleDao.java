@@ -29,9 +29,9 @@ public interface ArticleDao {
 
 	public int update(Article article);
 
-	public int deleteById(Integer id);
+	public int deleteByUuid(String uuid);
 
-	public Article findById(Integer id);
+	public Article findByUuid(String uuid);
 	
 	public List<Article> listByChannelId(int channelId);
 	
@@ -47,6 +47,12 @@ public interface ArticleDao {
 
 	public List<Article> listBySource(String source);
 	
-	public List<Article> listByBases(@Param("creatorId")Integer creatorId,@Param("status")Integer status,@Param("channelId")Integer channelId,@Param("title")String title);
+	public List<Article> listByConditions(
+			@Param("creatorId") Integer creatorId,
+			@Param("status") Integer status,
+			@Param("channelId") Integer channelId,
+			@Param("title") String title,
+			@Param("orderBy")String orderBy,
+			@Param("isAsc")boolean isAsc);
 	
 }

@@ -28,9 +28,9 @@ public interface FileDao {
 
 	public void update(FileEntity file);
 
-	public void deleteById(@Param("id") int id);
+	public void deleteByUuid(@Param("uuid") String uuid);
 
-	public FileEntity findById(@Param("id") int id);
+	public FileEntity findByUuid(@Param("uuid") String uuid);
 
 	public List<FileEntity> listByChannel(@Param("channelId") int channelId);
 

@@ -50,38 +50,28 @@ public class ArticleServiceTest {
 	@Test
 	public void testSave() {
 		Article article = new Article();
-		article.setId(14);
 		article.setTitle("title");
 		article.setSubtitle("sub title");
 		article.setDescription("abcdef");
-		article.setFrontCover("fc");
+		article.setFrontCover("66aeb5c759c44257a2a8489f5c03ba41");
 		article.setKeyword("kw");
 		article.setCreateTime(new Date());
 		article.setChannelId(0);
 		this.articleService.save(article);
+		System.out.println("uuid = " + article.getUuid());
 	}
 
+	@Ignore
 	@Test
 	public void testUpdate() {
-		Article article = this.articleService.findById(14);
+		Article article = this.articleService
+				.findByUuid("739d55dcb220439197e52cfd3c875852");
 		if (article != null) {
 			article.setDescription("hhhhhhh");
 			article.setKeyword("kw");
 			article.setPublishTime(new Date());
 			article.setSubtitle("sub title 2");
 			this.articleService.update(article);
-		}
-	}
-
-	@Ignore
-	@Test
-	public void testFindById() {
-		Article article = null;
-		article = this.articleService.findById(2);
-		if (article != null) {
-			log.info(article.toString());
-		} else {
-			log.info("no found");
 		}
 	}
 
@@ -98,10 +88,11 @@ public class ArticleServiceTest {
 		}
 	}
 	
+//	@Ignore
 	@Test
-	public void testListByBases() {
+	public void testListByConditions() {
 		List<Article> articleList = null;
-		articleList = this.articleService.listByBases(0, 1 ,6,"csdn");
+		articleList = this.articleService.listByConditions(0, 0, 0, "title", "createTime", true);
 		if (articleList != null) {
 			for (Article a : articleList)
 				log.info(a.toString());

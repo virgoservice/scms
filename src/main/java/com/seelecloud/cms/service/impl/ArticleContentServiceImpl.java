@@ -32,33 +32,28 @@ public class ArticleContentServiceImpl implements ArticleContentService {
 	ArticleContentDao articleContentDao;
 	
 	@Override
-	public void SaveArticleSection(ArticleContent articleContent) {
-		this.articleContentDao.insert(articleContent);
+	public void save(ArticleContent articleContent) {
+		this.articleContentDao.save(articleContent);
 	}
 
 	@Override
-	public void deleteArticleContent(int id) {
-		this.articleContentDao.deleteById(id);
+	public void deleteByUuid(String uuid) {
+		this.articleContentDao.deleteByUuid(uuid);
 	}
-
-	@Override
-	public List<ArticleContent> listArticleContent(int id) {
-		return this.articleContentDao.listArticleContent(id);
-	}
-
-	@Override
-	public ArticleContent findArticleSection(int id, int sectionNum) {
-		return this.articleContentDao.findArticleSection(id, sectionNum);
-	}
-
+	
 	@Override
 	public void update(ArticleContent articleContent) {
 		this.articleContentDao.update(articleContent);
 	}
 
 	@Override
-	public ArticleContent listArticleById(int id) {
-		return this.articleContentDao.listArticleById(id);
+	public ArticleContent findArticleSection(String uuid, int sectionNum) {
+		return this.articleContentDao.findArticleSection(uuid, sectionNum);
+	}
+	
+	@Override
+	public List<ArticleContent> listArticleAllContent(String uuid) {
+		return this.articleContentDao.listArticleAllContent(uuid);
 	}
 
 }

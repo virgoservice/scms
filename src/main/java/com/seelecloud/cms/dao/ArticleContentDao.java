@@ -14,7 +14,7 @@ import java.util.List;
 import com.seelecloud.cms.entity.ArticleContent;
 
 /**
- * @description: 
+ * @description:
  * @author: vabo
  * @version:
  * @Datetime:2016年10月24日
@@ -22,16 +22,14 @@ import com.seelecloud.cms.entity.ArticleContent;
  */
 public interface ArticleContentDao {
 
-    public int deleteById(Integer id);
+	public void save(ArticleContent articleContent);
 
-    public void insert(ArticleContent articleContent);
+	public int deleteByUuid(String uuid);
 
-    public ArticleContent findArticleSection(int id, int sectionNum);
-    
-    public List<ArticleContent> listArticleContent(int id);
-    
-    public void update(ArticleContent articleContent);
-    
-    public ArticleContent listArticleById(int id);
+	public void update(ArticleContent articleContent);
+
+	public ArticleContent findArticleSection(String uuid, int sectionNum);
+
+	public List<ArticleContent> listArticleAllContent(String uuid);
 
 }

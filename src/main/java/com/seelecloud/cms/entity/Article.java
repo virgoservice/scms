@@ -21,9 +21,9 @@ import java.util.Date;
 public class Article {
 
 	/**
-	 * 文章id,数据库主键
+	 * 文章UUID,数据库主键
 	 */
-	private int id;
+	private String uuid;
 
 	/**
 	 * 文章标题
@@ -49,16 +49,16 @@ public class Article {
 	 * 文章关键词,用于检索
 	 */
 	private String keyword;
-
-	/**
-	 * 文章创建者
-	 */
-	private int creatorId;
 	
 	/**
 	 * 文章原作者
 	 */
 	private String author;
+
+	/**
+	 * 文章创建者
+	 */
+	private int creatorId;
 	
 	/**
 	 * 文章创建时间
@@ -119,13 +119,13 @@ public class Article {
 		super();
 	}
 
-	public Article(int id, String title, String subtitle, String description,
+	public Article(String uuid, String title, String subtitle, String description,
 			String frontCover, String keyword, int creatorId, Date createTime,
 			Date publishTime, int publisherId, int category, int size,
 			String author, String source, int channelId, int hint, int agree,
 			byte status, boolean recommend) {
 		super();
-		this.id = id;
+		this.uuid = uuid;
 		this.title = title;
 		this.subtitle = subtitle;
 		this.description = description;
@@ -145,12 +145,12 @@ public class Article {
 		this.recommend = recommend;
 	}
 
-	public int getId() {
-		return id;
+	public String getUuid() {
+		return uuid;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 
 	public String getTitle() {
@@ -299,7 +299,7 @@ public class Article {
 
 	@Override
 	public String toString() {
-		return "Article [id=" + id + ", title=" + title + ", subtitle="
+		return "Article [uuid=" + uuid + ", title=" + title + ", subtitle="
 				+ subtitle + ", description=" + description + ", frontCover="
 				+ frontCover + ", keyword=" + keyword + ", creatorId="
 				+ creatorId + ", author=" + author + ", createTime="

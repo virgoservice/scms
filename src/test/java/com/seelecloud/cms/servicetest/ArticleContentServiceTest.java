@@ -47,20 +47,19 @@ public class ArticleContentServiceTest {
 	@Test
 	public void testSave() {
 		ArticleContent articleContent = new ArticleContent();
-		articleContent.setId(1);
 
-		int i = 3;
-		while (i-- >= 0) {
+		articleContent.setUuid("739d55dcb220439197e52cfd3c875852");
+		for (int i=3; i> 0; i--) {
 			articleContent.setSectionNum(i);
-			articleContent.setContent(i + "this is a text!");
-			this.articleContentService.SaveArticleSection(articleContent);
+			articleContent.setContent(i + "this is a text " + i);
+			this.articleContentService.save(articleContent);
 		}
 	}
 
 	@Test
 	public void testFind() {
 		List<ArticleContent> acList = null;
-		acList = this.articleContentService.listArticleContent(1);
+		acList = this.articleContentService.listArticleAllContent("739d55dcb220439197e52cfd3c875852");
 		if (acList != null) {
 			for (ArticleContent ac : acList) {
 				System.out.println(ac.toString());

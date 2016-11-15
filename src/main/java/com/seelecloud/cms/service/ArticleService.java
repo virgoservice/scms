@@ -17,7 +17,7 @@ import org.apache.ibatis.annotations.Param;
 import com.seelecloud.cms.entity.Article;
 
 /**
- * @description:
+ * @description:文章实体的增删改查方法接口
  * @author: vabo
  * @version:
  * @Datetime:2016年10月24日
@@ -42,17 +42,17 @@ public interface ArticleService {
 	/**
 	 * 删除指定一篇文章
 	 * 
-	 * @param id
+	 * @param uuid
 	 */
-	public void delete(@Param("id") int id);
+	public void deleteByUuid(@Param("uuid") String uuid);
 
 	/**
 	 * 根据文章id 查找文章实体
 	 * 
-	 * @param id
+	 * @param uuid
 	 * @return
 	 */
-	public Article findById(@Param("id") int id);
+	public Article findByUuid(@Param("uuid") String uuid);
 
 	/**
 	 * 根据栏目id 查找文章列表
@@ -116,5 +116,11 @@ public interface ArticleService {
 	 * @param status
 	 * @return
 	 */
-	public List<Article> listByBases(@Param("creatorId")Integer creatorId,@Param("status")Integer status,@Param("channelId")Integer channelId,@Param("title")String title);
+	public List<Article> listByConditions(
+			@Param("creatorId") Integer creatorId,
+			@Param("status") Integer status,
+			@Param("channelId") Integer channelId,
+			@Param("title") String title,
+			@Param("orderBy")String orderBy,
+			@Param("idAsc")boolean isAsc);
 }

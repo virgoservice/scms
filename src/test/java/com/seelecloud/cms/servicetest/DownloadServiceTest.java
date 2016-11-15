@@ -10,7 +10,6 @@
 package com.seelecloud.cms.servicetest;
 
 import java.util.Date;
-import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -59,33 +58,15 @@ public class DownloadServiceTest {
 	@Ignore
 	@Test
 	public void testGetTotalCount(){
-		int total = 0;
-		Date start = new Date(0);
-		Date end = new Date();
-		total = this.downloadService.getTotalByTime(0, 0, start, end);
-		System.out.println(start.toString() + " total = " + total);
 	}
 	
+	@Ignore
 	@Test
 	public void testListByTime(){
-		List<Download> downloadList = null;
-		downloadList = this.downloadService.listByTime(0, 0, new Date(0), new Date());
-		if(downloadList != null)
-		{
-			for(Download d:downloadList)
-			System.out.println(d.getId() + " ++ " + d.getTime());
-		}
 	}
 	
 	@Test
-	public void testListByResource(){
-		List<Download> downloadList = null;
-		downloadList = this.downloadService.listByResource(0, 0);
-		if(downloadList != null)
-		{
-			for(Download d:downloadList)
-				System.out.println(d.getId() + " == " + d.getTime());
-		}
+	public void testListByResourceUuid(){
 	}
 	
 	@After

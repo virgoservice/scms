@@ -48,7 +48,7 @@ public class FileServiceTest {
 		FileEntity file = new FileEntity();
 		for (int i = 0; i < 10; i++) {
 			file.setCreatorId(i);
-			file.setCreateTime(new Date());
+			file.setCreateTime(new Date(i*1000000));
 			this.fileService.save(file);
 		}
 	}
@@ -57,7 +57,7 @@ public class FileServiceTest {
 	@Test
 	public void testUpdate() {
 		FileEntity file = new FileEntity();
-		file.setId(4);
+		file.setUuid("66aeb5c759c44257a2a8489f5c03ba41");
 		file.setCreateTime(new Date());
 		this.fileService.update(file);
 	}
@@ -65,18 +65,20 @@ public class FileServiceTest {
 	@Ignore
 	@Test
 	public void testDelete() {
-		this.fileService.deleteById(5);
+		this.fileService.deleteByUuid("66aeb5c759c44257a2a8489f5c03ba41");
 	}
 
+//	@Ignore
 	@Test
 	public void testFind() {
 		FileEntity file = null;
-		file = this.fileService.findById(1);
+		file = this.fileService.findByUuid("66aeb5c759c44257a2a8489f5c03ba41");
 		if (file != null) {
-			System.out.print("find:" + file.getId());
+			System.out.println("found:" + file.getUuid() + "\tcreatorId=" + file.getCreatorId());
 		}
 	}
 
+	@Ignore
 	@Test
 	public void testListByChannel() {
 		List<FileEntity> list = null;
@@ -88,6 +90,7 @@ public class FileServiceTest {
 		}
 	}
 
+	@Ignore
 	@Test
 	public void testListByCreator() {
 		List<FileEntity> list = null;

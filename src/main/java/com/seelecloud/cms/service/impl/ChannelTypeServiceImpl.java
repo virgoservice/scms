@@ -14,9 +14,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.seelecloud.cms.dao.ContentTypeDao;
-import com.seelecloud.cms.entity.ContentType;
-import com.seelecloud.cms.service.ContentTypeService;
+import com.seelecloud.cms.dao.ChannelTypeDao;
+import com.seelecloud.cms.entity.ChannelType;
+import com.seelecloud.cms.service.ChannelTypeService;
 
 /**
  * @description:
@@ -25,41 +25,40 @@ import com.seelecloud.cms.service.ContentTypeService;
  * @Datetime:2016年10月24日
  * @Email:
  */
-@Service("contentTypeService")
-public class ContentTypeServiceImpl implements ContentTypeService {
+@Service("channelTypeService")
+public class ChannelTypeServiceImpl implements ChannelTypeService {
 
 	@Autowired
-	ContentTypeDao contentTypeDao;
+	ChannelTypeDao channelTypeDao;
 
 	@Override
-	public void save(ContentType contentType) {
-		this.contentTypeDao.insert(contentType);
+	public void save(ChannelType channelType) {
+		this.channelTypeDao.save(channelType);
 	}
 
 	@Override
-	public void update(ContentType contentType) {
-		this.contentTypeDao.updateByPrimaryKeySelective(contentType);
+	public void update(ChannelType channelType) {
+		this.channelTypeDao.update(channelType);
 	}
 
 	@Override
-	public void delete(int id) {
-		this.contentTypeDao.deleteByPrimaryKey(id);
+	public void deleteById(int id) {
+		this.channelTypeDao.deleteById(id);
 	}
 
 	@Override
-	public ContentType findById(int id) {
-		return this.contentTypeDao.selectByPrimaryKey(id);
+	public ChannelType findById(int id) {
+		return this.channelTypeDao.findById(id);
 	}
 
 	@Override
-	public ContentType findByName(String name) {
-		return this.contentTypeDao.selectByName(name);
+	public String findNameById(Integer id) {
+		return this.channelTypeDao.findNameById(id);
 	}
 
 	@Override
-	public List<ContentType> findNameById(Integer id) {
-		return this.contentTypeDao.selectNameById(id);
+	public List<ChannelType> listAllChannelType() {
+		return this.channelTypeDao.listAllChannelType();
 	}
-	
-	
+
 }

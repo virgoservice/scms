@@ -25,46 +25,41 @@ import com.seelecloud.cms.entity.ArticleContent;
 public interface ArticleContentService {
 
 	/**
-	 * 
+	 * 新增一段文章内容
 	 * @param articleContent
 	 */
-	public void SaveArticleSection(ArticleContent articleContent);
-	
+	public void save(ArticleContent articleContent);
+
 	/**
 	 * 根据对象更新文章所有内容
+	 * 
 	 * @param articleContent
 	 */
 	public void update(ArticleContent articleContent);
 
 	/**
 	 * 根据id删除文章所有内容
-	 * @param id
-	 */
-	public void deleteArticleContent(@Param("id")int id);
-	
-	/**
-	 * 根据文章id，查找正文片段
 	 * 
-	 * @param id
+	 * @param uuid
+	 */
+	public void deleteByUuid(@Param("uuid") String uuid);
+
+	/**
+	 * 根据文章uuid，查找所有正文片段
+	 * 
+	 * @param uuid
 	 * @return
 	 */
-	public ArticleContent listArticleById(@Param("id") int id);
-	
-	/**
-	 * 根据文章id，查找所有正文片段
-	 * 
-	 * @param id
-	 * @return
-	 */
-	public List<ArticleContent> listArticleContent(@Param("id") int id);
-	
+	public List<ArticleContent> listArticleAllContent(@Param("uuid") String uuid);
+
 	/**
 	 * 根据片段编号查找指定片段内容
 	 * 
-	 * @param id
+	 * @param uuid
 	 * @param sectionNum
 	 * @return
 	 */
-	public ArticleContent findArticleSection(@Param("id") int id,
+	public ArticleContent findArticleSection(@Param("uuid") String uuid,
 			@Param("sectionNum") int sectionNum);
+
 }

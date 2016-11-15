@@ -21,9 +21,9 @@ import java.util.Date;
 public class FileEntity {
 
 	/**
-	 * 文件id,数据库主键
+	 * 文件uuid,数据库主键
 	 */
-	private int id;
+	private String uuid;
 
 	/**
 	 * 文件标题
@@ -109,13 +109,13 @@ public class FileEntity {
 		super();
 	}
 
-	public FileEntity(int id, String title, String description, int format,
+	public FileEntity(String uuid, String title, String description, int format,
 			String keyword, String resourceUrl, int category, int creatorId,
 			Date createTime, Date publishTime, int publisherId, int size,
 			String source, int channelId, byte status, boolean recommend,
 			int permission) {
 		super();
-		this.id = id;
+		this.uuid = uuid;
 		this.title = title;
 		this.description = description;
 		this.format = format;
@@ -134,12 +134,12 @@ public class FileEntity {
 		this.permission = permission;
 	}
 
-	public int getId() {
-		return id;
+	public String getUuid() {
+		return uuid;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 
 	public String getTitle() {
@@ -272,7 +272,7 @@ public class FileEntity {
 
 	@Override
 	public String toString() {
-		return "FileEntity [id=" + id + ", title=" + title + ", description="
+		return "FileEntity [uuid=" + uuid + ", title=" + title + ", description="
 				+ description + ", format=" + format + ", keyword=" + keyword
 				+ ", resourceUrl=" + resourceUrl + ", category=" + category
 				+ ", creatorId=" + creatorId + ", createTime=" + createTime

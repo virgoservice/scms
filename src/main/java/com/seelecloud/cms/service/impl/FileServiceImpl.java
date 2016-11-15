@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import com.seelecloud.cms.dao.FileDao;
 import com.seelecloud.cms.entity.FileEntity;
 import com.seelecloud.cms.service.FileService;
+import com.seelecloud.cms.util.UUIDGenerator;
 
 /**
  * @description:
@@ -33,6 +34,8 @@ public class FileServiceImpl implements FileService {
 
 	@Override
 	public void save(FileEntity file) {
+		String uuid = UUIDGenerator.getUUID();
+		file.setUuid(uuid);
 		this.fileDao.save(file);
 	}
 
@@ -42,13 +45,13 @@ public class FileServiceImpl implements FileService {
 	}
 
 	@Override
-	public void deleteById(int id) {
-		this.fileDao.deleteById(id);
+	public void deleteByUuid(String uuid) {
+		this.fileDao.deleteByUuid(uuid);
 	}
 
 	@Override
-	public FileEntity findById(int id) {
-		return this.fileDao.findById(id);
+	public FileEntity findByUuid(String uuid) {
+		return this.fileDao.findByUuid(uuid);
 	}
 
 	@Override

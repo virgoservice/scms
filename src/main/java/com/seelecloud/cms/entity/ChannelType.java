@@ -10,13 +10,13 @@
 package com.seelecloud.cms.entity;
 
 /**
- * @description: 内容分类类型:如文章,多媒体文件(Audio,Media,Picture),栏目(Navigation),专题
+ * @description: 栏目分类类型: 如文章,多媒体文件(Audio,Media,Picture),专题等
  * @author: vabo
  * @version:
- * @Datetime:2016年10月24日
+ * @Datetime:2016年11月15日
  * @Email:
  */
-public class ContentType {
+public class ChannelType {
 	
 	/**
 	 * 类型的编号
@@ -32,6 +32,16 @@ public class ContentType {
 	 * 说明
 	 */
 	private String description;
+
+	public ChannelType() {
+	}
+
+	public ChannelType(int id, String name, String description) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+	}
 
 	public int getId() {
 		return id;

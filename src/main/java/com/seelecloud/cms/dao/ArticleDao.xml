@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.seelecloud.cms.dao.ArticleDao">
 	<resultMap id="BaseResultMap" type="com.seelecloud.cms.entity.Article">
-		<id column="id" jdbcType="INTEGER" property="id" />
+		<id column="uuid" jdbcType="VARCHAR" property="uuid" />
 		<result column="title" jdbcType="VARCHAR" property="title" />
 		<result column="subtitle" jdbcType="VARCHAR" property="subtitle" />
 		<result column="description" jdbcType="VARCHAR" property="description" />
 		<result column="frontCover" jdbcType="VARCHAR" property="frontCover" />
 		<result column="keyword" jdbcType="VARCHAR" property="keyword" />
-		<result column="creatorId" jdbcType="INTEGER" property="creatorId" />
 		<result column="author" jdbcType="VARCHAR" property="author" />
+		<result column="creatorId" jdbcType="INTEGER" property="creatorId" />
 		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
 		<result column="publishTime" jdbcType="TIMESTAMP" property="publishTime" />
 		<result column="publisherId" jdbcType="INTEGER" property="publisherId" />
@@ -24,25 +24,25 @@
 	</resultMap>
 
 	<sql id="Base_Column_List">
-		id, title, subtitle, description, frontCover, keyword,
-		creatorId, author, createTime, publishTime, publisherId, category,
+		uuid, title, subtitle, description, frontCover, keyword,
+		author, creatorId, createTime, publishTime, publisherId, category,
 		size, source, channelId, hint, agree, status, recommend
 	</sql>
 
 	<insert id="save" parameterType="com.seelecloud.cms.entity.Article">
-		insert into t_article (id,
-		title, subtitle, description, frontCover, keyword, creatorId, author,
+		insert into t_article (uuid,
+		title, subtitle, description, frontCover, keyword, author, creatorId,
 		createTime,	publishTime, publisherId, category, size, source,
 		channelId, hint, agree, status, recommend)
 		values (
-		#{id,jdbcType=INTEGER},
+		#{uuid,jdbcType=VARCHAR},
 		#{title,jdbcType=VARCHAR},
 		#{subtitle,jdbcType=VARCHAR},
 		#{description,jdbcType=VARCHAR},
 		#{frontCover,jdbcType=VARCHAR},
 		#{keyword,jdbcType=VARCHAR},
-		#{creatorId,jdbcType=INTEGER},
 		#{author,jdbcType=VARCHAR},
+		#{creatorId,jdbcType=INTEGER},
 		#{createTime,jdbcType=TIMESTAMP},
 		#{publishTime,jdbcType=TIMESTAMP},
 		#{publisherId,jdbcType=INTEGER},
@@ -74,11 +74,11 @@
 			<if test="keyword != null">
 				keyword = #{keyword,jdbcType=VARCHAR},
 			</if>
-			<if test="creatorId != null">
-				creatorId = #{creatorId,jdbcType=INTEGER},
-			</if>
 			<if test="author != null">
 				author = #{author,jdbcType=VARCHAR},
+			</if>
+			<if test="creatorId != null">
+				creatorId = #{creatorId,jdbcType=INTEGER},
 			</if>
 			<if test="createTime != null">
 				createTime = #{createTime,jdbcType=TIMESTAMP},
@@ -114,22 +114,22 @@
 				recommend = #{recommend,jdbcType=BIT},
 			</if>
 		</set>
-		where id = #{id,jdbcType=INTEGER}
+		where uuid = #{uuid,jdbcType=VARCHAR}
 	</update>
 
-	<delete id="deleteById" parameterType="java.lang.Integer">
+	<delete id="deleteByUuid" parameterType="java.lang.String">
 		delete from
 		t_article
 		where
-		id = #{id,jdbcType=INTEGER}
+		uuid = #{uuid,jdbcType=VARCHAR}
 	</delete>
 
-	<select id="findById" parameterType="java.lang.Integer"
+	<select id="findByUuid" parameterType="java.lang.String"
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from t_article
-		where id = #{id,jdbcType=INTEGER}
+		where uuid = #{uuid,jdbcType=VARCHAR}
 	</select>
 
 	<select id="listByChannelId" parameterType="java.lang.Integer"
@@ -137,7 +137,7 @@
 		select
 		<include refid="Base_Column_List" />
 		from t_article
-		where id = #{channelId,jdbcType=INTEGER}
+		where channelId = #{channelId,jdbcType=INTEGER}
 	</select>
 
 	<select id="listByCreatorId" parameterType="java.lang.Integer"
@@ -145,7 +145,7 @@
 		select
 		<include refid="Base_Column_List" />
 		from t_article
-		where id = #{creatorId,jdbcType=INTEGER}
+		where creatorId = #{creatorId,jdbcType=INTEGER}
 	</select>
 
 	<select id="listByPublisherId" parameterType="java.lang.Integer"
@@ -153,7 +153,7 @@
 		select
 		<include refid="Base_Column_List" />
 		from t_article
-		where id = #{publisherId,jdbcType=INTEGER}
+		where pulbisherId = #{publisherId,jdbcType=INTEGER}
 	</select>
 
 	<select id="listByPublishTime" parameterType="java.util.Date"
@@ -161,7 +161,8 @@
 		select
 		<include refid="Base_Column_List" />
 		from t_article
-		where id = 1
+		where publishTime between
+		 #{publishStartTime, jdbcType=TIMESTAMP} and #{publishEndTime, jdbcType=TIMESTAMP}
 	</select>
 
 	<select id="listByCreateTime" parameterType="java.util.Date"
@@ -169,7 +170,8 @@
 		select
 		<include refid="Base_Column_List" />
 		from t_article
-		where id = 1
+		where createTime between
+		 #{createStartTime, jdbcType=TIMESTAMP} and #{createEndTime, jdbcType=TIMESTAMP}
 	</select>
 
 	<select id="listBySource" parameterType="java.lang.String"
@@ -177,10 +179,10 @@
 		select
 		<include refid="Base_Column_List" />
 		from t_article
-		where id = #{source,jdbcType=VARCHAR}
+		where source = #{source,jdbcType=VARCHAR}
 	</select>
 	
-	<select id="listByBases" resultMap="BaseResultMap">
+	<select id="listByConditions" resultMap="BaseResultMap">
 		select * from t_article
 		where 1 = 1		
 		<if test="status != null">
@@ -195,7 +197,13 @@
 		<if test="title != null">
 		     and title like CONCAT('%','${title}','%' )  
 		</if>
-		order by createTime desc
+		order by #{orderBy}
+		<if test="isAsc == true">
+			ASC
+		</if>
+		<if test="isAsc == false">
+			DESC
+		</if>
 	</select>
 
 </mapper>

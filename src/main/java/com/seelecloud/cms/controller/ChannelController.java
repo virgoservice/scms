@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.seelecloud.cms.entity.Channel;
-import com.seelecloud.cms.entity.ContentType;
 import com.seelecloud.cms.service.ChannelService;
-import com.seelecloud.cms.service.ContentTypeService;
+import com.seelecloud.cms.service.ChannelTypeService;
 import com.seelecloud.cms.vo.ChannelVo;
 
 /** 
@@ -27,7 +26,7 @@ import com.seelecloud.cms.vo.ChannelVo;
 @RequestMapping("/admin/content")
 public class ChannelController {
 	@Autowired
-	private ContentTypeService contentTypeService;	
+	private ChannelTypeService channelTypeService;	
 	@Autowired
 	private ChannelService channelService;
 	
@@ -38,7 +37,7 @@ public class ChannelController {
 	 */
 	@RequestMapping(value = "/channel", method = RequestMethod.GET)
 	public String channel() {
-		return "content/channel";
+		return "channel/channel";
 	}
 
 	/**
@@ -73,18 +72,18 @@ public class ChannelController {
 	public void initChannel(Integer pid, Model model) {
 		ChannelVo cs = null;
 		List<ChannelVo> cLists = new ArrayList<ChannelVo>();
-		List<ContentType> cList = new ArrayList<ContentType>();
 		List<Channel> channelLists = channelService.listChannelByParent(pid);
+		String channelTypeName = null;
 
 		for (Channel channel : channelLists) {
-			cList = this.contentTypeService.findNameById(channel.getType());
-			for (ContentType c : cList) {// 用循环获取每一个值
-				cs = new ChannelVo(channel.getId(), c.getName(),
-						channel.getTitle(), channel.getHint(),
-						channel.getChannelOrder(), channel.getStatus(),
-						channel.isRecommend());
-				cLists.add(cs);
-			}
+			channelTypeName = this.channelTypeService.
+					findNameById(channel.getType());
+
+			cs = new ChannelVo(channel.getId(), channelTypeName,
+							channel.getTitle(), channel.getHint(),
+							channel.getChannelOrder(), channel.getStatus(),
+							channel.isRecommend());
+			cLists.add(cs);
 		}
 		model.addAttribute("channels", cLists);
 	}
@@ -100,7 +99,7 @@ public class ChannelController {
 	public String listChannelByParent(@PathVariable Integer pid, Model model) {
 		initRoot(pid, model);
 		initChannel(pid, model);
-		return "content/channelChild";
+		return "channel/channelChild";
 	}
 
 	/**
@@ -112,7 +111,7 @@ public class ChannelController {
 	public String channelSave(@PathVariable Integer pid, Model model) {
 		initRoot(pid, model);
 		model.addAttribute("channel", new Channel());
-		return "content/channelSave";
+		return "channel/channelSave";
 	}
 
 	/**
@@ -148,7 +147,7 @@ public class ChannelController {
 	public String channelUpdate(@PathVariable Integer id, Model model) {
 		Channel channel = channelService.findChannelById(id);
 		model.addAttribute("channel", channel);
-		return "content/channelUpdate";
+		return "channel/channelUpdate";
 	}
 
 	/**

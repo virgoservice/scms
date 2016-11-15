@@ -16,7 +16,7 @@ import org.apache.ibatis.annotations.Param;
 import com.seelecloud.cms.entity.FileEntity;
 
 /**
- * @description:
+ * @description: 资源文件实体管理, 新增文件, 删除文件, 修改文件属性
  * @author: vabo
  * @version:
  * @Datetime:2016年11月8日
@@ -28,9 +28,9 @@ public interface FileService {
 
 	public void update(FileEntity file);
 
-	public void deleteById(@Param("id") int id);
+	public void deleteByUuid(@Param("uuid") String uuid);
 
-	public FileEntity findById(@Param("id") int id);
+	public FileEntity findByUuid(@Param("uuid") String uuid);
 
 	public List<FileEntity> listByChannel(@Param("channelId") int channelId);
 

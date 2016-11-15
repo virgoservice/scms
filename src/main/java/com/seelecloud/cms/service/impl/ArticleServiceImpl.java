@@ -14,9 +14,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.seelecloud.cms.dao.ArticleDao;
 import com.seelecloud.cms.entity.Article;
 import com.seelecloud.cms.service.ArticleService;
+import com.seelecloud.cms.util.UUIDGenerator;
 
 /**
  * @description:
@@ -33,6 +35,8 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public void save(Article article) {
+		String uuid = UUIDGenerator.getUUID();
+		article.setUuid(uuid);
 		this.articleDao.save(article);
 	}
 
@@ -42,13 +46,13 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public void delete(int id) {
-		this.articleDao.deleteById(id);
+	public void deleteByUuid(String uuid) {
+		this.articleDao.deleteByUuid(uuid);
 	}
 
 	@Override
-	public Article findById(int id) {
-		return this.articleDao.findById(id);
+	public Article findByUuid(String uuid) {
+		return this.articleDao.findByUuid(uuid);
 	}
 
 	@Override
@@ -84,7 +88,9 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public List<Article> listByBases(Integer creatorId, Integer status ,Integer channelId,String title) {
-		return this.articleDao.listByBases(creatorId,status,channelId,title);
+	public List<Article> listByConditions(Integer creatorId, Integer status,
+			Integer channelId, String title, String orderBy, boolean isAsc) {
+		return this.articleDao.listByConditions(creatorId, status, channelId,
+				title, orderBy, isAsc);
 	}
 }

@@ -19,9 +19,9 @@ package com.seelecloud.cms.entity;
 public class ArticleContent {
 
 	/**
-	 * 文章id
+	 * 文章UUID
 	 */
-	private int id;
+	private String uuid;
 
 	/**
 	 * 分段(页)码
@@ -36,19 +36,19 @@ public class ArticleContent {
 	public ArticleContent() {
 	}
 
-	public ArticleContent(int id, int sectionNum, String content) {
+	public ArticleContent(String uuid, int sectionNum, String content) {
 		super();
-		this.id = id;
+		this.uuid = uuid;
 		this.sectionNum = sectionNum;
 		this.content = content;
 	}
 
-	public int getId() {
-		return id;
+	public String getUuid() {
+		return uuid;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 
 	public int getSectionNum() {
@@ -69,7 +69,7 @@ public class ArticleContent {
 
 	@Override
 	public String toString() {
-		return "ArticleContent [id=" + id + ", sectionNum=" + sectionNum
+		return "ArticleContent [uuid=" + uuid + ", sectionNum=" + sectionNum
 				+ ", content=" + content + "]";
 	}
 

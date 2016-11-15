@@ -42,19 +42,20 @@ INSERT INTO `t_app` VALUES ('2', '贵州塞拉科技有限公司s', '让教育�
 -- Table structure for `t_article`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_article`;
+
 CREATE TABLE `t_article` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(32) NOT NULL,
   `title` varchar(64) DEFAULT NULL,
   `subtitle` varchar(64) DEFAULT NULL,
   `description` varchar(256) DEFAULT NULL,
-  `frontCover` varchar(128) DEFAULT NULL,
+  `frontCover` varchar(32) DEFAULT NULL,
   `keyword` varchar(128) DEFAULT NULL,
+  `author` varchar(64) DEFAULT NULL,
   `creatorId` int(11) DEFAULT NULL,
   `createTime` datetime DEFAULT NULL,
   `publishTime` datetime DEFAULT NULL,
   `publisherId` int(11) DEFAULT NULL,
   `category` int(11) DEFAULT NULL,
-  `author` varchar(32) DEFAULT NULL,
   `size` int(11) DEFAULT NULL,
   `source` varchar(128) DEFAULT NULL,
   `channelId` int(11) DEFAULT NULL,
@@ -62,42 +63,29 @@ CREATE TABLE `t_article` (
   `agree` int(11) DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL,
   `recommend` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COMMENT='文章实体, 必须通常属性(id,title.etc), 特殊属性(content,size,author,agree)';
+  PRIMARY KEY (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文章实体, 必须通常属性(id,title.etc), 特殊属性(content,size,author,agree)';
 
--- ----------------------------
--- Records of t_article
--- ----------------------------
-INSERT INTO `t_article` VALUES ('1', '校园天地,畅想未来', '校园天地', '校园百事通，试试我们的技术', null, null, '0', '2016-11-01 10:29:41', '2016-11-02 10:29:44', '0', '1', '张伟', '0', '', '0', '0', '0', '0', '1');
-INSERT INTO `t_article` VALUES ('2', '校园广播天地', '校园广播', '广播正能量，传递爱心你我他', null, null, '0', '2016-11-02 10:29:48', '2016-11-03 10:29:51', '0', '0', '丽华', '0', '', '0', '0', '0', '1', '0');
-INSERT INTO `t_article` VALUES ('3', 'csdn', '博客', 'CSDN深度IT技术博客,移动开发博客,Web前端博客', null, null, '0', '2016-11-07 17:16:57', null, '0', '0', null, '0', '', '0', '0', '0', '0', '0');
-INSERT INTO `t_article` VALUES ('49', 'oracle', '甲骨文公司', '甲骨文公司，全称甲骨文股份有限公司(甲骨文软件系统有限公司)，是全球最大的企业级软件公司，总部位于美国加利福尼亚州的红木滩。', null, null, '0', '2016-11-07 17:14:14', null, '0', '0', null, '0', '百度百科', '8', '0', '0', '0', '0');
-INSERT INTO `t_article` VALUES ('51', 'cms乖乖', '才描述', '的士国标vfgbg', null, null, '0', '2016-11-07 19:56:01', null, '0', '0', null, '0', '', '4', '0', '0', '0', '0');
-INSERT INTO `t_article` VALUES ('52', '婆媳拌嘴儿子抢喝农药身亡 婆婆闻讯服毒自杀', '婆媳拌嘴儿子抢喝农药身亡', '婆媳拌嘴儿子抢喝农药身亡 婆婆闻讯服毒自杀....', null, null, '0', '2016-11-07 20:04:56', null, '0', '0', null, '0', '', '7', '0', '0', '0', '0');
+/*Data for the table `t_article` */
 
--- ----------------------------
--- Table structure for `t_articlecontent`
--- ----------------------------
+insert  into `t_article`(`uuid`,`title`,`subtitle`,`description`,`frontCover`,`keyword`,`author`,`creatorId`,`createTime`,`publishTime`,`publisherId`,`category`,`size`,`source`,`channelId`,`hint`,`agree`,`status`,`recommend`) values ('739d55dcb220439197e52cfd3c875852','title','sub title 2','hhhhhhh','66aeb5c759c44257a2a8489f5c03ba41','kw',NULL,0,'2016-11-15 11:57:04','2016-11-15 11:59:36',0,0,0,NULL,0,0,0,0,0);
+
+/*Table structure for table `t_articlecontent` */
+
 DROP TABLE IF EXISTS `t_articlecontent`;
+
 CREATE TABLE `t_articlecontent` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(32) NOT NULL,
   `sectionNum` int(11) DEFAULT NULL,
-  `content` longtext,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='所有文章的正文，分片存储。';
+  `content` longtext
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='所有文章的正文，分片存储。';
 
--- ----------------------------
--- Records of t_articlecontent
--- ----------------------------
-INSERT INTO `t_articlecontent` VALUES ('1', '0', '<p>&nbsp;&nbsp;&nbsp;&nbsp;百度（Nasdaq：BIDU），全球最大的中文搜索引擎、最大的中文网站。1999年底,身在美国硅谷的李彦宏看到了中国互联网及中文搜索引擎服务的巨大发展潜力，抱着技术改变世界的梦想，他毅然辞掉硅谷的高薪工作，携搜索引擎专利技术，于 2000年1月1日在中关村创建了百度公司。\r\n“百度”二字,来自于八百年前南宋词人辛弃疾的一句词：众里寻他千百度。这句话描述了词人对理想的执着追求。</p><p>&nbsp;&nbsp;&nbsp;&nbsp;百度拥有数万名研发工程师，这是中国乃至全球最为优秀的技术团队。这支队伍掌握着世界上最为先进的搜索引擎技术，使百度成为中国掌握世界尖端科学核心技术的中国高科技企业，也使中国成为美国、俄罗斯、和韩国之外，全球仅有的4个拥有搜索引擎核心技术的国家之一。</p><p>&nbsp;</p><p><br/></p>');
-INSERT INTO `t_articlecontent` VALUES ('2', '0', '<p><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; line-height: 20.02px; background-color: rgb(255, 255, 255);\">甲骨文公司。。。</span></p>');
-INSERT INTO `t_articlecontent` VALUES ('4', '0', '<p>千万千万的趣味的武器服务器而服务</p>');
-INSERT INTO `t_articlecontent` VALUES ('5', '0', '<p><span class=\"ico ico_type_Original\" style=\"display: inline-block; width: 19px; height: 19px; margin: 0px 2px 0px 0px; vertical-align: middle; background: url(http://static.blog.csdn.net/images/ico_Original.gif) 0px 0px no-repeat;\"></span>&nbsp;</p><h1 style=\"margin: 0px; padding: 0px; display: inline; font-weight: normal; font-stretch: normal; font-size: 20px; vertical-align: middle;\"><span class=\"link_title\"><a href=\"http://blog.csdn.net/guguojin/article/details/6713244\" style=\"color: rgb(0, 0, 0); text-decoration: none;\">Java保存yyyy-MM-dd HH:mm:ss日期字符串到 oracle date类型字段[原]</a></span></h1><p><span class=\"link_categories\" style=\"margin: 0px 5px; float: left;\">标签：&nbsp;<a href=\"http://www.csdn.net/tag/date\" target=\"_blank\" style=\"color: rgb(51, 102, 153); text-decoration: none; display: inline-block; margin-right: 10px;\">date</a><a href=\"http://www.csdn.net/tag/oracle\" target=\"_blank\" style=\"color: rgb(51, 102, 153); text-decoration: none; display: inline-block; margin-right: 10px;\">oracle</a><a href=\"http://www.csdn.net/tag/java\" target=\"_blank\" style=\"color: rgb(51, 102, 153); text-decoration: none; display: inline-block; margin-right: 10px;\">java</a><a href=\"http://www.csdn.net/tag/sql\" target=\"_blank\" style=\"color: rgb(51, 102, 153); text-decoration: none; display: inline-block; margin-right: 10px;\">sql</a><a href=\"http://www.csdn.net/tag/insert\" target=\"_blank\" style=\"color: rgb(51, 102, 153); text-decoration: none; display: inline-block; margin-right: 10px;\">insert</a><a href=\"http://www.csdn.net/tag/function\" target=\"_blank\" style=\"color: rgb(51, 102, 153); text-decoration: none; display: inline-block; margin-right: 10px;\">function</a></span></p><p><span class=\"link_postdate\" style=\"margin: 0px 5px 0px 0px;\">2011-08-23 22:17</span>&nbsp;<span class=\"link_view\" style=\"margin: 0px 5px; padding: 0px 0px 0px 14px; background: url(http://static.blog.csdn.net/images/ico_view.png) 0% 50% no-repeat;\">12688人阅读</span>&nbsp;<span class=\"link_comments\" style=\"margin: 0px 5px; padding: 0px 0px 0px 14px; background: url(http://static.blog.csdn.net/images/ico_comm.png) 0% 50% no-repeat;\"><a href=\"http://blog.csdn.net/guguojin/article/details/6713244#comments\" style=\"color: rgb(51, 102, 153); text-decoration: none;\">评论</a>(0)</span>&nbsp;<span class=\"link_collect tracking-ad\" style=\"margin: 0px 5px;\"><a title=\"收藏\" target=\"_blank\" style=\"color: rgb(51, 102, 153);\">收藏</a></span>&nbsp;<span class=\"link_report\" style=\"margin: 0px 5px;\"><a href=\"http://blog.csdn.net/guguojin/article/details/6713244#report\" title=\"举报\" style=\"color: rgb(51, 102, 153); text-decoration: none;\">举报</a></span></p><p class=\"copyright_p\" style=\"height: 14px; line-height: 14px; border-left-style: solid; border-left-width: 3px; border-left-color: rgb(228, 28, 30); padding-left: 10px; color: rgb(102, 102, 102); font-size: 14px;\">版权声明：本文为博主原创文章，未经博主允许不得转载。</p><p><span style=\"color: rgb(51, 0, 51);\"><span style=\"background-color: rgb(255, 204, 204);\">+ &quot;&#39;,&#39;&quot;+ mytechnical + &quot;&#39;,TO_DATE(&#39;&quot;+mybirthday+&quot;&#39;,&#39;YYYY-MM-DD&#39;),&#39;&quot;+ myemail + &quot;&#39;,&#39;&quot;+ mytelephone<br/></span></span></p><p><span style=\"color: rgb(51, 0, 51);\"><span style=\"background-color: rgb(255, 204, 204);\"><br/></span></span></p><p><span style=\"color: rgb(51, 0, 51);\"><span style=\"background-color: rgb(255, 204, 204);\">TO_DATE(&#39;&#39;,&#39;&#39;)在SQL语句中不需要加‘’，但是为了获得变量必须用以上格式</span></span></p><p><span style=\"color: rgb(51, 0, 51);\">一、使用<a href=\"http://lib.csdn.net/base/oracle\" class=\"replace_word\" title=\"Oracle知识库\" target=\"_blank\" style=\"color: rgb(223, 52, 52); text-decoration: none; font-weight: bold;\">Oracle</a>函数：</span></p><p>TO_TIMESTAMP_TZ(&#39;2009-3-9 17:51:23.23 -05:00&#39;,&nbsp;&nbsp;&nbsp; &#39;YYYY-MM-D HH24:MI:SS.FF TZH:TZM&#39;)</p><p>TO_DATE(yourdate,&#39;YYYY-MM-D HH24:MI:SS&#39;);&nbsp;&nbsp;&nbsp; // 字符串转日期Date</p><p>T0_CHAR(yourdate,&#39;YYYY-MM-D HH24:MI:SS&#39;);&nbsp;&nbsp; // 日期Date转字符串</p><p>eg：</p><p>update t_fl_flownote set sendtime=TO_TIMESTAMP_TZ(&#39;2009-11-30 10:47:16&#39;,&#39;YYYY-MM-DD HH24:MI:SS&#39;)</p><p>二、转别人的日志</p><p><br/></p>');
-INSERT INTO `t_articlecontent` VALUES ('6', '0', '<p>扬子晚报讯（记者 \r\n梅建明）11月5日上午，在南京浦口区盘城街道的一农场内，承包这处土地的一家人中，婆媳两人因琐事拌嘴，婆婆一气之下拿出一瓶农药要喝，被儿子抢下，并赌气服下。众人将其送往医院急救，无奈药量大毒性强，不治身亡。在家的母亲得知儿子的死讯后，趁人不注意，也服下一瓶农药。相隔两个多小时，母子双双身亡。</p><p>据介绍，相继被送往医院救治的母子两人，来自福建，一家人在浦口盘城一个农场内承包土地种菜。当天上午10点左右，因为家庭琐事，婆婆跟媳妇吵嘴，婆婆很生气，拿起家里存放的一瓶用于杀虫的农药要喝。此时，两边劝说的儿子徐某，两头受气，看到妈妈要喝农药，一把抢过来，并赌气说：“你喝农药死不如我喝死算了。”徐某把从妈妈手里抢下的农药仰头喝下。家里人见状赶紧喊人将他送往医院抢救。然而，由于徐某喝的农药毒性太大，中午12点多，徐某经抢救无效死亡。</p><p>当在家的妈妈得知儿子抢救无效死亡之后，不禁放声大哭。徐某的妈妈趁家里人一团慌乱，无人注意，再次拿起家里的一瓶农药喝下。家里人又赶紧将她送往医院抢救，但是徐某的妈妈也经抢救无效死亡。母子两人死亡前后仅相差两个小时。</p><p>据附近居民介绍，这一家人常年在当地租地种菜为生，与周围的人和睦相处。没想到发生这样的悲剧。</p><p>居民们称，徐某与妻子育有两个孩子，大的才三四岁，小的刚满2岁，才学会走路，而妻子又怀有四个多月的身孕。</p><p>目前，当地警方已经介入调查。</p><p><br/></p>');
+/*Data for the table `t_articlecontent` */
 
--- ----------------------------
--- Table structure for `t_channel`
--- ----------------------------
+insert  into `t_articlecontent`(`uuid`,`sectionNum`,`content`) values ('739d55dcb220439197e52cfd3c875852',2,'2this is a text 2'),('739d55dcb220439197e52cfd3c875852',1,'1this is a text 1'),('739d55dcb220439197e52cfd3c875852',0,'0this is a text 0'),('739d55dcb220439197e52cfd3c875852',-1,'-1this is a text -1');
+
+/*Table structure for table `t_channel` */
+
 DROP TABLE IF EXISTS `t_channel`;
 CREATE TABLE `t_channel` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -119,9 +107,8 @@ CREATE TABLE `t_channel` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=387 DEFAULT CHARSET=utf8 COMMENT='栏目实体，作为一个分类，其下可以包含其他栏目，或文章，媒体文件等';
 
--- ----------------------------
--- Records of t_channel
--- ----------------------------
+/*Data for the table `t_channel` */
+
 INSERT INTO `t_channel` VALUES ('0', '网站内容管理栏目', null, null, null, null, null, null, null, null, '0', '12', '0', '-1', '0', '0');
 INSERT INTO `t_channel` VALUES ('1', '校园趣味', null, null, null, null, null, null, null, null, '1', '231', '0', '0', '1', '1');
 INSERT INTO `t_channel` VALUES ('2', '校园趣味1', null, null, null, null, null, null, null, null, '2', '32', '1', '1', '1', '0');
@@ -147,24 +134,38 @@ INSERT INTO `t_channel` VALUES ('384', '吼吼吼', null, null, null, null, '0',
 INSERT INTO `t_channel` VALUES ('385', '我去看看', null, null, null, null, '0', null, null, '0', '4', '0', '1', '362', '0', '0');
 INSERT INTO `t_channel` VALUES ('386', '执行主席1', null, null, null, null, '0', null, null, '0', '1', '0', '1', '384', '0', '0');
 
--- ----------------------------
--- Table structure for `t_channelcontent`
--- ----------------------------
+
+/*Table structure for table `t_channelcontent` */
+
 DROP TABLE IF EXISTS `t_channelcontent`;
+
 CREATE TABLE `t_channelcontent` (
   `id` int(11) NOT NULL,
   `type` int(11) DEFAULT NULL,
   `contentId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of t_channelcontent
--- ----------------------------
+/*Data for the table `t_channelcontent` */
 
--- ----------------------------
--- Table structure for `t_comment`
--- ----------------------------
+/*Table structure for table `t_channeltype` */
+
+DROP TABLE IF EXISTS `t_channeltype`;
+
+CREATE TABLE `t_channeltype` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) DEFAULT NULL,
+  `description` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+/*Data for the table `t_channeltype` */
+
+insert  into `t_channeltype`(`id`,`name`,`description`) values (1, '导航栏目', '首页顶部导航栏目'),(2,'文章列表栏目','不同文章不同列表'),(3,'文章内容栏目','不同内容的文章栏目'),(4,'最火栏目','点击量最高的前几篇文章');
+
+/*Table structure for table `t_comment` */
+
 DROP TABLE IF EXISTS `t_comment`;
+
 CREATE TABLE `t_comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` int(11) DEFAULT NULL,
@@ -176,30 +177,16 @@ CREATE TABLE `t_comment` (
   `createTime` datetime DEFAULT NULL,
   `text` varchar(512) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='内容的评论。';
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='内容的评论。';
 
--- ----------------------------
--- Records of t_comment
--- ----------------------------
+/*Data for the table `t_comment` */
 
--- ----------------------------
--- Table structure for `t_contenttype`
--- ----------------------------
+insert  into `t_comment`(`id`,`type`,`contentId`,`agree`,`replyCount`,`status`,`creatorId`,`createTime`,`text`) values (1,2,1,34,0,1,4,NULL,'124634634ibfdfadsafdsaffd'),(2,2,1,6,0,1,3,NULL,'adf dsfds dsfasdfsdf'),(3,2,1,2,0,1,6,NULL,'ggggggggggggggggg'),(4,2,1,5,0,1,5,NULL,'(NUhhhhhhhhhhhhhhLL)'),(6,2,1,10,0,1,6,'2016-10-30 01:30:09','test null'),(7,2,1,10,0,1,6,'2016-10-30 01:31:55','test null'),(8,2,1,10,0,1,6,'2016-10-30 01:34:10','test null'),(9,0,0,0,0,0,0,NULL,NULL),(11,2,1,10,0,1,6,'2016-10-30 01:34:59','test null'),(12,0,0,0,0,0,0,NULL,NULL),(13,2,1,10,0,1,6,'2016-10-30 01:44:30','test null'),(14,2,1,10,0,1,6,'2016-10-30 01:44:30',NULL);
+
+/*Table table `t_contenttype` has been discarded*/
+
 DROP TABLE IF EXISTS `t_contenttype`;
-CREATE TABLE `t_contenttype` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(32) DEFAULT NULL,
-  `description` varchar(256) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='内容的类型，包括文章,多媒体文件(Audio,Media,Picture),栏目(Navigation)';
 
--- ----------------------------
--- Records of t_contenttype
--- ----------------------------
-INSERT INTO `t_contenttype` VALUES ('1', '导航栏目', '首页顶部导航栏目');
-INSERT INTO `t_contenttype` VALUES ('2', '文章列表栏目', '不同文章不同列表');
-INSERT INTO `t_contenttype` VALUES ('3', '文章内容栏目', '不同内容的文章栏目');
-INSERT INTO `t_contenttype` VALUES ('4', '最火栏目', '点击量最高的前几篇文章');
 
 -- ----------------------------
 -- Table structure for `t_manager`
@@ -220,7 +207,7 @@ CREATE TABLE `t_manager` (
 -- ----------------------------
 -- Records of t_manager
 -- ----------------------------
-INSERT INTO `t_manager` VALUES ('0', 'administrator1', '系统管理员', '123456', '2015-10-27 17:44:37', '1', '0', '1');
+INSERT INTO `t_manager` VALUES ('1', 'administrator1', '系统管理员', '123456', '2015-10-27 17:44:37', '1', '0', '1');
 INSERT INTO `t_manager` VALUES ('2', 'Nisbc', 'Nisbc', '123456', '2016-11-03 17:09:48', '1', '2', '1');
 INSERT INTO `t_manager` VALUES ('3', 'siteAdmin', '张云鹏', '123456', '2015-10-27 17:44:37', '1', '2', '1');
 INSERT INTO `t_manager` VALUES ('4', 'tomcat', 'Ramostear', '123456', '2016-09-19 17:41:55', '0', '2', '1');
@@ -269,6 +256,7 @@ INSERT INTO `t_module` VALUES ('26', '模块管理', null, '25', '/module/module
 INSERT INTO `t_module` VALUES ('27', '内容管理', '2016-10-25 09:52:55', '-1', '#', '&#xe627;', '2');
 INSERT INTO `t_module` VALUES ('28', '文章管理', null, '27', '/article/publicationArticleList', '&#xe623;', '2');
 INSERT INTO `t_module` VALUES ('29', '栏目管理', null, '27', '/admin/content/channel', '&#xe60c;', '2');
+INSERT INTO `t_module` VALUES ('30', '文件管理', null, '27', '/file/fileList', '&#xe60c;', '2');
 
 -- ----------------------------
 -- Table structure for `t_reply`
@@ -348,6 +336,7 @@ INSERT INTO `t_rolemodule` VALUES ('25', '1', '26');
 INSERT INTO `t_rolemodule` VALUES ('26', '1', '27');
 INSERT INTO `t_rolemodule` VALUES ('27', '1', '28');
 INSERT INTO `t_rolemodule` VALUES ('28', '1', '29');
+INSERT INTO `t_rolemodule` VALUES ('29', '1', '30');
 
 
 /*Table structure for table `t_download` */
@@ -356,20 +345,20 @@ DROP TABLE IF EXISTS `t_download`;
 
 CREATE TABLE `t_download` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `resourceId` int(11) DEFAULT NULL,
-  `channelId` int(11) DEFAULT NULL,
+  `resourceUuid` varchar(32) DEFAULT NULL,
   `time` datetime DEFAULT NULL,
   `userId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
+/*Data for the table `t_download` */
 
 /*Table structure for table `t_fileentity` */
 
 DROP TABLE IF EXISTS `t_fileentity`;
 
 CREATE TABLE `t_fileentity` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(32) NOT NULL,
   `title` varchar(64) DEFAULT NULL,
   `description` varchar(256) DEFAULT NULL,
   `format` int(11) DEFAULT NULL,
@@ -386,5 +375,25 @@ CREATE TABLE `t_fileentity` (
   `status` tinyint(1) DEFAULT NULL,
   `recommend` tinyint(1) DEFAULT NULL,
   `permission` int(11) DEFAULT NULL,
+  PRIMARY KEY (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `t_fileentity` */
+
+insert  into `t_fileentity`(`uuid`,`title`,`description`,`format`,`keyword`,`resourceUrl`,`category`,`creatorId`,`createTime`,`publishTime`,`publisherId`,`size`,`source`,`channelId`,`status`,`recommend`,`permission`) values ('2888612f98614168956bd23802cce4bc',NULL,NULL,0,NULL,NULL,0,8,'1970-01-01 10:13:20',NULL,0,0,NULL,0,0,0,0),('44ef5b330a2f428b8cfc527f97145dac',NULL,NULL,0,NULL,NULL,0,0,'1970-01-01 08:00:00',NULL,0,0,NULL,0,0,0,0);
+
+/*Table structure for table `t_manager` */
+
+DROP TABLE IF EXISTS `t_manager`;
+
+CREATE TABLE `t_manager` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '管理员编号',
+  `managername` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '管理员名称',
+  `managernickname` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '管理员别名',
+  `password` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '密码',
+  `createtime` datetime DEFAULT NULL COMMENT '创建时间',
+  `roleid` int(11) DEFAULT NULL COMMENT '角色编号',
+  `parentid` int(11) NOT NULL COMMENT '父编号',
+  `status` int(11) NOT NULL COMMENT '管理员状态，1：启用，0：停用',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
