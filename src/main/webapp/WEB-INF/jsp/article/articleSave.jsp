@@ -35,10 +35,10 @@
 <link rel="stylesheet" type="text/css" href="<%=path %>/resources/static/h-ui.admin/css/style.css" />
 <link rel="stylesheet" type="text/css" href="<%=path %>/resources/lib/ztree/css/zTreeStyle.css" />
 <link rel="stylesheet" type="text/css" href="<%=path %>/resources/lib/ueditor/1.4.3.3/third-party/webuploader/webuploader.css" />
-<link rel="stylesheet" type="text/css" href="<%=path %>/resources/cropper/css/bootstraps.min.css">
-<link rel="stylesheet" type="text/css" href="<%=path %>/resources/cropper/css/cropper.min.css">
-<link rel="stylesheet" type="text/css" href="<%=path %>/resources/cropper/css/mains.css">
-<link rel="stylesheet" type="text/css" href="<%=path %>/resources/cropper/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="<%=path %>/resources/cropper/css/bootstraps.min.css" />
+<link rel="stylesheet" type="text/css" href="<%=path %>/resources/cropper/css/cropper.min.css" />
+<link rel="stylesheet" type="text/css" href="<%=path %>/resources/cropper/css/mains.css" />
+<link rel="stylesheet" type="text/css" href="<%=path %>/resources/cropper/css/font-awesome.min.css" />
 <!--[if IE 6]>
 <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
@@ -61,13 +61,13 @@
 		<div class="container" id="crop-avatar">
 		   <!-- Current avatar -->
 		<div class="avatar-view" title="Change the avatar">
-		  <img src="<%=path %>/resources/cropper/img/picture.jpg" alt="Avatar" style="height:100%;">
+		  <img src="<%=path %>/resources/lib/cropper/img/picture.jpg" alt="Avatar" style="height:100%;">
 		</div>
 		<!-- Cropping modal -->
 		<div class="modal fade" style="width:660px;height:490px;margin-top:-320px;margin-left:auto;margin-right:auto;" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
 		  <div class=" modal-lg">
 		    <div>
-		      <form class="avatar-form" action="uploadImage" enctype="multipart/form-data" method="post" accept="image/*">
+		      <form class="avatar-form" action="ajaxCropperImageUpload" enctype="multipart/form-data" method="post" accept="image/*">
 		        <div class="modal-header">
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
 		          <h4 class="modal-title" id="avatar-modal-label">更改封面</h4>

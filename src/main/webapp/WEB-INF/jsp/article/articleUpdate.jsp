@@ -33,10 +33,10 @@
 <link rel="stylesheet" type="text/css" href="<%=path %>/resources/static/h-ui.admin/css/style.css" />
 <link rel="stylesheet" type="text/css" href="<%=path %>/resources/lib/ztree/css/zTreeStyle.css" />
 <link rel="stylesheet" type="text/css" href="<%=path %>/resources/lib/ueditor/1.4.3.3/third-party/webuploader/webuploader.css" />
-<link rel="stylesheet" type="text/css" href="<%=path %>/resources/cropper/css/bootstraps.min.css">
-<link rel="stylesheet" type="text/css" href="<%=path %>/resources/cropper/css/cropper.min.css">
-<link rel="stylesheet" type="text/css" href="<%=path %>/resources/cropper/css/mains.css">
-<link rel="stylesheet" type="text/css" href="<%=path %>/resources/cropper/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="<%=path %>/resources/cropper/css/bootstraps.min.css" />
+<link rel="stylesheet" type="text/css" href="<%=path %>/resources/cropper/css/cropper.min.css" />
+<link rel="stylesheet" type="text/css" href="<%=path %>/resources/cropper/css/mains.css" />
+<link rel="stylesheet" type="text/css" href="<%=path %>/resources/cropper/css/font-awesome.min.css" />
 <!--[if IE 6]>
 <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>

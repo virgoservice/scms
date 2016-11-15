@@ -9,12 +9,10 @@
  */
 package com.seelecloud.cms.controller;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.seelecloud.cms.entity.Article;
 import com.seelecloud.cms.entity.ArticleContent;
 import com.seelecloud.cms.entity.Channel;
@@ -36,10 +31,7 @@ import com.seelecloud.cms.service.ArticleContentService;
 import com.seelecloud.cms.service.ArticleService;
 import com.seelecloud.cms.service.ChannelService;
 import com.seelecloud.cms.service.ManagerService;
-import com.seelecloud.cms.util.FileUploadUtil;
-import com.seelecloud.cms.util.ImgCut;
 import com.seelecloud.cms.vo.ArticleVo;
-import com.seelecloud.cms.vo.Result;
 
 /**
  * @description: 
@@ -247,46 +239,4 @@ public class ArticleController {
 		return "article/article";
 	}
 	
-	/**
-	 * 图片上传
-	 * @return
-	 */
-	@RequestMapping(value = "/uploadImage",method = RequestMethod.POST, produces="text/html;charset=utf-8")
-	@ResponseBody  
-    public String uploadCropper(
-    		@RequestParam(value = "img_file",required=false) MultipartFile img_file,
-			 String img_src,String img_data, HttpServletRequest request) {
-				String realPath = request.getSession().getServletContext().getRealPath("/");
-				String resourcePath = "/upload/image/";
-		        //判断文件的MIMEtype
-		        String type = img_file.getContentType();
-		        if(type==null || !FileUploadUtil.allowUpload(type)) return  JSON.toJSONString(new Result(null,"不支持的文件类型，仅支持图片！"));
-                String fileName = FileUploadUtil.rename(img_file.getOriginalFilename());
-                int end = fileName.lastIndexOf(".");
-                String saveName = fileName.substring(0,end);
-                try {
-                	File dir = new File(realPath + resourcePath);
-                    if(!dir.exists()){
-                        dir.mkdirs();
-                    }
-                    File file = new File(dir,saveName+"_src.jpg");
-					img_file.transferTo(file);
-				} catch (Exception e) {
-					e.printStackTrace();  
-		            return  JSON.toJSONString(new Result(null,"上传失败，出现异常："+e.getMessage()));
-		        }   
-                String srcImagePath = realPath + resourcePath + saveName;
-                JSONObject joData = (JSONObject) JSONObject.parse(img_data);
-                // 用户经过剪辑后的图片的大小  
-                // 用户经过剪辑后的图片的大小  
-                float x = joData.getFloatValue("x");
-                float y = joData.getFloatValue("y");
-                float w =  joData.getFloatValue("width");
-                float h =  joData.getFloatValue("height");
-                float r = joData.getFloatValue("rotate");
-                //这里开始截取操作
-                ImgCut.cutAndRotateImage(srcImagePath, (int)x,(int) y,(int) w,(int) h,(int) r);
-               // System.out.println("srcImagePath= " + srcImagePath+"_cut.jpg");
-        return  JSON.toJSONString(new Result(request.getSession().getServletContext().getContextPath()+resourcePath+saveName+"_cut.jpg","上传成功!"));
-  }
 }
