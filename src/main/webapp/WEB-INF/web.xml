@@ -23,7 +23,7 @@
 	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:spring.xml;classpath*:spring-mybatis.xml;</param-value>
+		<param-value>classpath*:spring.xml;classpath*:spring-mybatis.xml;classpath*:spring-shiro.xml;</param-value>
 	</context-param>
 	<filter>
 		<filter-name>CharacterFilter</filter-name>
@@ -38,6 +38,24 @@
 		<filter-name>CharacterFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<!-- shiro 安全过滤器 -->
+    <!-- The filter-name matches name of a 'shiroFilter' bean inside applicationContext.xml -->
+    <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+       <!--  <async-supported>true</async-supported> -->
+	    <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+	
 	<!--日志记录  -->
 	<context-param>
 		<param-name>log4jConfigLocation</param-name>

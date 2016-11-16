@@ -69,6 +69,7 @@ public class AdminController {
 			//暂时设定一个用户
 			manager = managerService.findById(2);
 		}
+
 		List<Role> roleList = roleService.findByManangerId(manager.getId());
 		List<Integer> moduleIds = new ArrayList<Integer>();
 		List<Module> modules = new ArrayList<Module>();

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seelecloud.cms.dao.ArticleContentDao">
+	<resultMap id="BaseResultMap" type="com.seelecloud.cms.entity.ArticleContent">
+		<id column="uuid" jdbcType="VARCHAR" property="uuid" />
+		<result column="sectionNum" jdbcType="INTEGER" property="sectionNum" />
+		<result column="content" jdbcType="VARCHAR" property="content" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		uuid, sectionNum, content
+	</sql>
+
+	<insert id="save" parameterType="com.seelecloud.cms.entity.ArticleContent">
+		insert into t_articlecontent
+		(uuid, sectionNum, content)
+		values (#{uuid,jdbcType=VARCHAR},
+		#{sectionNum,jdbcType=INTEGER},
+		#{content,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<delete id="deleteByUuid" parameterType="java.lang.String">
+		delete from
+		t_articlecontent
+		where uuid = #{uuid,jdbcType=VARCHAR}
+	</delete>
+
+	<update id="update" parameterType="com.seelecloud.cms.entity.ArticleContent">
+		update t_articlecontent
+		<set>
+			<if test="content != null">content = #{content,jdbcType=VARCHAR},</if>
+		</set>
+		where uuid = #{uuid, jdbcType=VARCHAR}
+		and
+		sectionNum = #{sectionNum,jdbcType=INTEGER}
+	</update>
+
+	<select id="findArticleSection" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_articlecontent
+		where uuid = #{uuid, jdbcType=VARCHAR}
+		and
+		sectionNum = #{sectionNum, jdbcType=INTEGER}
+	</select>
+
+	<select id="listArticleAllContent" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_articlecontent
+		where uuid = #{uuid, jdbcType=INTEGER}
+	</select>
+
+</mapper>

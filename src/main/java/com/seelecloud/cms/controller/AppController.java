@@ -1,12 +1,10 @@
 package com.seelecloud.cms.controller;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -14,7 +12,7 @@ import com.seelecloud.cms.entity.App;
 import com.seelecloud.cms.service.AppService;
 
 /**
- * @Desc: ()
+ * @Desc: (站点的查看和修改)
  * @author: 张瑞
  * @date: 2016年9月21日 下午5:47:05
  * @email: ramostear@163.com
@@ -61,17 +59,13 @@ public class AppController {
 	 * @return
 	 */
 	@RequestMapping(value = "/toAppInfo", method = RequestMethod.POST)
-	public String toAppInfo(@Valid App app,BindingResult br, Model model,
-			HttpSession session) {
+	public String toAppInfo(App app,HttpSession session) {
 		// 1.获取当前登录的用户
 		App currentManager = (App) session.getAttribute("LoginManager");
 		if (currentManager == null) {
 			currentManager = new App();
 			currentManager.setId(2); // 获取登陆Id
 		}		
-		if (br.hasErrors()) {
-			return "app/appInfo";
-		}
 		
 		App app2 = appService.findById(currentManager.getId());
 		// 把需要在表单页面修改的值在下面列出，便于更改
@@ -79,14 +73,10 @@ public class AppController {
 		app2.setAppKeyword(app.getAppKeyword());
 		app2.setAppDescription(app.getAppDescription());
 		app2.setAppCopyright(app.getAppCopyright());
-		// app2.get(0).setXXX() ....
+	
 		appService.update(app2);
 		return "redirect:/admin/app/toAppInfo";
 	}
 	
-	
-	/**
-	 * 在这里做测试功能演示
-	 */
 
 }

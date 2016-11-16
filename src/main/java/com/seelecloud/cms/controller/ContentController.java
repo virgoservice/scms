@@ -9,13 +9,19 @@
  */
 package com.seelecloud.cms.controller;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 /**
- * @description: 内容管理控制器: 栏目管理, 文章管理, 多媒体资源管理, 资源下载管理
- * @author: vabo
+ * @description: 内容管理控制器: 文章管理, 多媒体资源管理, 资源下载管理
+ * @author: 张瑞
  * @version:
- * @Datetime:2016年10月13日
- * @Email:
+ * @Datetime:2016年10月28日
+ * @Email: 2411685663@qq.com
  */
+@Controller
+@RequestMapping("/content")
 public class ContentController {
 
+	// TODO
 }

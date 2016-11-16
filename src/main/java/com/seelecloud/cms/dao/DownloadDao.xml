@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seelecloud.cms.dao.DownloadDao">
+	<resultMap id="BaseResultMap" type="com.seelecloud.cms.entity.Download">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="resourceId" jdbcType="INTEGER" property="resourceId" />
+		<result column="channelId" jdbcType="INTEGER" property="channelId" />
+		<result column="time" jdbcType="TIMESTAMP" property="time" />
+		<result column="userId" jdbcType="INTEGER" property="userId" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, resourceId, channelId, time, userId
+	</sql>
+
+	<insert id="save" parameterType="com.seelecloud.cms.entity.Download">
+		insert into t_download (id,
+		resourceId, channelId, time, userId)
+		values
+		(#{id,jdbcType=INTEGER},
+		#{resourceId,jdbcType=INTEGER},
+		#{channelId,jdbcType=INTEGER},
+		#{time,jdbcType=TIMESTAMP},
+		#{userId,jdbcType=INTEGER}
+		)
+	</insert>
+
+	<select id="getTotalByTime" resultType="java.lang.Integer">
+		select COUNT(*)
+		from t_download
+		where
+		resourceId =
+		#{resourceId,jdbcType=INTEGER}
+		and channelId =
+		#{channelId,jdbcType=INTEGER}
+		<if test="startTime != null">
+			and time between #{startTime,jdbcType=TIMESTAMP} and
+			#{endTime,jdbcType=TIMESTAMP}
+		</if>
+	</select>
+
+	<select id="listByTime" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_download
+		where
+		resourceId =
+		#{resourceId,jdbcType=INTEGER}
+		and
+		channelId =
+		#{channelId,jdbcType=INTEGER}
+		<if test="startTime != null">
+			and time between #{startTime,jdbcType=TIMESTAMP} and
+			#{endTime,jdbcType=TIMESTAMP}
+		</if>
+	</select>
+
+	<select id="listByResource" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_download
+		where
+		resourceId =
+		#{resourceId,jdbcType=INTEGER}
+		and
+		channelId =
+		#{channelId,jdbcType=INTEGER}
+	</select>
+
+	<select id="listByUser" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_download
+		where
+		userId =
+		#{userId,jdbcType=INTEGER}
+	</select>
+
+</mapper>

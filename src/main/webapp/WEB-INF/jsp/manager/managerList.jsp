@@ -39,7 +39,6 @@
 <div class="page-container">
 	<div class="text-c"> 日期范围：
 		<input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})" id="datemin" class="input-text Wdate" style="width:120px;">
-		-
 		<input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})" id="datemax" class="input-text Wdate" style="width:120px;">
 		<input type="text" class="input-text" style="width:250px" placeholder="输入管理员名称" id="" name="">
 		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
@@ -93,8 +92,8 @@
 				</tr>
 			</c:forEach>
 		</tbody>
-		<div id="page1"></div>
 	</table>
+	<div id="page1"></div>
 </div>
 <script type="text/javascript" src="<%=path %>/resources/lib/jquery/1.9.1/jquery.min.js"></script>  
 <script type="text/javascript" src="<%=path %>/resources/lib/layer/2.1/layer.js"></script> 
@@ -108,9 +107,7 @@
   -->
 <script type="text/javascript">
 	$(function(){
-		alert("分页");
 		demo();
-		
 	});
 	function demo(curr){
 		var pageSize = 10;//默认的分页大小
@@ -134,7 +131,6 @@
 				}
 			});
 			$("tbody").html(packageData(res));
-			alert("ok");
 		}
 	}
 	function PackageData(res){
