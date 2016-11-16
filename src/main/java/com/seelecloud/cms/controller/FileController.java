@@ -21,13 +21,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.seelecloud.cms.entity.FileEntity;
 import com.seelecloud.cms.service.FileService;
+import com.seelecloud.cms.util.FileUploadUtil;
+import com.seelecloud.cms.util.ImgCut;
 
 /**
  * @description: 资源文件上传与下载, 更新,删除管理
